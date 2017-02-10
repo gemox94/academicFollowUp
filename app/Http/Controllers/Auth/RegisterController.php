@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Symfony\Component\HttpFoundation\Request;
@@ -63,7 +64,8 @@ class RegisterController extends Controller
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|same:confirmpass',
             'confirmpass' => 'required|min:6',
-            'phone' => 'required'
+            'phone' => 'required',
+            'cubicle' => 'required'
         ]);
     }
 
@@ -75,23 +77,28 @@ class RegisterController extends Controller
      */
     protected function create(Request $request)
     {
-        $validator = $this->validator($request);
+        $response = [];
+        $status_code = 200;
+
+        $user = new User;
+        $user->role_id = Input::get('rol');
+        $user->name = Input::get('name');
+        $user->last_name = Input::get('lastname');
+        $user->email = Input::get('email');
+        $user->key = Input::get('key');
+        $user->password = bcrypt(Input::get('password'));
+        $user->phone = Input::get('phone');
+        $user->cubicle = Input::get('cubicle');
+        $user->save();
+        $response['user'] = $user;
+        return response()->json($response, $status_code);
+        /*$validator = $this->validator($request);
         if ($validator->fails()){
             return redirect('/register/view')
                 ->withErrors($validator)
                 ->withInput();
         }else{
 
-            $user = new User;
-            $user->role_id = $request->input('rol');
-            $user->name = $request->input('name');
-            $user->last_name = $request->input('lastname');
-            $user->email = $request->input('email');
-            $user->key = $request->input('key');
-            $user->password = bcrypt($request->input('password'));
-            $user->phone = $request->input('phone');
-            $user->save();
-            return redirect('/');
-        }
+        }*/
     }
 }

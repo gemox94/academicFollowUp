@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" ng-app="academic">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -21,9 +21,29 @@
     <link href="{{asset('plugins/pace/pace.min.css')}}" rel="stylesheet">
     <script src="{{asset('plugins/pace/pace.min.js')}}"></script>
 
+    <!--SCRIPTS NECESARIOS PARA EL PROYECTO-->
+    <script type="text/javascript" src={{ asset('bower/angular/angular.js') }}></script>
+    <script type="text/javascript" src={{ asset('bower/angular-resource/angular-resource.min.js') }}></script>
+    <script type="text/javascript" src={{ asset('bower/angular-route/angular-router.js') }}></script>
+    <script type="text/javascript" src={{ asset('bower/jquery/dist/jquery.min.js') }}></script>
+    <script type="text/javascript" src={{ asset('bower/datatables.net/js/jquery.dataTables.min.js') }}></script>
+    <script type="text/javascript" src={{ asset('bower/angular-datatables/dist/angular-datatables.min.js') }}></script>
+    <script type="text/javascript" src={{ asset('bower/angularUtils-pagination/dirPagination.js') }}></script>
+    <script type="text/javascript" src={{ asset('bower/angular-ui-bootstrap/angular-ui-bootstrap.js') }}></script>
+    <script type="text/javascript" src={{ asset('bower/ngstorage/ngStorage.min.js') }}></script>
+    <script type="text/javascript" src={{ asset('bower/angular-spinners/dist/angular-spinners.min.js') }}></script>
+    <script type="text/javascript" src={{ asset('js/app.js') }}></script>
+    <script type="text/javascript" src={{ asset('js/services/user.js') }}></script>
+    <script type="text/javascript" src={{ asset('js/services/alert.js') }}></script>
+    <script type="text/javascript" src={{ asset('js/controllers/login.js') }}></script>
+    <script type="text/javascript" src={{ asset('js/controllers/register.js') }}></script>
+    <script>
+        angular.module("academic").constant("CSRF_TOKEN", '{{ csrf_token() }}');
+    </script>
+
     <title>Registro</title>
 </head>
-<body>
+<body ng-controller="registerController">
 
     <div id="container" class="cls-container">
 
@@ -45,7 +65,7 @@
             <div class="cls-content-lg panel">
                 <div class="panel-body">
                     <h3 class="pad-btm" id="register-title">Registro</h3>
-                    <form action="/register" method="post">
+                    <form ng-submit="submit()">
                         <input type="hidden" name="_token" value="{{csrf_token()}}">
                         <div class="row">
                             <div class="col-sm-4 col-sm-offset-2">
@@ -53,7 +73,10 @@
                                     <div class="panel panel-info panel-colorful">
                                         <div class="pad-all text-center">
                                             <span class="text-3x text-thin">Profesor</span>
-                                            <p><input type="radio" name="rol" value="2" id="rol_2"></p>
+                                            <p><input type="radio"
+                                                      ng-model="user.rol"
+                                                      ng-change="check_radio()"
+                                                      value="2" id="rol_2" required></p>
                                         </div>
                                     </div>
                                 </label>
@@ -63,7 +86,10 @@
                                     <div class="panel panel-success panel-colorful">
                                         <div class="pad-all text-center">
                                             <span class="text-3x text-thin">Alumno</span>
-                                            <p><input type="radio" name="rol" value="3" id="rol_3"></p>
+                                            <p><input type="radio"
+                                                      ng-model="user.rol"
+                                                      ng-change="check_radio()"
+                                                      value="3" id="rol_3"></p>
                                         </div>
                                     </div>
                                 </label>
@@ -74,14 +100,18 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-addon"><i class="fa fa-male"></i></div>
-                                        <input type="text" class="form-control" placeholder="Nombre (s)" name="name">
+                                        <input type="text" class="form-control" placeholder="Nombre (s)"
+                                               required
+                                               ng-model="user.name">
                                     </div>
                                 </div>
                             </div>
 
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Apellidos" name="lastname">
+                                    <input type="text" class="form-control" placeholder="Apellidos"
+                                           required
+                                           ng-model="user.lastname">
                                 </div>
                             </div>
                         </div>
@@ -90,13 +120,17 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-addon"><i class="fa fa-asterisk"></i></div>
-                                        <input type="password" class="form-control" placeholder="Contraseña" name="password">
+                                        <input type="password" class="form-control" placeholder="Contraseña"
+                                               required
+                                               ng-model="user.password">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Confirmar Contraseña" name="confirmpass">
+                                    <input type="password" class="form-control" placeholder="Confirmar Contraseña"
+                                           required
+                                           ng-model="user.confirmpass">
                                 </div>
                             </div>
                         </div>
@@ -105,22 +139,38 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
-                                        <input type="text" class="form-control" placeholder="Correo Elctrónico" name="email">
+                                        <input type="text" class="form-control" placeholder="Correo Elctrónico"
+                                               required
+                                               ng-model="user.email">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-addon"><i class="fa fa-user"></i></div>
-                                        <input type="text" class="form-control" placeholder="Matrícula" name="key">
+                                        <input type="text" class="form-control" placeholder="Matrícula"
+                                               required
+                                               ng-model="user.key">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-addon"><i class="fa fa-user"></i></div>
-                                        <input type="text" class="form-control" placeholder="Teléfono" name="phone">
+                                        <input type="text" class="form-control" placeholder="Teléfono"
+                                               required
+                                               ng-model="user.phone">
                                     </div>
                                 </div>
+
+                                <div class="form-group" ng-show="show_cubicle">
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                                        <input type="text" class="form-control" placeholder="Cubículo"
+                                               required
+                                               ng-model="user.cubicle">
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
 
