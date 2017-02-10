@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html ng-app="aguacates">
+<html ng-app="academic">
 
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>LabelCash |  @yield('title_tab')</title>
+	<title>Seguimiento |  @yield('title_tab')</title>
 
 
 	<!--STYLESHEET-->
@@ -65,7 +65,7 @@
 					<a href="index.html" class="navbar-brand">
 						<!--<img src="img/logo.png" alt="Nifty Logo" class="brand-icon">-->
 						<div class="brand-title">
-							<span class="brand-text">LabelCash</span>
+							<span class="brand-text">Seguimiento Académico</span>
 						</div>
 					</a>
 				</div>
@@ -220,7 +220,7 @@
 									<!--Category name-->
 									<li class="list-header">Menú</li>
 
-                                    @if(Auth::user()->role->name == "admin")
+                                    @if(Auth::user()->role->name == "coordinator")
 
 									<!--Menu list item-->
 									<li class="{{ Request::is('dashboard') ? 'active-link' : '' }}">
@@ -232,98 +232,33 @@
 										</a>
 									</li>
 
-									<!--Menu list item-->
-									<li class="{{ Request::is('labels/*') ? 'active-sub active' : '' }}">
-										<a href="#">
-											<i class="fa fa-th"></i>
-											<span class="menu-title">
-												<strong>Etiquetas</strong>
-											</span>
-											<i class="arrow"></i>
-										</a>
+                                    @endif
 
-										<!--Submenu-->
-										<ul class="collapse">
-											<li class="{{ Request::is('labels/lots') ? 'active-link' : '' }}">
-												<a href="/labels/lots">Lotes</a>
-											</li>
-											<li class="{{ Request::is('labels/stages') ? 'active-link' : '' }}">
-												<a href="/labels/stages">Tarimas</a>
-											</li>
-										</ul>
-									</li>
+									@if(Auth::user()->role->name == "teacher")
 
+										<!--Menu list item-->
+										<li class="{{ Request::is('dashboard') ? 'active-link' : '' }}">
+											<a href="/dashboard">
+												<i class="fa fa-dashboard"></i>
+												<span class="menu-title">
+													<strong>Inicio</strong>
+												</span>
+											</a>
+										</li>
 
-									<li class="{{ Request::is('shipments/*') ? 'active-sub active' : '' }}">
-										<a href="#">
-											<i class="fa fa-truck"></i>
-											<span class="menu-title">
-												<strong>Embarques</strong>
-											</span>
-											<i class="arrow"></i>
-										</a>
+                                    @endif
 
-										<!--Submenu-->
-										<ul class="collapse">
-											<li class="{{ Request::is('shipments/create') ? 'active-link' : '' }}">
-												<a href="/shipments/create">Nuevo</a>
-											</li>
-											<li class="{{ Request::is('shipments/list') ? 'active-link' : '' }}">
-												<a href="/shipments/list">Entrega y Recepción</a>
-											</li>
-										</ul>
-									</li>
+									@if(Auth::user()->role->name == "student")
 
-
-									<li class="{{ Request::is('stock/*') ? 'active-sub active' : '' }}">
-										<a href="#">
-											<i class="fa fa-database"></i>
-											<span class="menu-title">
-												<strong>Almacén</strong>
-											</span>
-											<i class="arrow"></i>
-										</a>
-
-										<!--Submenu-->
-										<ul class="collapse">
-											<li class="{{ Request::is('stock/create') ? 'active-link' : '' }}">
-												<a href="/stock/create">Nueva Salida</a>
-											</li>
-											<li class="{{ Request::is('stock/list') ? 'active-link' : '' }}">
-												<a href="/stock/list">Lista de Salidas</a>
-											</li>
-										</ul>
-									</li>
-
-
-									<li class="{{ Request::is('configuration/*') ? 'active-sub active' : '' }}">
-										<a href="#">
-											<i class="fa fa-cogs"></i>
-											<span class="menu-title">
-												<strong>Configuración</strong>
-											</span>
-											<i class="arrow"></i>
-										</a>
-
-										<ul class="collapse">
-											<li class="{{ Request::is('configuration/general') ? 'active-link' : '' }}">
-												<a href="/configuration/general">General</a>
-											</li>
-										</ul>
-
-										<!--Submenu-->
-										<ul class="collapse">
-											<li class="{{ Request::is('configuration/calibers') ? 'active-link' : '' }}">
-												<a href="/configuration/calibers">Calibres</a>
-											</li>
-										</ul>
-
-										<ul class="collapse">
-											<li class="{{ Request::is('configuration/stages') ? 'active-link' : '' }}">
-												<a href="/configuration/stages">Tarimas - Cajas</a>
-											</li>
-										</ul>
-									</li>
+										<!--Menu list item-->
+										<li class="{{ Request::is('dashboard') ? 'active-link' : '' }}">
+											<a href="/dashboard">
+												<i class="fa fa-dashboard"></i>
+												<span class="menu-title">
+													<strong>Inicio</strong>
+												</span>
+											</a>
+										</li>
 
                                     @endif
 

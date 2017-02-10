@@ -10,7 +10,24 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
+    if(Auth::check()){
+        return redirect('dashboard');
+    }
+
     return view('welcome');
 });
+
+Route::get('/login', function () {
+    return redirect('/');
+});
+
+
+Route::post('/login', 'Auth\\LoginController@login');
+Route::get('/logout', 'Auth\\LoginController@logout');
+Route::post('/auth/emailExists', 'Auth\\EmailController@emailExists');
+
+/*
+ * Vista de inicio
+ */
+Route::get('/dashboard', 'HomeController@index');
