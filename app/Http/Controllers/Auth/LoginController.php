@@ -4,6 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
+
+use App\User;
 
 class LoginController extends Controller
 {
@@ -35,5 +41,42 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest', ['except' => 'logout']);
+    }
+
+
+    /*
+     * Login
+     */
+    public function login(){
+        $email    = Input::get('email');
+        $password = Input::get('password');
+        $response = [];
+        $status_code = 200;
+
+        $user = User::where('email', $email)->first();
+
+        if(!$user){
+            return response()->json(['description' => 'Correo o contraseña incorrectos', 'alert_type' => 'danger'], 400);
+        }
+
+        if (Auth::attempt(['email' => $email, 'password' => $password])){
+            $user             = Auth::user()->load('role');
+            $response['user'] = $user;
+
+        }else{
+            $status_code = 400;
+            $response['description'] = 'Correo o contraseña erróneos';
+            $response['alert_type']  = 'danger';
+
+        }
+
+        return response()->json($response, $status_code);
+
+    }
+
+    public function logout(){
+        Auth::logout();
+        Session::flush();
+        return redirect('/');
     }
 }

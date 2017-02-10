@@ -136,7 +136,7 @@
 
                         <div class="row">
                             <div class="col-sm-8 col-sm-offset-2">
-                                <button class="btn btn-primary btn-lg btn-block" type="submit">
+                                <button class="btn btn-info btn-lg btn-block" type="submit">
                                     Registrarse
                                 </button>
                             </div>
@@ -146,7 +146,7 @@
                 </div>
             </div>
             <div class="pad-ver">
-                ¿Ya tiene una cuenta? <a href="/login" class="btn-link mar-rgt">Iniciar Sesión</a>
+                ¿Ya tiene una cuenta? <a href="/" class="btn-link mar-rgt">Iniciar Sesión</a>
             </div>
         </div>
         <!--===================================================-->
