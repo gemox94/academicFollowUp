@@ -16,6 +16,7 @@
 	<link href="{{ asset('css/nifty.min.css') }}" rel="stylesheet">
 	<link href="{{ asset('plugins/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
 	<link href="{{ asset('css/demo/nifty-demo.min.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
 	<!--SCRIPT-->
 	<!--=================================================-->
