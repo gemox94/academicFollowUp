@@ -1,5 +1,5 @@
 //  From : https://weblogs.asp.net/dwahlin/building-an-angularjs-modal-service
-angular.module('aguacates').service('confirmationModalService', ['$uibModal',
+angular.module('academic').service('confirmationModalService', ['$uibModal',
 function ($modal) {
 
     var modalDefaults = {
