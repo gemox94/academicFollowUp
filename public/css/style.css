@@ -1,0 +1,223 @@
+.lot_select{
+    width: 100%;
+    height: 30px;
+    text-align: center;
+    border: 1px solid #D5D5D5;
+    background: #F9F9F9;
+    border-radius: 4px;
+}
+
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.please-wait{
+    text-align: center;
+}
+
+.double-bounce1, .double-bounce2 {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #9c9;
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+
+  -webkit-animation: bounce 2.0s infinite ease-in-out;
+  animation: bounce 2.0s infinite ease-in-out;
+}
+
+.double-bounce2 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+@-webkit-keyframes bounce {
+  0%, 100% { -webkit-transform: scale(0.0) }
+  50% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 50% {
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
+}
+
+
+footer{
+    background-color: #32404e;
+    color: #ccc;
+}
+
+.fbold{
+    font-weight: bold;
+}
+
+.print_container{
+    overflow: hidden;
+}
+
+/*.print_body{
+    width: 90%;
+    margin: 0 auto;
+}*/
+
+/*.label_print {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 30%;
+    display: inline-block;
+    margin: 10px 2px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    height: 80px;
+    text-align: center;
+    overflow: hidden;
+}*/
+
+/*.label_print img{
+    width: 100%;
+}*/
+
+
+@media print {
+    .datos_info{
+        text-align: center;
+        color: green !important;
+    }
+
+    /*.print_container{
+        overflow: hidden;
+        background-color: red;
+    }
+
+    .lot_print_box{
+        width: 1in !important;
+        height: 2.625in !important;
+        display: inline-block;
+    }
+
+    .lot_print_box img{
+        width: 100%;
+    }
+
+    .lot_print_bar_code{
+        text-align: center;
+        letter-spacing: 4px;
+    }*/
+
+    body {
+        width: 8.5in;
+        margin: 0in .1875in;
+    }
+
+
+    html, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline; }
+
+    html{
+        line-height: 1;
+    }
+
+/*    .print_body{
+        width: 100% !important;
+        margin: 0 !important;
+    }*/
+
+    .print_body h2{
+        display: none;
+    }
+
+    .label_print {
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        width: 2.625in !important;
+        height: 1in !important;
+        padding: .1in .3in 0 !important;
+        margin-right: .155in !important;
+        margin-top: .02in !important;
+        padding: 0 !important;
+        display: block;
+        float: left;
+        text-align: center;
+        overflow: hidden;
+        outline: none;
+        border: none;
+        /*outline: 1px dotted #ccc;*/
+        /* outline doesn't occupy space like border does */
+    }
+
+    .label img{
+        height: 0.6in;
+        width: 1.9in;
+    }
+
+    .label span{
+        letter-spacing: 2px;
+    }
+
+    .page-break  {
+        clear: left;
+        display:block;
+        page-break-after:always;
+    }
+}
+
+
+
+.red_number{
+    color: red;
+    font-weight: bold;
+}
+
+
+.barcode_box div{
+    box-sizing: border-box;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #888;
+    border-radius: 10px;
+}
+
+.stage_returned div{
+    font-weight: bold;
+    background: #888;
+}
+
+
+.datos_info{
+    text-align: center;
+    color: green !important;
+}
+
