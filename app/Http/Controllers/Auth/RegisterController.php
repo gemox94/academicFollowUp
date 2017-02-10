@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Symfony\Component\HttpFoundation\Request;
 
 class RegisterController extends Controller
 {
@@ -40,17 +42,28 @@ class RegisterController extends Controller
     }
 
     /**
+     * Returning Register blade
+     */
+    public function registerView(){
+        return view('Auth.register');
+    }
+
+    /**
      * Get a validator for an incoming registration request.
      *
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+    protected function validator(Request $request)
     {
-        return Validator::make($data, [
+        return Validator::make($request->all(), [
+            'rol' => 'required',
             'name' => 'required|max:255',
+            'lastname' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
+            'password' => 'required|min:6|same:confirmpass',
+            'confirmpass' => 'required|min:6',
+            'phone' => 'required'
         ]);
     }
 
@@ -60,12 +73,25 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return User
      */
-    protected function create(array $data)
+    protected function create(Request $request)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+        $validator = $this->validator($request);
+        if ($validator->fails()){
+            return redirect('/register/view')
+                ->withErrors($validator)
+                ->withInput();
+        }else{
+
+            $user = new User;
+            $user->role_id = $request->input('rol');
+            $user->name = $request->input('name');
+            $user->last_name = $request->input('lastname');
+            $user->email = $request->input('email');
+            $user->key = $request->input('key');
+            $user->password = bcrypt($request->input('password'));
+            $user->phone = $request->input('phone');
+            $user->save();
+            return redirect('/');
+        }
     }
 }

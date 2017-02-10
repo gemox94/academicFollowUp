@@ -1,0 +1,19 @@
+.img-fcc{
+    background-image: url("../img/bg-img/fcc-night.jpg");
+}
+
+#register-title{
+    margin: 0 !important;
+}
+.btn-fcc {
+    color: #FFF;
+    border-color: #003B5C !important;
+    background-color: #003B5C !important;
+}
+
+.btn-fcc:hover, .btn-fcc:focus, .btn-fcc:active, .btn-fcc.active, .open>.dropdown-toggle.btn-fcc {
+    color: #003B5C;
+    border-color: #003B5C !important;
+    background-color: #FFF;
+}
+
