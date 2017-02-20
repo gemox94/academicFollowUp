@@ -80,25 +80,23 @@ class RegisterController extends Controller
         $response = [];
         $status_code = 200;
 
-        $user = new User;
-        $user->role_id = Input::get('rol');
-        $user->name = Input::get('name');
-        $user->last_name = Input::get('lastname');
-        $user->email = Input::get('email');
-        $user->key = Input::get('key');
-        $user->password = bcrypt(Input::get('password'));
-        $user->phone = Input::get('phone');
-        $user->cubicle = Input::get('cubicle');
-        $user->save();
-        $response['user'] = $user;
-        return response()->json($response, $status_code);
-        /*$validator = $this->validator($request);
+        $validator = $this->validator($request);
         if ($validator->fails()){
-            return redirect('/register/view')
-                ->withErrors($validator)
-                ->withInput();
+            $status_code = 400;
+            return response()->json($validator->errors(),$status_code);
         }else{
-
-        }*/
+            $user = new User;
+            $user->role_id = Input::get('rol');
+            $user->name = Input::get('name');
+            $user->last_name = Input::get('lastname');
+            $user->email = Input::get('email');
+            $user->key = Input::get('key');
+            $user->password = bcrypt(Input::get('password'));
+            $user->phone = Input::get('phone');
+            $user->cubicle = Input::get('cubicle');
+            $user->save();
+            $response['user'] = $user;
+            return response()->json($response, $status_code);
+        }
     }
 }
