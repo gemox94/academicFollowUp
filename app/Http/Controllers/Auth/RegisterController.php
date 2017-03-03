@@ -93,7 +93,9 @@ class RegisterController extends Controller
             $user->key = Input::get('key');
             $user->password = bcrypt(Input::get('password'));
             $user->phone = Input::get('phone');
-            $user->cubicle = Input::get('cubicle');
+            if ($request->has('cubicle')) {
+                $user->cubicle = Input::get('cubicle');
+            }
             $user->save();
             $response['user'] = $user;
             return response()->json($response, $status_code);
