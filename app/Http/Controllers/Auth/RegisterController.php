@@ -65,7 +65,7 @@ class RegisterController extends Controller
             'password' => 'required|min:6|same:confirmpass',
             'confirmpass' => 'required|min:6',
             'phone' => 'required',
-            'cubicle' => 'required'
+            'cubicle' => 'required_if:rol,2'
         ]);
     }
 
