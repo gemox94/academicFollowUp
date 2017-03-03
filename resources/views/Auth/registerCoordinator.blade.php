@@ -59,7 +59,7 @@
                             <label class="col-md-3 col-xs-12 control-label">Nueva Contraseña</label>
                             <div class="col-md-4 col-xs-12">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" ng-model="coordinator.password" id="password" required>
+                                    <input type="password" class="form-control" ng-model="coordinator.password" id="password" required>
                                     <span class="input-group-addon">
                                         <span class="fa fa-lock"></span>
                                     </span>
@@ -72,7 +72,7 @@
                             <label class="col-md-3 col-xs-12 control-label">Confirmar</label>
                             <div class="col-md-4 col-xs-12">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" ng-model="coordinator.password2" id="confirm_password" required>
+                                    <input type="password" class="form-control" ng-model="coordinator.password2" id="confirm_password" required>
                                     <span class="input-group-addon">
                                         <span class="fa fa-lock"></span>
                                     </span>
