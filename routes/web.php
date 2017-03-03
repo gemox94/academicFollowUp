@@ -34,3 +34,4 @@ Route::post('/register', 'Auth\RegisterController@create');
  * Vista de inicio
  */
 Route::get('/dashboard', 'HomeController@index');
+Route::get('/coordinator_register', 'HomeController@coordinatorRegisterView');

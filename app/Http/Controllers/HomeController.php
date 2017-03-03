@@ -27,4 +27,9 @@ class HomeController extends Controller
     {
         return view('dashboard');
     }
+
+    public function coordinatorRegisterView()
+    {
+        return view('Auth.registerCoordinator');
+    }
 }

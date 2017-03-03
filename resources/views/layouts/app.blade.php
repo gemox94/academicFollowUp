@@ -217,10 +217,9 @@
 							<div class="nano-content">
 								<ul id="mainnav-menu" class="list-group">
 
-									<!--Category name-->
-									<li class="list-header">Menú</li>
-
                                     @if(Auth::user()->role->name == "coordinator")
+
+									<li class="list-header">Menú - Coordinador</li>
 
 									<!--Menu list item-->
 									<li class="{{ Request::is('dashboard') ? 'active-link' : '' }}">
@@ -236,6 +235,8 @@
 
 									@if(Auth::user()->role->name == "teacher")
 
+										<li class="list-header">Menú - Profesor</li>
+
 										<!--Menu list item-->
 										<li class="{{ Request::is('dashboard') ? 'active-link' : '' }}">
 											<a href="/dashboard">
@@ -246,9 +247,23 @@
 											</a>
 										</li>
 
+
+										@if($coordinator)
+											<li class="{{ Request::is('coordinator_register') ? 'active-link' : '' }}">
+												<a href="/coordinator_register">
+													<i class="fa fa-user"></i>
+													<span class="menu-title">
+														<strong> Darse de alta coordinador</strong>
+													</span>
+												</a>
+											</li>
+										@endif
+
                                     @endif
 
 									@if(Auth::user()->role->name == "student")
+
+										<li class="list-header">Menú - Estudiante</li>
 
 										<!--Menu list item-->
 										<li class="{{ Request::is('dashboard') ? 'active-link' : '' }}">
