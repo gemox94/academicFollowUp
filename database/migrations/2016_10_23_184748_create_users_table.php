@@ -19,13 +19,14 @@ class CreateUsersTable extends Migration
           $table->timestamps();
           $table->integer('role_id')->unsigned();
           $table->string('name');
-          $table->string('last_name');
+          $table->string('lastname');
           $table->string('email')->unique();
           $table->string('password');
           $table->string('key');
           $table->string('cubicle')->nullable();
           $table->string('student_program')->nullable();
           $table->string('phone');
+
           $table->foreign('role_id')->references('id')->on('roles')->onDelete('restrict');
       });
     }
