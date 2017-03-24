@@ -30,3 +30,4 @@ Route::get('subjects/{teacher_id}/teacher', 'api\SubjectController@teacherSubjec
 Route::get('subjects/names', 'api\SubjectController@names');
 Route::get('subjects/{id}', 'api\SubjectController@getSubject');
 Route::post('subjects/create', 'api\SubjectController@createSubject');
+Route::post('subjects/update', 'api\SubjectController@updateSubject');

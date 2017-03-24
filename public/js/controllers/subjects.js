@@ -39,19 +39,39 @@ console.log(response);
      * Method for saving subjects
      */
     $scope.saveSubject = function(){
-        /*
-         * Set selected subject name
-         * Set teacher id
-         */
-        $scope.subject.name       = $scope.selectedSubject.data.name;
-        $scope.subject.teacher_id = $scope.loged_user.id;
-
         if ($scope.subject.id) {
             /*
-             * UPDATE
+             * UPDATE Subject
              */
+            $http({
+                method: 'POST',
+                url: '/api/subjects/update',
+                data:{
+                    subject: $scope.subject
+                }
+
+            }).then(function(response){
+                    alertService.add("success", 'La materia "'+$scope.subject.name+'" se actualizó con exito');
+                    console.log(response);
+
+                    window.location.href = '/subjects';
+
+                }, function(error_response){
+                    alertService.add("danger", 'Error al actualizar materia "'+$scope.subject.name+'". Porfavor intentelo más tarde');
+                    console.log(error_response);
+
+            }).finally(function() {
+
+            });
 
         }else{
+            /*
+             * Set selected subject name
+             * Set teacher id
+             */
+            $scope.subject.name       = $scope.selectedSubject.data.name;
+            $scope.subject.teacher_id = $scope.loged_user.id;
+
             /*
              * CREATE Subject
              */
@@ -63,7 +83,7 @@ console.log(response);
                 }
 
             }).then(function(response){
-                    alertService.add("success", 'La materia "'+$scope.subject.name+'" se creo con exito');
+                    alertService.add("success", 'La materia "'+$scope.subject.name+'" se creó con exito');
                     console.log(response);
 
                     window.location.href = '/subjects';

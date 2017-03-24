@@ -79,6 +79,35 @@ class SubjectController extends Controller
     }
 
 
+
+    public function updateSubject(Request $request){
+        try{
+            $status_code = 200;
+
+            /*
+             * Update subject
+             */
+            $subject                = Subject::find($request->subject['id']);
+            $subject->name          = $request->subject['name'];
+            $subject->nrc           = $request->subject['nrc'];
+            $subject->period        = $request->subject['period'];
+            $subject->key           = $request->subject['key'];
+            $subject->section       = $request->subject['section'];
+            $subject->schedule_json = $request->subject['schedule_json'];
+            $subject->save();
+
+            $response = $subject;
+
+        }catch(\Throwable $e){
+            $status_code = 500;
+            $response['error_message'] = $e->getMessage();
+            $response['error_type'] = 'unhandled_exception';
+            $response['error_type'] = 500;
+        }
+
+        return response()->json($response, $status_code);
+    }
+
     public function teacherSubjects($teacher_id, Request $request){
         try{
             $status_code = 200;
