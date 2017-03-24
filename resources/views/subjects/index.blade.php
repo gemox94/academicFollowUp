@@ -27,7 +27,7 @@
                     </a>
                 </div>
                 <br>
-                <div ng-controller="LotListCtrl">
+                <div ng-controller="SubjectsListCtrl">
                     <table datatable="ng" class="table table-striped row-border hover">
                         <thead>
                         <tr>
