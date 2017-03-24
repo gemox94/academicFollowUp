@@ -22,18 +22,7 @@
         window.lot_id = {{ $subject_id }}
     </script>
 
-    <div class="panel panel-default tabs" ng-controller="SubjectCtrl" >
-<!--
-        <spinner name="mySpinner" on-loaded="getResource()">
-            <div class="modal-dialog">
-                <div class="overlay"></div>
-                <div class="spinner">
-                    <div class="double-bounce1"></div>
-                    <div class="double-bounce2"></div>
-                </div>
-                <div class="please-wait">Cargando...</div>
-            </div>
-        </spinner>-->
+    <div class="panel panel-default tabs" ng-controller="SubjectCtrl">
 
         <uib-alert ng-repeat="alert in alerts"
                dismiss-on-timeout="5000"
@@ -42,122 +31,40 @@
                @{{alert.msg}}
         </uib-alert>
 
-        <form class="form-horizontal" name="lot_form" ng-submit="saveLot()" id="lot_form">
-                <div class="panel-body tab-content" id="print-section" >
+        <form class="form-horizontal" name="subject_form" ng-submit="saveSubject()" id="subject_form">
+                <div class="panel-body tab-content" id="print-section">
                     <div class="tab-pane active" id="datos">
 
                         <div>
                             <h4>
-                              Datos del Lote <span ng-if="lot.id">@{{ lot.number }}</span>
+                              Datos de la Materia <span ng-if="subject.id">@{{ subject.name }}</span>
                             </h4>
 
-
-                            <div class="form-group" ng-if="lot.id">
-                                <label class="col-md-3 col-xs-12 control-label">Fecha</label>
-                                <div class="col-md-6 col-xs-12">
-                                    <div class="input-group">
-                                            <input ng-readonly="lot.id" type="text" class="form-control" datetime="dd-MMM-yyyy" ng-model="lot.created_at" required>
-                                            <span class="input-group-addon">
-                                                <span class="fa fa-hashtag"></span>
-                                            </span>
-                                    </div>
-                                </div>
-                            </div>
-
                             <div class="form-group">
-                                <label class="col-md-3 col-xs-12 control-label">Lote*</label>
-                                <div class="col-md-6 col-xs-12">
-                                    <div class="input-group">
-                                            <input ng-readonly="lot.id" type="number" class="form-control" ng-model="lot.number" required>
-                                            <span class="input-group-addon">
-                                                <span class="fa fa-hashtag"></span>
-                                            </span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-md-3 col-xs-12 control-label">Acopiador*</label>
+                                <label class="col-md-3 col-xs-12 control-label">Nombre*</label>
                                 <div class="col-md-6 col-xs-12">
                                       <div class="input-group">
-                                          <input ng-if="lot.id" class="form-control" ng-model="lot.collector.name" type="text" readonly>
-                                          <select ng-if="!lot.id" class="lot_select"
-                                                  ng-options="collector.name for collector in collectors"
-                                                  ng-model="lot.collector"
-                                                  ng-change="loadProducers()">
+                                          <input ng-if="subject.id" class="form-control" ng-model="subject.name" type="text" readonly>
+
+                                          <select ng-if="!subject.id" class="lot_select"
+                                                  ng-options="subject_name for subject_name in subject_names"
+                                                  ng-model="subject.name">
                                           </select>
+
                                           <span class="input-group-addon">
-                                              <span class="fa fa-user"></span>
+                                              <span class="fa fa-book"></span>
                                           </span>
                                       </div>
-                                      <br>
-                                      <button ng-if="!lot.id" class="btn btn-success" ng-click="newCollector()">
-                                          Nuevo Acopiador <span class="fa fa-plus"></span>
-                                      </button>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-3 col-xs-12 control-label">Productor*</label>
+                                <label class="col-md-3 col-xs-12 control-label">Clave*</label>
                                 <div class="col-md-6 col-xs-12">
                                     <div class="input-group">
-                                        <input ng-if="lot.id" class="form-control" ng-model="lot.producer.name" type="text" readonly>
-                                        <select ng-if="!lot.id" class="lot_select"
-                                                ng-options="producer.name for producer in producers"
-                                                ng-model="lot.producer"
-                                                ng-change="loadOrchards()">
-                                        </select>
+                                        <input type="text" class="form-control" ng-model="subject.key" required>
                                         <span class="input-group-addon">
-                                            <span class="fa fa-user"></span>
-                                        </span>
-                                    </div>
-                                    <br>
-                                    <button ng-if="lot.collector && !lot.id" class="btn btn-success" ng-click="newProducer()">
-                                        Nuevo Productor <span class="fa fa-plus"></span>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-md-3 col-xs-12 control-label">Huerta*</label>
-                                <div class="col-md-6 col-xs-12">
-                                    <div class="input-group">
-                                        <input ng-if="lot.id" class="form-control" ng-model="lot.orchard.name" type="text" readonly>
-                                        <select ng-if="!lot.id" class="lot_select"
-                                                ng-options="orchard.name for orchard in orchards"
-                                                ng-model="lot.orchard">
-                                        </select>
-                                        <span class="input-group-addon">
-                                            <span class="fa fa-cube"></span>
-                                        </span>
-                                    </div>
-                                    <br>
-                                    <button ng-if="lot.producer && !lot.id" class="btn btn-success" ng-click="newOrchard()">
-                                        Nueva Huerta <span class="fa fa-plus"></span>
-                                    </button>
-                                </div>
-                            </div>
-
-
-                            <div class="form-group">
-                                <label class="col-md-3 col-xs-12 control-label">Precio por kilo*</label>
-                                <div class="col-md-6 col-xs-12">
-                                    <div class="input-group">
-                                        <input ng-readonly="lot.id" type="number" class="form-control" ng-model="lot.kilo_price" required>
-                                        <span class="input-group-addon">
-                                            <span class="fa fa-dollar"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-md-3 col-xs-12 control-label">Costo de Acarreo*</label>
-                                <div class="col-md-6 col-xs-12">
-                                    <div class="input-group">
-                                        <input ng-readonly="lot.id" type="number" class="form-control" ng-model="lot.carry" required>
-                                        <span class="input-group-addon">
-                                            <span class="fa fa-dollar"></span>
+                                            <span class="fa fa-key"></span>
                                         </span>
                                     </div>
                                 </div>
@@ -165,41 +72,34 @@
 
 
                             <div class="form-group">
-                                <label class="col-md-3 col-xs-12 control-label">Costo de corte por Kilo*</label>
+                                <label class="col-md-3 col-xs-12 control-label">Sección*</label>
                                 <div class="col-md-6 col-xs-12">
                                     <div class="input-group">
-                                        <input ng-readonly="lot.id" type="number" class="form-control" ng-model="lot.cut_price" required>
+                                        <input type="text" class="form-control" ng-model="subject.section" required>
                                         <span class="input-group-addon">
-                                            <span class="fa fa-dollar"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="form-group">
-                                <label class="col-md-3 col-xs-12 control-label">Peso bascula en Kilos*</label>
-                                <div class="col-md-6 col-xs-12">
-                                    <div class="input-group">
-                                        <input ng-readonly="lot.id" type="number" class="form-control" ng-model="lot.bascule_weight" required>
-                                        <span class="input-group-addon">
-                                            <span class="fa fa-balance-scale"></span>
+                                            <span class="fa fa-puzzle-piece"></span>
                                         </span>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-3 col-xs-12 control-label">
-                                    Fecha aprox de pago*
-                                    <br>
-                                    Formato: Mes/Dia/Año
-                                </label>
+                                <label class="col-md-3 col-xs-12 control-label">NRC*</label>
                                 <div class="col-md-6 col-xs-12">
                                     <div class="input-group">
-                                        <input ng-if="!lot.id" type="date" ng-model="lot.pay_date" class="form-control" placeholder="mes/dia/año" min="2016-01-01" required>
-                                        <input ng-if="lot.id" readonly type="text" class="form-control" datetime="dd-MMM-yyyy" ng-model="lot.pay_date" required>
-                                         <!--<div uib-datepicker ng-model="dt" class="well well-sm" datepicker-options="options"></div>-->
+                                        <input type="text" class="form-control" ng-model="subject.nrc" required>
+                                        <span class="input-group-addon">
+                                            <span class="fa fa-hashtag"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-3 col-xs-12 control-label">Periodo*</label>
+                                <div class="col-md-6 col-xs-12">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" ng-model="subject.period" required>
                                         <span class="input-group-addon">
                                             <span class="fa fa-calendar"></span>
                                         </span>
@@ -207,145 +107,15 @@
                                 </div>
                             </div>
 
-                            <div ng-if="!lot.id">
-                                <hr>
-                                <h4>Calibres y Porcentajes</h4>
-
-                                <div class="col-md-3"></div>
-                                <div class="col-md-6">
-                                    <table class="table table-striped row-border hover">
-                                        <thead>
-                                        <tr>
-                                            <th>Calibre</th>
-                                            <th>Porcentaje Total %</th>
-                                            <th>Calidad A %</th>
-                                            <th>Calidad B %</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr ng-repeat="caliber in calibers">
-                                            <td>
-                                                <span class="label label-table label-success">
-                                                    @{{ caliber.name }}
-                                                </span>
-                                            </td>
-                                            <td>
-                                                @{{ caliber.percentage }}
-                                            </td>
-                                            <td>
-                                                @{{ caliber.a_percentage }}
-                                            </td>
-                                            <td>
-                                                @{{ caliber.b_percentage }}
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-
-                            <div ng-if="lot.id">
-                                <hr>
-                                <h4>Datos Generados</h4>
-
-                                <div class="form-group" ng-if="lot.id">
-                                    <label class="col-md-3 col-xs-12 control-label">Precio Real por Kilo ($)</label>
-                                    <div class="col-md-6 col-xs-12">
-                                        <div class="input-group">
-                                            <input readonly type="number" class="form-control" ng-model="lot.real_price_per_kg" required>
-                                            <span class="input-group-addon">
-                                                <span class="fa fa-dollar"></span>
-                                            </span>
-                                        </div>
+                            <div class="form-group">
+                                <label class="col-md-3 col-xs-12 control-label">Salón y Horario*</label>
+                                <div class="col-md-6 col-xs-12">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" ng-model="subject.schedule_json" required>
+                                        <span class="input-group-addon">
+                                            <span class="fa fa-clock-o"></span>
+                                        </span>
                                     </div>
-                                </div>
-
-                                <div class="form-group" ng-if="lot.id">
-                                    <label class="col-md-3 col-xs-12 control-label">Precio Real por Caja ($)</label>
-                                    <div class="col-md-6 col-xs-12">
-                                        <div class="input-group">
-                                            <input readonly type="number" class="form-control" ng-model="lot.real_price_per_box" required>
-                                            <span class="input-group-addon">
-                                                <span class="fa fa-dollar"></span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group" ng-if="lot.id">
-                                    <label class="col-md-3 col-xs-12 control-label">Peso útil estimado (KG)</label>
-                                    <div class="col-md-6 col-xs-12">
-                                        <div class="input-group">
-                                            <input readonly type="number" class="form-control" ng-model="lot.useful_weight" required>
-                                            <span class="input-group-addon">
-                                                <span class="fa fa-balance-scale"></span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group" ng-if="lot.id">
-                                    <label class="col-md-3 col-xs-12 control-label">Peso merma estimado (KG)</label>
-                                    <div class="col-md-6 col-xs-12">
-                                        <div class="input-group">
-                                            <input readonly type="number" class="form-control" ng-model="lot.decrease_weight" required>
-                                            <span class="input-group-addon">
-                                                <span class="fa fa-balance-scale"></span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div ng-if="lot.id">
-                                <hr>
-                                <h4>Etiquetas</h4>
-                                <div class="col-md-12">
-                                    <table class="table table-striped row-border hover">
-                                        <thead>
-                                        <tr>
-                                            <th>Calibre</th>
-                                            <th>Porcentaje Total</th>
-                                            <th>Calidad</th>
-                                            <th>Porcentaje Parcial</th>
-                                            <th># Etiquetas</th>
-                                            <th>Código de Barras</th>
-                                            <th>Imprimir</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr ng-repeat="caliber in lot.calibers">
-                                            <td>
-                                                <span class="label label-table label-success">
-                                                    @{{ caliber.name }}
-                                                </span>
-                                            </td>
-                                            <td>
-                                                @{{ caliber.percentage }} %
-                                            </td>
-                                            <td class="text-center">
-                                                @{{ caliber.pivot.quality | uppercase }}
-                                            </td>
-                                            <td ng-if="caliber.pivot.quality == 'a'">
-                                                @{{ caliber.a_percentage }} %
-                                            </td>
-                                            <td ng-if="caliber.pivot.quality == 'b'">
-                                                @{{ caliber.b_percentage }} %
-                                            </td>
-                                            <td class="text-center">
-                                                @{{ caliber.pivot.box_number }}
-                                            </td>
-                                            <td>
-                                                @{{ caliber.pivot.barcode }}
-                                            </td>
-                                            <td>
-                                                <a href="/labels/lots/@{{lot.id}}/print/@{{caliber.pivot.id}}/calibers" target="_blank" class="btn btn-md btn-primary add-tooltip">
-                                                    <i class="fa fa-print"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
                                 </div>
                             </div>
 
@@ -354,14 +124,9 @@
                 </div>
 
                 <div class="panel-footer">
-                    <button ng-if="!lot.id" class="btn btn-success">
+                    <button ng-if="!lot.id" class="btn btn-primary">
                         Guardar <span class="fa fa-lock"></span>
                     </button>
-
-                    <!--<a ng-if="lot.id" href="/labels/lots/@{{lot.id}}/print" target="_blank" class="btn btn-primary">-->
-                    <!--<a ng-if="lot.id" href="#" target="_blank" class="btn btn-primary">-->
-                    <!--    Imprimir Etiquetas <span class="fa fa-print"></span>-->
-                    <!--</a>-->
 
                 </div>
         </form>

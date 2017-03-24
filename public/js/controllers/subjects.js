@@ -1,135 +1,11 @@
 app.controller('SubjectCtrl', function($rootScope, $scope, $http, $uibModal, $timeout, alertService, spinnerService, userService, $filter){
     $scope.loged_user   = userService.getUser();
     $scope.alertService = alertService;
-    $scope.collectors   = [];
-    $scope.producers    = [];
-    $scope.orchards     = [];
-    $scope.calibers     = [];
-    $scope.lot          = {
-        id: window.lot_id
+    $scope.subject      = {
+        id: window.subject_id
     };
 
-    /*
-     * Load calibers
-     */
-    $http.get('/api/calibers/')
-            .then(function(response){
-    console.log(response);
-            $scope.calibers = response.data;
-
-            }, function(error_response){
-                console.log('error', error_response);
-            });
-
-
-    /*
-     * Check if we are gonna load an existing lot
-     */
-    if ($scope.lot.id) {
-        /*
-         * Ask for lot info
-         */
-        $http.get('/api/lots/'+$scope.lot.id)
-            .then(function(response){
-    console.log(response);
-                $scope.lot = response.data;
-                $scope.lot.created_at = $filter('myDateFormat')($scope.lot.created_at);
-                $scope.lot.pay_date = $filter('myDateFormat')($scope.lot.pay_date);
-
-            }, function(error_response){
-                console.log('error', error_response);
-            });
-
-
-        $scope.loadProducers = function(){
-    console.log($scope.lot.collector);
-            /*
-             * Ask for list of producers
-             */
-            $http.get('/api/collectors/'+$scope.lot.collector.id+'/producers/')
-                .then(function(response){
-                    console.log(response);
-                    $scope.producers = response.data;
-        console.log($scope.producers);
-
-                }, function(error_response){
-                    console.log('error', error_response);
-                });
-        };
-    }else{
-        /*
-         * New Lot
-         * Ask for list of collectors
-         */
-        var todayDate = moment();
-
-        /*
-         * Ask for configuration info
-         */
-        $http.get('/api/configuration')
-           .then(function(response){
-               console.log(response);
-               var configuration = response.data;
-
-               /*
-                * Add days of configuration to pay_date
-                */
-               $scope.lot.pay_date = todayDate.add(configuration.day_interval, 'days').toDate();
-
-           }, function(error_response){
-               console.log('error', error_response);
-        });
-
-        $http.get('/api/collectors')
-            .then(function(response){
-                console.log(response);
-                $scope.collectors = response.data;
-    console.log($scope.collectors);
-
-            }, function(error_response){
-                console.log('error', error_response);
-            });
-
-
-        $scope.loadProducers = function(){
-    console.log($scope.lot.collector);
-            /*
-             * Ask for list of producers
-             */
-            $http.get('/api/collectors/'+$scope.lot.collector.id+'/producers/')
-                .then(function(response){
-                    console.log(response);
-                    $scope.producers = response.data;
-        console.log($scope.producers);
-
-                }, function(error_response){
-                    console.log('error', error_response);
-                });
-        };
-    }
-
-
-    $scope.loadOrchards = function(){
-        if ($scope.lot.producer != undefined) {
-            /*
-             * Ask for list of orchards
-             */
-        $http.get('/api/producers/'+$scope.lot.producer.id+'/orchards/')
-            .then(function(response){
-                console.log(response);
-                $scope.orchards = response.data;
-    console.log($scope.orchards);
-
-            }, function(error_response){
-                console.log('error', error_response);
-            });
-
-        }else{
-            $scope.orchards = [];
-        }
-    };
-
-    $scope.saveLot = function(){
+    $scope.saveSubject = function(){
 
 
         if ($scope.lot.id) {
@@ -139,32 +15,23 @@ app.controller('SubjectCtrl', function($rootScope, $scope, $http, $uibModal, $ti
 
         }else{
             /*
-             * CREATE LOT
+             * CREATE Subject
              */
             $http({
                 method: 'POST',
-                url: '/api/lots',
+                url: '/api/subject',
                 data:{
-                    collector_id: $scope.lot.collector.id,
-                    producer_id: $scope.lot.producer.id,
-                    orchard_id: $scope.lot.orchard.id,
-                    user_id: $scope.loged_user.id,
-                    carry: $scope.lot.carry,
-                    kilo_price: $scope.lot.kilo_price,
-                    cut_price: $scope.lot.cut_price,
-                    bascule_weight: $scope.lot.bascule_weight,
-                    pay_date: $scope.lot.pay_date,
-                    number: $scope.lot.number
+                    subject: $scope.subject
                 }
 
             }).then(function(response){
-                    alertService.add("success", 'El lote "'+$scope.lot.number+'" se creo con exito');
+                    alertService.add("success", 'La materia "'+$scope.subject.name+'" se creo con exito');
                     console.log(response);
 
-                    window.location.href = '/labels/lots/'+response.data.id
+                    window.location.href = '/subjects';
 
                 }, function(error_response){
-                    alertService.add("danger", 'Error al crear lote "'+$scope.lot.number+'". Porfavor intentelo más tarde');
+                    alertService.add("danger", 'Error al crear materia "'+$scope.subject.name+'". Porfavor intentelo más tarde');
                     console.log(error_response);
 
             }).finally(function() {
