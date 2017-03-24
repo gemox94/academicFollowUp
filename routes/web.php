@@ -35,3 +35,9 @@ Route::post('/register', 'Auth\RegisterController@create');
  */
 Route::get('/dashboard', 'HomeController@index');
 Route::get('/coordinator_register', 'HomeController@coordinatorRegisterView');
+
+/*
+ * Teacher's Students
+ */
+Route::post('/teacher_students/find', 'TeacherStudentsController@find');
+Route::resource('/teacher_students', 'TeacherStudentsController');

@@ -19,8 +19,8 @@
 	<link href="{{ asset('plugins/switchery/switchery.min.css') }}" rel="stylesheet">
 	<link href="{{ asset('plugins/bootstrap-select/bootstrap-select.min.css') }}" rel="stylesheet">
 	<link href="{{ asset('css/demo/nifty-demo.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-        @yield('extra_css')
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    @yield('extra_css')
 
 	<!--SCRIPT-->
 	<!--=================================================-->
@@ -47,6 +47,12 @@
 	<script type="text/javascript" src={{ asset("js/services/alert.js") }}></script>
 	<script type="text/javascript" src={{ asset("js/services/user.js") }}></script>
 	<script type="text/javascript" src={{ asset("js/services/confirm.js") }}></script>
+    <script>
+        (function () {
+            angular.module('academic').constant('CSRF_TOKEN', '{{csrf_token()}}');
+        })();
+    </script>
+
 	@yield('controller_js')
 
 </head>
@@ -256,6 +262,15 @@
 												</span>
 											</a>
 										</li>
+
+											<li class="{{ Request::is('students') ? 'active-link' : '' }}">
+												<a href="/teacher_students">
+													<i class="fa fa-users"></i>
+													<span class="menu-title">
+													<strong>Estudiantes</strong>
+												</span>
+												</a>
+											</li>
 
 
 										@if(!$coordinator)
