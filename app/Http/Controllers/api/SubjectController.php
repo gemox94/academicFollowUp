@@ -99,12 +99,29 @@ class SubjectController extends Controller
     }
 
 
+
+    public function getSubject($subject_id, Request $request){
+        try{
+            $status_code  = 200;
+            $subject      = Subject::find($subject_id);
+            $response     = $subject;
+
+        }catch(\Throwable $e){
+            $status_code = 500;
+            $response['error_message'] = $e->getMessage();
+            $response['error_type'] = 'unhandled_exception';
+            $response['error_type'] = 500;
+        }
+
+        return response()->json($response, $status_code);
+    }
+
+
     public function names(Request $request){
         try{
             $status_code  = 200;
             $subjectNames = DB::table('subject_names')->select('name')->get();
-
-            $response = $subjectNames;
+            $response     = $subjectNames;
 
         }catch(\Throwable $e){
             $status_code = 500;

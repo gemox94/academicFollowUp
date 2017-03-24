@@ -19,7 +19,7 @@
 @section('content')
 
     <script type="text/javascript">
-        window.lot_id = {{ $subject_id }}
+        window.subject_id = {{ $subject_id }}
     </script>
 
     <div class="panel panel-default tabs" ng-controller="SubjectCtrl">

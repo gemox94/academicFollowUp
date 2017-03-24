@@ -7,19 +7,37 @@ app.controller('SubjectCtrl', function($rootScope, $scope, $http, $uibModal, $ti
         id: window.subject_id
     };
 
+console.log($scope.subject);
+    if ($scope.subject.id) {
+        /*
+         * Load existing subject
+         */
+        $http.get('/api/subjects/'+$scope.subject.id)
+           .then(function(response){
+console.log(response);
+               $scope.subject = response.data;
+
+           }, function(error_response){
+               console.log('error', error_response);
+           });
+    }
+
 
     /*
      * Get subject_names
      */
     $http.get('/api/subjects/names')
        .then(function(response){
-           console.log(response);
            $scope.subject_names = response.data;
 
        }, function(error_response){
            console.log('error', error_response);
        });
 
+
+    /*
+     * Method for saving subjects
+     */
     $scope.saveSubject = function(){
         /*
          * Set selected subject name
