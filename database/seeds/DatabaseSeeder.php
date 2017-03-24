@@ -12,5 +12,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(RolesSedeer::class);
+        $this->call(CreateSubjectNames::class);
+        $this->call(DefaultProfesor::class);
     }
 }
