@@ -27,3 +27,4 @@ Route::post('coordinator/new', 'api\CoordinatorController@create');
  * Routes for subjects
  */
 Route::get('subjects/{teacher_id}/teacher', 'api\SubjectController@teacherSubjects');
+Route::get('subjects/names', 'api\SubjectController@names');

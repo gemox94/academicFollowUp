@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
 use App\User;
 use App\Role;
@@ -54,6 +55,24 @@ class SubjectController extends Controller
             $subjects = $teacher->subjects;
 
             $response = $subjects;
+
+        }catch(\Throwable $e){
+            $status_code = 500;
+            $response['error_message'] = $e->getMessage();
+            $response['error_type'] = 'unhandled_exception';
+            $response['error_type'] = 500;
+        }
+
+        return response()->json($response, $status_code);
+    }
+
+
+    public function names(Request $request){
+        try{
+            $status_code  = 200;
+            $subjectNames = DB::table('subject_names')->select('name')->get();
+
+            $response = $subjectNames;
 
         }catch(\Throwable $e){
             $status_code = 500;
