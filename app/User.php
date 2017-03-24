@@ -48,4 +48,11 @@ class User extends Authenticatable
             return $q->where('name', $role_name);
         });
     }
+
+    /*
+     * Subject Relationship
+     */
+    public function subjects(){
+        return $this->hasMany('App\Subject', 'teacher_id');
+    }
 }
