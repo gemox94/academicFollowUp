@@ -61,9 +61,9 @@
                     $window.location.href = "/";
 
                 }, function(response){
+                    console.log(response);
                     angular.forEach(response.data,function (data) {
-                        console.log(data)
-                        for(err in data){
+                        for(var err in data){
                             alertService.add("danger",data[err]);
                         }
                     });

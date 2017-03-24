@@ -88,7 +88,7 @@ class RegisterController extends Controller
             $user = new User;
             $user->role_id = Input::get('rol');
             $user->name = Input::get('name');
-            $user->last_name = Input::get('lastname');
+            $user->lastname = Input::get('lastname');
             $user->email = Input::get('email');
             $user->key = Input::get('key');
             $user->password = bcrypt(Input::get('password'));
