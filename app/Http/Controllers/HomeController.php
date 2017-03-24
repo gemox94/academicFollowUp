@@ -36,4 +36,14 @@ class HomeController extends Controller
     public function SubjectsView(){
         return view('subjects.index');
     }
+
+    public function newSubjectView(Request $request){
+        return view('subjects.subject')->with([ 'subject_id' =>  0,
+                                                'title'      => 'Nueva Materia']);
+    }
+
+    public function showSubjectView($id, Request $request) {
+        return view('subjects.subject')->with(['subject_id' => $id,
+                                               'title' => 'Editar Materia']);
+    }
 }

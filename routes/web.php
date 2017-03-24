@@ -36,3 +36,4 @@ Route::post('/register', 'Auth\RegisterController@create');
 Route::get('/dashboard', 'HomeController@index');
 Route::get('/coordinator_register', 'HomeController@coordinatorRegisterView');
 Route::get('/subjects', 'HomeController@SubjectsView');
+Route::get('/subjects/create', 'HomeController@newSubjectView');

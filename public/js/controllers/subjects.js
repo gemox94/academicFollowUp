@@ -1,4 +1,4 @@
-app.controller('LotCtrl', function($rootScope, $scope, $http, $uibModal, $timeout, alertService, spinnerService, userService, $filter){
+app.controller('SubjectCtrl', function($rootScope, $scope, $http, $uibModal, $timeout, alertService, spinnerService, userService, $filter){
     $scope.loged_user   = userService.getUser();
     $scope.alertService = alertService;
     $scope.collectors   = [];
