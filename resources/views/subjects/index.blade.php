@@ -38,6 +38,7 @@
                             <th>Sección</th>
                             <th>Salón y horario</th>
                             <th>Información</th>
+                            <th>Eliminar</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -53,6 +54,12 @@
                                     <i class="fa fa-info-circle"></i>
                                     Ver info
                                 </a>
+                            </td>
+                            <td>
+                                <button ng-click="deleteSubject(subject)" class="btn btn-danger">
+                                    <i class="fa fa-times"></i>
+
+                                </button>
                             </td>
                         </tr>
                         </tbody>
