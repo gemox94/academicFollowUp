@@ -35,7 +35,7 @@
         };
 
         $scope.loadStudent = function(){
-            
+
         }
 
     }

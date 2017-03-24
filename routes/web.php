@@ -41,3 +41,9 @@ Route::get('/coordinator_register', 'HomeController@coordinatorRegisterView');
  */
 Route::post('/teacher_students/find', 'TeacherStudentsController@find');
 Route::resource('/teacher_students', 'TeacherStudentsController');
+
+/*
+ * Subjects' Routes
+ */
+Route::get('/subjects', 'HomeController@SubjectsView');
+Route::get('/subjects/create', 'HomeController@newSubjectView');

@@ -256,7 +256,7 @@
 										<!--Menu list item-->
 										<li class="{{ Request::is('subjects') ? 'active-link' : '' }}">
 											<a href="/subjects">
-												<i class="fa fa-blocks"></i>
+												<i class="fa fa-th"></i>
 												<span class="menu-title">
 													<strong>Materias</strong>
 												</span>

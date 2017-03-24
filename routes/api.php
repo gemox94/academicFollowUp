@@ -21,3 +21,11 @@ use Illuminate\Http\Request;
  * Create a coordinator
  */
 Route::post('coordinator/new', 'api\CoordinatorController@create');
+
+
+/*
+ * Routes for subjects
+ */
+Route::get('subjects/{teacher_id}/teacher', 'api\SubjectController@teacherSubjects');
+Route::get('subjects/names', 'api\SubjectController@names');
+Route::post('subjects/create', 'api\SubjectController@createSubject');
