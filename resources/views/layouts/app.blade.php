@@ -247,6 +247,16 @@
 											</a>
 										</li>
 
+										<!--Menu list item-->
+										<li class="{{ Request::is('subjects') ? 'active-link' : '' }}">
+											<a href="/subjects">
+												<i class="fa fa-blocks"></i>
+												<span class="menu-title">
+													<strong>Materias</strong>
+												</span>
+											</a>
+										</li>
+
 
 										@if(!$coordinator)
 											<li class="{{ Request::is('coordinator_register') ? 'active-link' : '' }}">
