@@ -250,7 +250,7 @@
 										<!--Menu list item-->
 										<li class="{{ Request::is('subjects') ? 'active-link' : '' }}">
 											<a href="/subjects">
-												<i class="fa fa-book"></i>
+												<i class="fa fa-th"></i>
 												<span class="menu-title">
 													<strong>Materias</strong>
 												</span>
