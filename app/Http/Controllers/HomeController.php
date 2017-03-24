@@ -32,4 +32,8 @@ class HomeController extends Controller
     {
         return view('Auth.registerCoordinator');
     }
+
+    public function SubjectsView(){
+        return view('subjects.index');
+    }
 }
