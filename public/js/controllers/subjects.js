@@ -1,8 +1,9 @@
 app.controller('SubjectCtrl', function($rootScope, $scope, $http, $uibModal, $timeout, alertService, spinnerService, userService, $filter){
-    $scope.loged_user    = userService.getUser();
-    $scope.alertService  = alertService;
-    $scope.subject_names = [];
-    $scope.subject       = {
+    $scope.loged_user      = userService.getUser();
+    $scope.alertService    = alertService;
+    $scope.subject_names   = [];
+    $scope.selectedSubject = {};
+    $scope.subject         = {
         id: window.subject_id
     };
 
@@ -20,6 +21,11 @@ app.controller('SubjectCtrl', function($rootScope, $scope, $http, $uibModal, $ti
        });
 
     $scope.saveSubject = function(){
+        /*
+         * Set selected subject name
+         */
+        $scope.subject.name = $scope.selectedSubject.data.name;
+
         if ($scope.subject.id) {
             /*
              * UPDATE

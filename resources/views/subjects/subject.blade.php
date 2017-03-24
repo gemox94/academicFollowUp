@@ -48,7 +48,7 @@
 
                                           <select ng-if="!subject.id" class="lot_select"
                                                   ng-options="subject_name.name for subject_name in subject_names"
-                                                  ng-model="subject.name">
+                                                  ng-model="selectedSubject.data">
                                           </select>
 
                                           <span class="input-group-addon">
