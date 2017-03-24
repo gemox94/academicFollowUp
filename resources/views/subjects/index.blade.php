@@ -23,7 +23,7 @@
                 <div>
                     <a class="btn btn-primary" href="/subjects/create">
                         <span class="fa fa-plus"></span>
-                        Nuevo Materia
+                        Nueva Materia
                     </a>
                 </div>
                 <br>
@@ -50,6 +50,7 @@
                             <td>@{{ subject.schedule_json }}</td>
                             <td>
                                 <a href="/subjects/@{{ subject.id }}" class="btn btn-primary">
+                                    <i class="fa fa-info-circle"></i>
                                     Ver info
                                 </a>
                             </td>
