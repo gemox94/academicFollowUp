@@ -37,6 +37,7 @@
                             <th>Clave</th>
                             <th>Sección</th>
                             <th>Salón y horario</th>
+                            <th>Información</th>
                         </tr>
                         </thead>
                         <tbody>

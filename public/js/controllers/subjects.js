@@ -23,8 +23,10 @@ app.controller('SubjectCtrl', function($rootScope, $scope, $http, $uibModal, $ti
     $scope.saveSubject = function(){
         /*
          * Set selected subject name
+         * Set teacher id
          */
-        $scope.subject.name = $scope.selectedSubject.data.name;
+        $scope.subject.name       = $scope.selectedSubject.data.name;
+        $scope.subject.teacher_id = $scope.loged_user.id;
 
         if ($scope.subject.id) {
             /*
@@ -37,7 +39,7 @@ app.controller('SubjectCtrl', function($rootScope, $scope, $http, $uibModal, $ti
              */
             $http({
                 method: 'POST',
-                url: '/api/subject',
+                url: '/api/subjects/create',
                 data:{
                     subject: $scope.subject
                 }
@@ -113,7 +115,7 @@ app.controller('OrchardModalCtrl', function($scope, $http, $uibModalInstance) {
 app.controller('SubjectsListCtrl', function($rootScope, $scope, $http, $uibModal, $timeout, alertService, spinnerService, userService){
     $scope.loged_user   = userService.getUser();
     $scope.alertService = alertService;
-    $scope.lots         = [];
+    $scope.subjects     = [];
 
     /*
      * Ask for subjects info
@@ -121,7 +123,7 @@ app.controller('SubjectsListCtrl', function($rootScope, $scope, $http, $uibModal
     $http.get('/api/subjects/'+$scope.loged_user.id+'/teacher')
        .then(function(response){
            console.log(response);
-           $scope.lots = response.data;
+           $scope.subjects = response.data;
 
        }, function(error_response){
            console.log('error', error_response);
