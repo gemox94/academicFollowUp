@@ -124,54 +124,59 @@
                 </div>
 
                 <div class="panel-footer">
-                    <button ng-if="!lot.id" class="btn btn-primary">
+                    <button class="btn btn-primary">
                         Guardar <span class="fa fa-lock"></span>
                     </button>
 
                 </div>
         </form>
+
+
+        <div ng-if="subject.id" class="col-md-12">
+            <div class="panel">
+                <uib-alert ng-repeat="alert in alerts"
+                       dismiss-on-timeout="5000"
+                       type="@{{alert.type}}"
+                       close="alertService.closeAlert($index)">
+                       @{{alert.msg}}
+                </uib-alert>
+
+                <div class="panel-heading">
+                    <h3 class="panel-title">Alumnos de la materia</h3>
+                </div>
+                <form class="form-horizontal" name="subject_form2" id="subject_form2">
+                        <div class="panel-body tab-content" id="print-section" >
+                            <div class="tab-pane active" id="datos">
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <table class="table table-striped row-border hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nombre</th>
+                                                    <th>Matrícula</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="student in subject.students">
+                                                    <td>
+                                                        @{{ student.name }}
+                                                    </td>
+                                                    <td>
+                                                        @{{ student.key }}
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </form>
+            </div>
+        </div>
+
     </div>
-
-    <script type="text/ng-template" id="collector_modal.html">
-        <div class="modal-header">
-            <h3 class="modal-title">Agregar Acopiador</h3>
-        </div>
-        <div class="modal-body contract-modal">
-            <div class="form-group">
-              <input class="form-control" type="text" placeholder="Nombre" ng-model="collector.name">
-            </div>
-            <div class="form-group">
-              <input class="form-control" type="number" placeholder="Teléfono" ng-model="collector.phone">
-            </div>
-        </div>
-        <div class="modal-footer">
-            <p>
-              <button class="btn btn-primary" type="button" ng-click="ok()">Agregar</button>
-              <button class="btn btn-warning" type="button" ng-click="cancel()">Cancelar</button>
-            </p>
-        </div>
-    </script>
-
-
-    <script type="text/ng-template" id="producer_modal.html">
-        <div class="modal-header">
-            <h3 class="modal-title">Agregar Productor</h3>
-        </div>
-        <div class="modal-body contract-modal">
-            <div class="form-group">
-              <input class="form-control" type="text" placeholder="Nombre" ng-model="producer.name">
-            </div>
-            <div class="form-group">
-              <input class="form-control" type="number" placeholder="Teléfono" ng-model="producer.phone">
-            </div>
-        </div>
-        <div class="modal-footer">
-            <p>
-              <button class="btn btn-primary" type="button" ng-click="ok()">Agregar</button>
-              <button class="btn btn-warning" type="button" ng-click="cancel()">Cancelar</button>
-            </p>
-        </div>
-    </script>
 
 
     <script type="text/ng-template" id="orchard_modal.html">

@@ -7,7 +7,7 @@ app.controller('SubjectCtrl', function($rootScope, $scope, $http, $uibModal, $ti
         id: window.subject_id
     };
 
-console.log($scope.subject);
+
     if ($scope.subject.id) {
         /*
          * Load existing subject
