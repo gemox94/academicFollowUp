@@ -108,12 +108,13 @@ class SubjectController extends Controller
         return response()->json($response, $status_code);
     }
 
+
     public function teacherSubjects($teacher_id, Request $request){
         try{
             $status_code = 200;
             $teacher     = User::find($teacher_id);
 
-            $subjects = $teacher->subjects;
+            $subjects = $teacher->subjects()->whereNull('status')->get();
 
             $response = $subjects;
 
@@ -127,6 +128,24 @@ class SubjectController extends Controller
         return response()->json($response, $status_code);
     }
 
+
+    public function deleteSubject($subject_id, Request $request){
+        try{
+            $status_code     = 200;
+            $subject         = Subject::find($subject_id);
+            $subject->status = 'disabled';
+            $subject->save();
+            $response        = "ok";
+
+        }catch(\Throwable $e){
+            $status_code = 500;
+            $response['error_message'] = $e->getMessage();
+            $response['error_type'] = 'unhandled_exception';
+            $response['error_type'] = 500;
+        }
+
+        return response()->json($response, $status_code);
+    }
 
 
     public function getSubject($subject_id, Request $request){

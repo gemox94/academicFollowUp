@@ -28,6 +28,14 @@
                 </div>
                 <br>
                 <div ng-controller="SubjectsListCtrl">
+
+                    <uib-alert ng-repeat="alert in alerts"
+                               dismiss-on-timeout="5000"
+                               type="@{{alert.type}}"
+                               close="alertService.closeAlert($index)">
+                               @{{alert.msg}}
+                    </uib-alert>
+
                     <table datatable="ng" class="table table-striped row-border hover">
                         <thead>
                         <tr>
@@ -56,7 +64,7 @@
                                 </a>
                             </td>
                             <td>
-                                <button ng-click="deleteSubject(subject)" class="btn btn-danger">
+                                <button ng-click="deleteSubject(subject, $index)" class="btn btn-danger">
                                     <i class="fa fa-times"></i>
 
                                 </button>

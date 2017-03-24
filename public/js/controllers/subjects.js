@@ -167,4 +167,23 @@ app.controller('SubjectsListCtrl', function($rootScope, $scope, $http, $uibModal
            console.log('error', error_response);
        });
 
+
+    $scope.deleteSubject = function(subject, index){
+        /*
+         * Create new orchard
+         */
+        $http({
+            method: 'POST',
+            url: '/api/subjects/'+subject.id+'/delete'
+
+        }).then(function(response){
+                alertService.add("warning", 'La materia "'+subject.name+'" se eliminó.');
+                console.log(response);
+                $scope.subjects.splice(index, 1);
+
+            }, function(error_response){
+                alertService.add("danger", 'Error al eliminar materia"'+subject.name+'". Por favor intentelo más tarde');
+                console.log(error_response);
+        });
+    };
 });

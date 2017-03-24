@@ -16,6 +16,7 @@ class CreateSubjectsTable extends Migration
         Schema::create('subjects', function(Blueprint $table){
             $table->increments('id');
             $table->timestamps();
+            $table->enum('status', ['disabled'])->nullable();
             $table->integer('teacher_id')->unsigned();
             $table->string('name');
             $table->string('nrc');
