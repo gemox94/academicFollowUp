@@ -21,5 +21,26 @@ class DefaultProfesor extends Seeder
             'cubicle'  => '104C 202',
             'phone'    => '120309123'
         ]);
+
+
+        DB::table('users')->insert([
+            'role_id'  => 3,
+            'name'     => 'Gerardo',
+            'lastname' => 'Moxca',
+            'email'    => 'gerardo@gmail.com',
+            'password' => bcrypt('password'),
+            'key'      => '201203692',
+            'phone'    => '120309123'
+        ]);
+
+        DB::table('users')->insert([
+            'role_id'  => 3,
+            'name'     => 'Luis',
+            'lastname' => 'Hernández',
+            'email'    => 'luis@gmail.com',
+            'password' => bcrypt('password'),
+            'key'      => '201215565',
+            'phone'    => '120309123'
+        ]);
     }
 }
