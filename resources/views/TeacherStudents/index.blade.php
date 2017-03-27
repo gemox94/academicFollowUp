@@ -2,17 +2,17 @@
 
 @section('title_tab', 'Alumnos' )
 
-@section('title', 'Mis alumnos' )
+@section('title', 'Todos los alumnos' )
 
 @section('controller_js')
-    <script type="text/javascript" src={{ asset("js/controllers/teacherStudentIndex.js") }}></script>
+<script type="text/javascript" src={{ asset("js/controllers/teacherStudentIndex.js") }}></script>
 @endsection
 
 @section('extra_css')
 @endsection
 
 @section('breadcrumb')
-    <li><a href="/teacher-students">Alumnos</a></li>
+<li><a href="/teacher-students">Alumnos</a></li>
 @endsection
 
 @section('content')
