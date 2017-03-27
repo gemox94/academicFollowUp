@@ -248,7 +248,7 @@
 										</li>
 
 
-										@if($coordinator)
+										@if(!$coordinator)
 											<li class="{{ Request::is('coordinator_register') ? 'active-link' : '' }}">
 												<a href="/coordinator_register">
 													<i class="fa fa-user"></i>

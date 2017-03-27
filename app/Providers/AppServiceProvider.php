@@ -20,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
         $coordinator = false;
         $user        = User::where('role_id', 1)->get();
 
-        if($user->count() > 1){
+        if($user->count() >= 1){
             $coordinator = true;
         }
 
