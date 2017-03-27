@@ -42,6 +42,9 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Subject', 'student_subjects','student_id', 'subject_id');
     }
 
+    public function evaluations(){
+        return $this->belongsToMany('App\Evaluation', 'student_evaluation', 'student_id', 'evaluation_id')->withPivot('grade');
+    }
 
     public function hasRole($role){
         return $this->role->name == $role;
