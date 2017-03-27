@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+use Symfony\Component\Console\Output\ConsoleOutput;
 use App\User;
 
 class AppServiceProvider extends ServiceProvider
@@ -15,15 +16,41 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Schema::defaultStringLength(191);
+        /*Schema::defaultStringLength(191);
 
         $coordinator = false;
-        $user        = User::where('role_id', 1)->get();
+
 
         if($user->count() >= 1){
             $coordinator = true;
+
+        if(strpos(php_sapi_name(), 'cli') === false){
+            $user = User::where('role_id', 1)->get();
+
+            if($user->count() >= 1){
+                $coordinator = true;
+            }
+
+        }else{
+            $output = new ConsoleOutput();
+             $output->writeln('<question>MOX ES PUTO :D</question>');
         }
 
+        view()->composer('layouts.app', function($view) use($coordinator)
+        {
+            $view->with('coordinator', $coordinator);
+        });*/
+        Schema::defaultStringLength(191);
+        $coordinator = false;
+        if(strpos(php_sapi_name(), 'cli') === false){
+            $user = User::where('role_id', 1)->get();
+            if($user->count() >= 1){
+                $coordinator = true;
+            }
+        }else{
+            $output = new ConsoleOutput();
+            $output->writeln('<question>MOX ES PUTO :D</question>');
+        }
         view()->composer('layouts.app', function($view) use($coordinator)
         {
             $view->with('coordinator', $coordinator);
