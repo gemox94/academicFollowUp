@@ -13,11 +13,12 @@ class TeacherStudentsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
-        return view('TeacherStudents.index');
+        $students = User::where('role_id',3)->with('teacher_subjects')->get();
+        return view('TeacherStudents.index')->with('students', $students);
     }
 
     /**
