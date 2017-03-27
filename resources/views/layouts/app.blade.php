@@ -12,8 +12,8 @@
  	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
 	<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 	<link href="{{ asset('css/nifty.min.css') }}" rel="stylesheet">
-	<!--<link href="{{ asset('plugins/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">-->
-	<script src="https://use.fontawesome.com/d9f123dd08.js"></script>
+	<link href="{{ asset('plugins/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+	<!--<script src="https://use.fontawesome.com/d9f123dd08.js"></script>-->
 	<link href="{{ asset('plugins/animate-css/animate.min.css') }}" rel="stylesheet">
 	<link href="{{ asset('plugins/morris-js/morris.min.css') }}" rel="stylesheet">
 	<link href="{{ asset('plugins/switchery/switchery.min.css') }}" rel="stylesheet">

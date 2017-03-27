@@ -128,11 +128,11 @@ console.log(response);
         });
     };
 
-    $scope.newOrchard = function () {
+    $scope.editEvaluations = function (student) {
         var modalInstance = $uibModal.open({
           animation: true,
-          templateUrl: 'orchard_modal.html',
-          controller: 'OrchardModalCtrl',
+          templateUrl: 'evaluations_modal.html',
+          controller: 'EvaluationsModalCtrl',
           resolve: {
           }
         });
@@ -141,35 +141,35 @@ console.log(response);
             /*
              * Create new orchard
              */
-            $http({
-                method: 'POST',
-                url: '/api/orchards',
-                data:{
-                    name: result.orchard.name,
-                    type: result.orchard.type,
-                    producer_id: $scope.lot.producer.id
-                }
-            }).then(function(response){
-                    alertService.add("success", 'La huerta "'+result.orchard.name+'" se creó con exito');
-                    console.log(response);
-                    $scope.orchards.push(response.data);
-
-                }, function(error_response){
-                    alertService.add("danger", 'Error al crear huerta"'+result.orchard.name+'". Porfavor intentelo más tarde');
-                    console.log(error_response);
-            });
+            //$http({
+            //    method: 'POST',
+            //    url: '/api/orchards',
+            //    data:{
+            //        name: result.orchard.name,
+            //        type: result.orchard.type,
+            //        producer_id: $scope.lot.producer.id
+            //    }
+            //}).then(function(response){
+            //        alertService.add("success", 'La huerta "'+result.orchard.name+'" se creó con exito');
+            //        console.log(response);
+            //        $scope.orchards.push(response.data);
+            //
+            //    }, function(error_response){
+            //        alertService.add("danger", 'Error al crear huerta"'+result.orchard.name+'". Porfavor intentelo más tarde');
+            //        console.log(error_response);
+            //});
         });
     };
 
 
 });
 
-app.controller('OrchardModalCtrl', function($scope, $http, $uibModalInstance) {
-  $scope.orchard = {};
+app.controller('EvaluationsModalCtrl', function($scope, $http, $uibModalInstance) {
+  //$scope.orchard = {};
 
   $scope.ok = function () {
         $uibModalInstance.close({
-            orchard: $scope.orchard
+            //orchard: $scope.orchard
         });
     };
 

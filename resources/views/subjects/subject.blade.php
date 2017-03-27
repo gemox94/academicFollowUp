@@ -216,7 +216,7 @@
                                                     0
                                                 </td>
                                                 <td>
-                                                   <i class="btn btn-primary fa fa-pencil-square-o"></i>
+                                                   <i ng-click="editEvaluations(student)" class="btn btn-primary fa fa-pencil-square-o"></i>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -233,22 +233,18 @@
     </div>
 
 
-    <script type="text/ng-template" id="orchard_modal.html">
+    <script type="text/ng-template" id="evaluations_modal.html">
         <div class="modal-header">
-            <h3 class="modal-title">Agregar Huerta</h3>
+            <h3 class="modal-title">Evaluaciones</h3>
         </div>
         <div class="modal-body contract-modal">
             <div class="form-group">
-              <input class="form-control" type="text" placeholder="Nombre" ng-model="orchard.name">
-            </div>
-            <div class="form-group">
-              <input class="" type="radio" name="orchard_type" ng-model="orchard.type" value="organic"> Organica
-              <input class="" type="radio" name="orchard_type" ng-model="orchard.type" value="traditional"> Tradicional
+              <input class="form-control" type="number" placeholder="Examenes">
             </div>
         </div>
         <div class="modal-footer">
             <p>
-              <button class="btn btn-primary" type="button" ng-click="ok()">Agregar</button>
+              <button class="btn btn-primary" type="button" ng-click="ok()">Guardar</button>
               <button class="btn btn-warning" type="button" ng-click="cancel()">Cancelar</button>
             </p>
         </div>
