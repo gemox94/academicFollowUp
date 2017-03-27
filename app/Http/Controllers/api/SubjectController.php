@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\User;
 use App\Role;
 use App\Subject;
+use App\Evaluation;
 
 class SubjectController extends Controller
 {
@@ -65,6 +66,26 @@ class SubjectController extends Controller
             $subject->schedule_json = $request->subject['schedule_json'];
             $subject->teacher()->associate($teacher);
             $subject->save();
+
+            /*
+             * Create evaluations for this subject:
+             * TAREAS
+             * EXAMENES
+             * PARTICIPACION
+             * PROYECTO
+             * PRACTICAS
+             * EXPOSICION
+             * OTROS
+             */
+            $evaluations = array('examenes', 'tareas', 'participacion', 'proyecto', 'practicas', 'exposicion', 'otros');
+
+            foreach($evaluations as $evaluation){
+                $tempEvaluation             = new Evaluation;
+                $tempEvaluation->name       = $evaluation;
+                $tempEvaluation->percentage = 0;
+                $tempEvaluation->subject()->associate($subject);
+                $tempEvaluation->save();
+            }
 
             $response = $subject;
 

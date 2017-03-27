@@ -15,9 +15,10 @@ class CreateEvaluationsTable extends Migration
     {
         Schema::create('evaluations', function(Blueprint $table){
             $table->increments('id');
+            $table->timestamps();
             $table->integer('subject_id')->unsigned();
             $table->string('name');
-
+            $table->float('percentage');
             $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('restrict');
         });
     }
