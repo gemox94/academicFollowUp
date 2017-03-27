@@ -98,6 +98,11 @@ console.log(response);
         }
     };
 
+
+    $scope.saveEvaluations = function(){
+
+    };
+
     $scope.newOrchard = function () {
         var modalInstance = $uibModal.open({
           animation: true,
