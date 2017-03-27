@@ -186,6 +186,37 @@ class SubjectController extends Controller
     }
 
 
+
+    /*
+     * Save the evaluations for this subject
+     */
+    public function saveEvaluations($subject_id, Request $request){
+        try{
+            $status_code = 200;
+            $subject     = Subject::with('evaluations')->find($subject_id);
+
+            /*
+             * Save all evaluations for this subject
+             */
+            foreach($request->subject['evaluations'] as $evaluation){
+                $ev             = $subject->evaluations()->where('name', $evaluation['name'])->first();
+                $ev->percentage = $evaluation['percentage'];
+                $ev->save();
+            }
+
+            $response['msg'] = 'save';
+
+        }catch(\Throwable $e){
+            $status_code = 500;
+            $response['error_message'] = $e->getMessage();
+            $response['error_type'] = 'unhandled_exception';
+            $response['error_type'] = 500;
+        }
+
+        return response()->json($response, $status_code);
+    }
+
+
     public function names(Request $request){
         try{
             $status_code  = 200;

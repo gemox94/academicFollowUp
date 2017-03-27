@@ -99,8 +99,33 @@ console.log(response);
     };
 
 
+    /*
+     * Save evaluations
+     */
     $scope.saveEvaluations = function(){
+        /*
+         * Save subject
+         */
+        $http({
+            method: 'POST',
+            url: '/api/subjects/'+$scope.subject.id+'/saveEvaluations',
+            data:{
+                subject: $scope.subject
+            }
 
+        }).then(function(response){
+                alertService.add("success", 'Se guardo evaluaciones para "'+$scope.subject.name+'" se creó con exito');
+                console.log(response);
+
+                //window.location.href = '/subjects';
+
+            }, function(error_response){
+                alertService.add("danger", 'Error al guardar evaluaciones para "'+$scope.subject.name+'". Porfavor intentelo más tarde');
+                console.log(error_response);
+
+        }).finally(function() {
+
+        });
     };
 
     $scope.newOrchard = function () {

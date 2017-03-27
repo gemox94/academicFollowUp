@@ -13,7 +13,7 @@
 @endsection
 
 @section('breadcrumb')
-    <!--<li><a href="/teacher_students/create">Dar de Alta</a></li>-->
+<!--<li><a href="/teacher_students/create">Dar de Alta</a></li>-->
 @endsection
 
 @section('content')

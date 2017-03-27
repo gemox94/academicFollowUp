@@ -32,3 +32,4 @@ Route::get('subjects/{id}', 'api\SubjectController@getSubject');
 Route::post('subjects/create', 'api\SubjectController@createSubject');
 Route::post('subjects/update', 'api\SubjectController@updateSubject');
 Route::post('subjects/{id}/delete', 'api\SubjectController@deleteSubject');
+Route::post('subjects/{id}/saveEvaluations', 'api\SubjectController@saveEvaluations');
