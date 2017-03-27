@@ -200,6 +200,7 @@
                                             <tr>
                                                 <th>Nombre</th>
                                                 <th>Matrícula</th>
+                                                <th>Promedio Final</th>
                                                 <th>Calificar</th>
                                             </tr>
                                         </thead>
@@ -210,6 +211,9 @@
                                                 </td>
                                                 <td>
                                                     @{{ student.key }}
+                                                </td>
+                                                <td>
+                                                    0
                                                 </td>
                                                 <td>
                                                    <i class="btn btn-primary fa fa-pencil-square-o"></i>
