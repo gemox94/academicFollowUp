@@ -200,6 +200,7 @@
                                             <tr>
                                                 <th>Nombre</th>
                                                 <th>Matrícula</th>
+                                                <th>Calificar</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -209,6 +210,9 @@
                                                 </td>
                                                 <td>
                                                     @{{ student.key }}
+                                                </td>
+                                                <td>
+                                                   <i class="btn btn-primary fa fa-pencil-square-o"></i>
                                                 </td>
                                             </tr>
                                         </tbody>
