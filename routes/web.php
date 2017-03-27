@@ -40,6 +40,7 @@ Route::get('/coordinator_register', 'HomeController@coordinatorRegisterView');
  * Teacher's Students
  */
 Route::post('/teacher_students/find', 'TeacherStudentsController@find');
+Route::post('/teacher_students/register_student', 'TeacherStudentsController@registerStudentSubject');
 Route::resource('/teacher_students', 'TeacherStudentsController');
 
 /*

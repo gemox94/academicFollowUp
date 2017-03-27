@@ -38,6 +38,10 @@ class User extends Authenticatable
         return $this->HasMany('App\Subject', 'teacher_id');
     }
 
+    public function teacher_subjects(){
+        return $this->belongsToMany('App\Subject', 'student_subjects','student_id', 'subject_id');
+    }
+
 
     public function hasRole($role){
         return $this->role->name == $role;

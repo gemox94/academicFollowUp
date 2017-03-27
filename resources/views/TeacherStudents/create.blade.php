@@ -65,17 +65,17 @@
                         <form ng-submit="loadStudent()">
                             <div class="form-group">
                                 <label for="student_name">Nombre</label>
-                                <input type="text" id="student_name" class="form-control" ng-model="student_name" readonly>
+                                <input type="text" id="student_name" class="form-control" ng-model="student.name" readonly>
                             </div>
 
                             <div class="form-group">
                                 <label for="student_lastname">Apellidos</label>
-                                <input type="text" id="student_lastname" class="form-control" ng-model="student_lastname" readonly>
+                                <input type="text" id="student_lastname" class="form-control" ng-model="student.lastname" readonly>
                             </div>
 
                             <div class="form-group">
                                 <label for="subject">Materia</label>
-                                <select name="subject" id="subject" class="form-control" ng-options=""></select>
+                                <select name="subject" id="subject" class="form-control" ng-options="sub.name for sub in subjects" ng-model="subject"></select>
                             </div>
 
                         </form>
@@ -85,8 +85,8 @@
             </div>
 
             <div class="panel-footer">
-                <button class="btn btn-mint">
-                    Guardar <span class="fa fa-lock"></span>
+                <button class="btn btn-mint" ng-show="showForm">
+                    <span class="fa fa-plus" ng-click="loadStudent()"> Registrar alumno</span>
                 </button>
             </div>
 

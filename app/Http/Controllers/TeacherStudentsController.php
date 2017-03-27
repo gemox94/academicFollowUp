@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Subject;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -91,7 +92,7 @@ class TeacherStudentsController extends Controller
         try{
 
             $student = User::where('key', $request->input('matricula'))->where('role_id',3)->first();
-            $subjects = User::where('teacher_id', Auth::user()->id)->get();
+            $subjects = Subject::where('teacher_id', Auth::user()->id)->get();
             if ($student){
                 $response['student'] = $student;
                 $response['subjects'] = $subjects;
@@ -108,6 +109,39 @@ class TeacherStudentsController extends Controller
             $response['error'] = $e;
         }
 
+        return response()->json($response);
+    }
+
+    public function registerStudentSubject(Request $request){
+        $response = [];
+        $status_code = 200;
+
+        try{
+            $student = User::find($request->input('student_id'));
+
+            $signed_up = false;
+            foreach ($student->teacher_subjects as $teacher_subject) {
+                if($teacher_subject->pivot->student_id == $student->id && $teacher_subject->pivot->subject_id ==$request->input('subject_id')){
+                    $signed_up = true;
+                    break;
+                }
+            }
+
+            if($signed_up){
+                $status_code = 403;
+                $response['status_code'] = $status_code;
+            }else{
+                $subject = Subject::find($request->input('subject_id'));
+                $subject->students()->attach($student->id, ['final_grade' => null]);
+                $subject->save();
+
+                $response['status_code'] = $status_code;
+            }
+        }catch (\Exception $e){
+            $status_code = 500;
+            $response['status_code'] = $status_code;
+            $respose['error'] = $e;
+        }
         return response()->json($response);
     }
 }
