@@ -153,11 +153,11 @@
                                         <label class="col-md-3 col-xs-12 control-label">
                                             @{{ evaluation.name }}
                                         </label>
-                                        <div class="col-md-6 col-xs-12">
+                                        <div class="col-md-3 col-xs-12">
                                             <div class="input-group">
                                                 <input type="number" class="form-control" ng-model="evaluation.percentage">
                                                 <span class="input-group-addon">
-                                                    <span class="fa fa-hashtag"></span>
+                                                    <span class="fa fa-percent"></span>
                                                 </span>
                                             </div>
                                         </div>
