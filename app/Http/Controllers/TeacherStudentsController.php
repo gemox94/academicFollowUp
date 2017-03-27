@@ -145,4 +145,48 @@ class TeacherStudentsController extends Controller
         }
         return response()->json($response);
     }
+
+    public function downPage(){
+        return view('TeacherStudents.down');
+    }
+
+    public function studentSubjects(Request $request){
+        $response = [];
+        $status_code = 200;
+        try{
+            $student = User::where('key', $request->input('key'))->with('teacher_subjects')->first();
+            if($student){
+                $response['student'] = $student;
+                $response['status_code'] = $status_code;
+            }else{
+                $status_code = 404;
+                $response['status_code'] = $status_code;
+            }
+        }catch(\Exception $e){
+            $status_code = 500;
+            $response['status_code'] = $status_code;
+            $response['error'] = $e;
+        }
+        return response()->json($response);
+    }
+
+    public function downStudent(Request $request){
+        $response = [];
+        $status_code = 200;
+        try{
+            /*$student = User::find($request->input('student_id'));
+            $student->teacher_subjects->detach($request->input('subject_id'));
+            $student->save();*/
+            $subject = Subject::find($request->input('subject_id'));
+            $subject->students()->detach($request->input('student_id'));
+            $response['status_code'] = $status_code;
+
+        }catch (\Exception $e){
+            $status_code = 500;
+            $response['status_code'] = $status_code;
+            $response['error'] = $e;
+        }
+
+        return response()->json($response);
+    }
 }

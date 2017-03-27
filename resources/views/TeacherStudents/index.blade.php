@@ -68,6 +68,10 @@
                             <span class="fa fa-plus"></span>
                             Dar de Alta
                         </a>
+                        <a class="btn btn-error" href="/teacher_students/down_page">
+                            <span class="fa fa-plus"></span>
+                            Dar de Baja
+                        </a>
                     </div>
                     <br>
 
