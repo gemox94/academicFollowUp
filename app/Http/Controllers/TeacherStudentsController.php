@@ -146,7 +146,7 @@ class TeacherStudentsController extends Controller
                  * By default all are going to 0
                  */
                 foreach($subject->evaluations as $evaluation){
-                    $evaluation->students()->attach($student->id, ['final_grade' => 0]);
+                    $evaluation->students()->attach($student->id, ['grade' => 0]);
                 }
 
                 $response['status_code'] = $status_code;
