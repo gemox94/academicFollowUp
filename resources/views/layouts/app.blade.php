@@ -355,7 +355,7 @@
 			<!-- Remove the class name "show-fixed" and "hide-fixed" to make the content always appears. -->
 			<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-			<p class="pad-lft">&#0169; 2016 VICAMSoftware</p>
+			<p class="pad-lft">&#0169; Benemérita Universidad Autónoma de Puebla - FCC</p>
 
 		</footer>
 		<!--===================================================-->

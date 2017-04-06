@@ -39,7 +39,7 @@ class User extends Authenticatable
     }
 
     public function teacher_subjects(){
-        return $this->belongsToMany('App\Subject', 'student_subjects','student_id', 'subject_id');
+        return $this->belongsToMany('App\Subject', 'student_subjects','student_id', 'subject_id')->withPivot('final_grade');
     }
 
     public function evaluations(){

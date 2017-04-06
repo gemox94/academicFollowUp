@@ -83,6 +83,7 @@
                                 <th>Matricula</th>
                                 <th>Materias</th>
                                 <th>Dar de alta</th>
+                                <th>Historial</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -100,6 +101,9 @@
                                     <button class="btn btn-sm btn-primary">
                                         <span class="fa fa-plus-square"></span>
                                     </button>
+                                </td>
+                                <td style="text-align: center;">
+                                    <a href="/students/{{$student->id}}/cardex" class="btn btn-default"><span class="fa fa-plus"></span></a>
                                 </td>
                             </tr>
                         @endforeach
