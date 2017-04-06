@@ -202,6 +202,7 @@
                                                 <th>Matrícula</th>
                                                 <th>Promedio Final</th>
                                                 <th>Calificar</th>
+                                                <th>Historial</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -217,6 +218,9 @@
                                                 </td>
                                                 <td>
                                                    <i ng-click="editEvaluations(student)" class="btn btn-primary fa fa-pencil-square-o"></i>
+                                                </td>
+                                                <td>
+                                                   <i class="btn btn-default fa fa-clock-o"></i>
                                                 </td>
                                             </tr>
                                         </tbody>
