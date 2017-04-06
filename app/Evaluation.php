@@ -13,6 +13,6 @@ class Evaluation extends Model
     }
 
     public function students(){
-        return $this->belongsToMany('App\User', 'student_evaluation', 'evaluation_id', 'student_id')->withPivot('grade');
+        return $this->belongsToMany('App\User', 'student_evaluations', 'evaluation_id', 'student_id')->withPivot('grade');
     }
 }
