@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title_tab', 'Materias' )
+@section('title_tab', 'Calificar Alumnos' )
 
 @section('title', $title )
 
@@ -12,7 +12,9 @@
 @endsection
 
 @section('breadcrumb')
-<li><a href="/subjects">Materias</a></li>
+<li>
+    <a href="/subjects">Calificar Alumnos</a>
+</li>
 @endsection
 
 
@@ -22,7 +24,7 @@
         window.subject_id = {{ $subject_id }}
     </script>
 
-    <div class="panel panel-default tabs" ng-controller="SubjectCtrl">
+    <div class="panel panel-default tabs" ng-controller="SubjectEvaluateStudentCtrl">
 
         <uib-alert ng-repeat="alert in alerts"
                dismiss-on-timeout="5000"
@@ -194,10 +196,10 @@
                         <div class="tab-pane active" id="datos">
 
                             <div class="row">
-                                <!--<a class="btn btn-success" href="/subjects/@{{subject.id}}/evaluateStudents">
+                                <a class="btn btn-success" href="/subjects/@{{subject.id}}/evaluateStudents">
                                     <span class="fa fa-plus"></span>
                                     Calificar Alumnos
-                                </a>-->
+                                </a>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
@@ -241,23 +243,5 @@
         </div>
 
     </div>
-
-
-    <script type="text/ng-template" id="evaluations_modal.html">
-        <div class="modal-header">
-            <h3 class="modal-title">Evaluaciones</h3>
-        </div>
-        <div class="modal-body contract-modal">
-            <div class="form-group">
-              <input class="form-control" type="number" placeholder="Examenes">
-            </div>
-        </div>
-        <div class="modal-footer">
-            <p>
-              <button class="btn btn-primary" type="button" ng-click="ok()">Guardar</button>
-              <button class="btn btn-warning" type="button" ng-click="cancel()">Cancelar</button>
-            </p>
-        </div>
-    </script>
 
 @endsection

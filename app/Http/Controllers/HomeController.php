@@ -46,4 +46,8 @@ class HomeController extends Controller
         return view('subjects.subject')->with(['subject_id' => $id,
                                                'title' => 'Editar Materia']);
     }
+
+    public function evaluateStudents(){
+        return view('subjects.evaluateStudents');
+    }
 }
