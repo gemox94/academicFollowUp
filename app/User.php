@@ -9,6 +9,8 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    protected $casts = ['evaluations.pivot.grade' => 'float'];
+
     /**
      * The attributes that are mass assignable.
      *

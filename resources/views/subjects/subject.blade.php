@@ -248,9 +248,23 @@
             <h3 class="modal-title">Evaluaciones</h3>
         </div>
         <div class="modal-body contract-modal">
-            <div class="form-group">
-              <input class="form-control" type="number" placeholder="Examenes">
+
+            <div class="row" ng-repeat="evaluation in student.evaluations">
+                <div class="form-group">
+                    <label class="col-md-4 col-xs-12 control-label evaluationNameLabel">
+                        @{{ evaluation.name }}
+                    </label>
+                    <div class="col-md-4 col-xs-12">
+                        <div class="input-group">
+                            <input type="number" class="form-control" ng-model="evaluation.pivot.grade">
+                            <span class="input-group-addon">
+                                <span class="fa fa-sort-numeric-desc"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
             </div>
+
         </div>
         <div class="modal-footer">
             <p>

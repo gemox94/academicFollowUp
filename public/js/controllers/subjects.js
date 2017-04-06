@@ -129,47 +129,52 @@ console.log(response);
     };
 
     $scope.editEvaluations = function (student) {
+console.log(student);
         var modalInstance = $uibModal.open({
           animation: true,
           templateUrl: 'evaluations_modal.html',
           controller: 'EvaluationsModalCtrl',
           resolve: {
+            studentEdit: function(){
+              return student;
+            }
           }
         });
 
         modalInstance.result.then(function (result) {
             /*
-             * Create new orchard
+             * Save evaluations for this student
              */
-            //$http({
-            //    method: 'POST',
-            //    url: '/api/orchards',
-            //    data:{
-            //        name: result.orchard.name,
-            //        type: result.orchard.type,
-            //        producer_id: $scope.lot.producer.id
-            //    }
-            //}).then(function(response){
-            //        alertService.add("success", 'La huerta "'+result.orchard.name+'" se creó con exito');
-            //        console.log(response);
-            //        $scope.orchards.push(response.data);
-            //
-            //    }, function(error_response){
-            //        alertService.add("danger", 'Error al crear huerta"'+result.orchard.name+'". Porfavor intentelo más tarde');
-            //        console.log(error_response);
-            //});
+            $http({
+                method: 'POST',
+                url: '/api/student/'+result.student.id+'/updateEvaluations',
+                data:{
+                    student: result.student
+                }
+            }).then(function(response){
+                    alertService.add("success", 'Las calificaciones del estudiante"'+result.student.name+'" se guardaron con exito');
+                    console.log(response);
+
+                }, function(error_response){
+                    alertService.add("danger", 'Error al guardar calificaciones del estudiante"'+result.student.name+'". Porfavor intentelo más tarde');
+                    console.log(error_response);
+            });
         });
     };
 
 
 });
 
-app.controller('EvaluationsModalCtrl', function($scope, $http, $uibModalInstance) {
-  //$scope.orchard = {};
+app.controller('EvaluationsModalCtrl', function($scope, $http, $uibModalInstance, studentEdit) {
+  $scope.student             = studentEdit;
+
+  $scope.student.evaluations.forEach(function(evaluation){
+    evaluation.pivot.grade = parseFloat(evaluation.pivot.grade);
+  });
 
   $scope.ok = function () {
         $uibModalInstance.close({
-            //orchard: $scope.orchard
+            student: $scope.student
         });
     };
 

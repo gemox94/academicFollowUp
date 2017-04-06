@@ -172,7 +172,7 @@ class SubjectController extends Controller
     public function getSubject($subject_id, Request $request){
         try{
             $status_code  = 200;
-            $subject      = Subject::with('students', 'evaluations')->find($subject_id);
+            $subject      = Subject::with('students.evaluations', 'evaluations')->find($subject_id);
             $response     = $subject;
 
         }catch(\Throwable $e){
