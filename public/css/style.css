@@ -221,3 +221,9 @@ time, mark, audio, video {
     color: green !important;
 }
 
+
+.evaluationNameLabel{
+    text-align: right;
+    text-transform: uppercase;
+    font-weight: bold;
+}
