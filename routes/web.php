@@ -53,3 +53,4 @@ Route::resource('/teacher_students', 'TeacherStudentsController');
 Route::get('/subjects', 'HomeController@SubjectsView');
 Route::get('/subjects/create', 'HomeController@newSubjectView');
 Route::get('/subjects/{id}', 'HomeController@showSubjectView');
+Route::get('/subjects/{id}/evaluateStudents', 'HomeController@evaluateStudents');

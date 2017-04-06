@@ -88,39 +88,40 @@ class TeacherStudentsController extends Controller
     }
 
     public function find(Request $request){
-        $response = [];
+        $response    = [];
         $status_code = 200;
         try{
 
-            $student = User::where('key', $request->input('matricula'))->where('role_id',3)->first();
+            $student  = User::where('key', $request->input('matricula'))->where('role_id',3)->first();
             $subjects = Subject::where('teacher_id', Auth::user()->id)->get();
+
             if ($student){
-                $response['student'] = $student;
-                $response['subjects'] = $subjects;
+                $response['student']     = $student;
+                $response['subjects']    = $subjects;
                 $response['status_code'] = $status_code;
             }else{
                 $status_code = 404;
                 $response['status_code'] = $status_code;
-                $response['message'] = 'Estudiante no encontrado';
+                $response['message']     = 'Estudiante no encontrado';
             }
 
         }catch (\Exception $e){
-            $status_code = 500;
+            $status_code             = 500;
             $response['status_code'] = $status_code;
-            $response['error'] = $e;
+            $response['error']       = $e;
         }
 
         return response()->json($response);
     }
 
     public function registerStudentSubject(Request $request){
-        $response = [];
+        $response    = [];
         $status_code = 200;
 
         try{
-            $student = User::find($request->input('student_id'));
-
+            $student   = User::find($request->input('student_id'));
             $signed_up = false;
+
             foreach ($student->teacher_subjects as $teacher_subject) {
                 if($teacher_subject->pivot->student_id == $student->id && $teacher_subject->pivot->subject_id ==$request->input('subject_id')){
                     $signed_up = true;
@@ -129,19 +130,32 @@ class TeacherStudentsController extends Controller
             }
 
             if($signed_up){
-                $status_code = 403;
+                $status_code             = 403;
                 $response['status_code'] = $status_code;
+
             }else{
-                $subject = Subject::find($request->input('subject_id'));
+                /*
+                 * Register the student on this subject
+                 */
+                $subject = Subject::with('evaluations')->find($request->input('subject_id'));
                 $subject->students()->attach($student->id, ['final_grade' => null]);
                 $subject->save();
 
+                /*
+                 * Create all evaluations for this student in this subject
+                 * By default all are going to 0
+                 */
+                foreach($subject->evaluations as $evaluation){
+                    $evaluation->students()->attach($student->id, ['final_grade' => 0]);
+                }
+
                 $response['status_code'] = $status_code;
             }
+
         }catch (\Exception $e){
-            $status_code = 500;
+            $status_code             = 500;
             $response['status_code'] = $status_code;
-            $respose['error'] = $e;
+            $respose['error']        = $e;
         }
         return response()->json($response);
     }
@@ -151,27 +165,30 @@ class TeacherStudentsController extends Controller
     }
 
     public function studentSubjects(Request $request){
-        $response = [];
+        $response    = [];
         $status_code = 200;
+
         try{
             $student = User::where('key', $request->input('key'))->with('teacher_subjects')->first();
             if($student){
-                $response['student'] = $student;
+                $response['student']     = $student;
                 $response['status_code'] = $status_code;
+
             }else{
-                $status_code = 404;
+                $status_code             = 404;
                 $response['status_code'] = $status_code;
             }
+
         }catch(\Exception $e){
-            $status_code = 500;
+            $status_code             = 500;
             $response['status_code'] = $status_code;
-            $response['error'] = $e;
+            $response['error']       = $e;
         }
         return response()->json($response);
     }
 
     public function downStudent(Request $request){
-        $response = [];
+        $response    = [];
         $status_code = 200;
         try{
             /*$student = User::find($request->input('student_id'));
@@ -179,12 +196,13 @@ class TeacherStudentsController extends Controller
             $student->save();*/
             $subject = Subject::find($request->input('subject_id'));
             $subject->students()->detach($request->input('student_id'));
+
             $response['status_code'] = $status_code;
 
         }catch (\Exception $e){
-            $status_code = 500;
+            $status_code             = 500;
             $response['status_code'] = $status_code;
-            $response['error'] = $e;
+            $response['error']       = $e;
         }
 
         return response()->json($response);
