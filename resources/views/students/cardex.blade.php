@@ -9,6 +9,7 @@
 @endsection
 
 @section('extra_css')
+    
 @endsection
 
 @section('breadcrumb')
@@ -21,14 +22,6 @@
         <div class="panel">
             <div class="panel-body">
                 <div>
-                    <a class="btn btn-primary" href="/subjects/create">
-                        <span class="fa fa-plus"></span>
-                        Nueva Materia
-                    </a>
-                </div>
-                <br>
-                <div>
-                    {{$student}}
                     <uib-alert ng-repeat="alert in alerts"
                                dismiss-on-timeout="5000"
                                type="@{{alert.type}}"
@@ -36,23 +29,30 @@
                                @{{alert.msg}}
                     </uib-alert>
 
-                    <table datatable="ng" class="table table-striped row-border hover">
+                    <table  class="table table-hover">
                         <thead>
                         <tr>
-                            <th>Nombre</th>
+                            <th>Materia</th>
                             <th>NRC</th>
-                            <th>Periodo</th>
-                            <th>Clave</th>
+                            <th>Salon/Horario</th>
                             <th>Sección</th>
-                            <th>Salón y horario</th>
-                            <th>Información</th>
-                            <th>Eliminar</th>
+                            <th>Periodo</th>
+                            <th>Calificación Final</th>
+
                         </tr>
                         </thead>
                         <tbody>
-                        <tr >
-                            
-                        </tr>
+                            @foreach ($student->teacher_subjects as $subject)
+                                <tr>
+                                    <td>{{$subject->name}}</td>
+                                    <td>{{$subject->nrc}}</td>
+                                    <td>{{$subject->schedule_json}}</td>
+                                    <td>{{$subject->section}}</td>
+                                    <td>{{$subject->period}}</td>
+                                    <td>{{$subject->pivot->final_grade}}</td>
+                                </tr>
+                            @endforeach
+
                         </tbody>
                     </table>
                 </div>

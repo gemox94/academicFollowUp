@@ -13,7 +13,7 @@ class CardexController extends Controller
 {
 
     public function index($id){
-        $student = User::find($id)->with('teacher_subjects', 'evaluations')->first();
+        $student = User::with('teacher_subjects.evaluations')->find($id);
         return view('students.cardex')->with('student', $student);
     }
 }
