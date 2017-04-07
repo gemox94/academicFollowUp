@@ -20,8 +20,8 @@ app.factory('alertService', function($rootScope, $window) {
     //    { type: 'success', msg: 'Well done! You successfully read this important alert message.' }
     //];
 
-    alertService.add = function(type, msg, up) {
-        if (up === undefined) {
+    alertService.add = function(type, msg, NoUp) {
+        if (NoUp === undefined) {
             $window.scrollTo(0, 0);
         }
 
