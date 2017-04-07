@@ -153,6 +153,8 @@ console.log(student);
                 }
             }).then(function(response){
                     alertService.add("success", 'Las calificaciones del estudiante"'+result.student.name+'" se guardaron con exito');
+console.log(response);
+                    student.pivot.final_grade = response.data;
 
                 }, function(error_response){
                     alertService.add("danger", 'Error al guardar calificaciones del estudiante"'+result.student.name+'". Porfavor intentelo más tarde');

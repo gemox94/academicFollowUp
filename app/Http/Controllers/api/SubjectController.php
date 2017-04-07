@@ -269,7 +269,7 @@ class SubjectController extends Controller
             $student->teacher_subjects()->detach($subject->id);
             $student->teacher_subjects()->attach($subject->id, ['final_grade' => $finalGrade]);
 
-            $response = $student;
+            $response = $finalGrade;
 
         }catch(\Throwable $e){
             $status_code = 500;
