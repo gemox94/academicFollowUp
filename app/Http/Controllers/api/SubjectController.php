@@ -221,7 +221,9 @@ class SubjectController extends Controller
              * Get student and subject
              */
             $student     = User::find($request->student['id']);
+            $subject     = Subject::with('evaluations')->find($request->student['evaluationsOfSubject'][0]['subject_id']);
             $evaluations = array();
+            $finalGrade  = 0;
 
             /*
              * For each evaluation of this subject save it
@@ -232,8 +234,22 @@ class SubjectController extends Controller
                  */
                 $grade        = $evaluation['pivot']['grade'];
                 $evaluationId = $evaluation['pivot']['evaluation_id'];
+                //$evaluations[$evaluationId] = array('grade' => $grade);
 
-                $evaluations[$evaluationId] = array('grade' => $grade);
+                $student->evaluations()->detach($evaluationId);
+                $student->evaluations()->attach($evaluationId, ['grade' => $grade]);
+
+
+
+                /*
+                 * Update final grade
+                 */
+                $evluationPercentage = $subject->evaluations()->find($evaluationId)->percentage;
+                $tempEvaluation      = ($grade * $evluationPercentage) / 100;
+                /*
+                 * Add to final grade
+                 */
+                $finalGrade += $tempEvaluation;
             }
 
 
@@ -241,7 +257,18 @@ class SubjectController extends Controller
              * Update relation with sync
              * Sync expects an array of id's as first argument
              */
-            $student->evaluations()->sync($evaluations);
+            //$student->evaluations()->sync($evaluations);
+
+
+            /*
+             * Update the final grade
+             */
+// :DELETE: Sync deletes all relations
+            //$finalGradeArray[$subject->id] = array('final_grade' => $finalGrade);
+            //$student->teacher_subjects()->sync($finalGradeArray);
+            $student->teacher_subjects()->detach($subject->id);
+            $student->teacher_subjects()->attach($subject->id, ['final_grade' => $finalGrade]);
+
             $response = $student;
 
         }catch(\Throwable $e){

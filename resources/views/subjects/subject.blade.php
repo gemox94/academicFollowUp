@@ -220,7 +220,7 @@
                                                     @{{ student.key }}
                                                 </td>
                                                 <td>
-                                                    8.85
+                                                    @{{ student.pivot.final_grade }}
                                                 </td>
                                                 <td>
                                                    <i ng-click="editEvaluations(student)" class="btn btn-primary fa fa-pencil-square-o"></i>

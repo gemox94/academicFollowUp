@@ -138,7 +138,7 @@ class TeacherStudentsController extends Controller
                  * Register the student on this subject
                  */
                 $subject = Subject::with('evaluations')->find($request->input('subject_id'));
-                $subject->students()->attach($student->id, ['final_grade' => null]);
+                $subject->students()->attach($student->id, ['final_grade' => 0]);
                 $subject->save();
 
                 /*
@@ -163,6 +163,7 @@ class TeacherStudentsController extends Controller
     public function downPage(){
         return view('TeacherStudents.down');
     }
+
 
     public function studentSubjects(Request $request){
         $response    = [];

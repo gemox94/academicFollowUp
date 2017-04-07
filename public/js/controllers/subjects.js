@@ -152,7 +152,6 @@ console.log(student);
                     student: result.student
                 }
             }).then(function(response){
-console.log(response);
                     alertService.add("success", 'Las calificaciones del estudiante"'+result.student.name+'" se guardaron con exito');
 
                 }, function(error_response){
