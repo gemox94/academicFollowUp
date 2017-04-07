@@ -147,13 +147,13 @@ console.log(student);
              */
             $http({
                 method: 'POST',
-                url: '/api/student/'+result.student.id+'/updateEvaluations',
+                url: '/api/student/'+result.student.id+'/updateStudentEvaluations',
                 data:{
                     student: result.student
                 }
             }).then(function(response){
+console.log(response);
                     alertService.add("success", 'Las calificaciones del estudiante"'+result.student.name+'" se guardaron con exito');
-                    console.log(response);
 
                 }, function(error_response){
                     alertService.add("danger", 'Error al guardar calificaciones del estudiante"'+result.student.name+'". Porfavor intentelo más tarde');
@@ -166,12 +166,12 @@ console.log(student);
 });
 
 app.controller('EvaluationsModalCtrl', function($scope, $http, $uibModalInstance, studentEdit) {
-  $scope.student             = studentEdit;
+  $scope.student = studentEdit;
 
-  $scope.student.evaluations.forEach(function(evaluation){
+  $scope.student.evaluationsOfSubject.forEach(function(evaluation){
     evaluation.pivot.grade = parseFloat(evaluation.pivot.grade);
   });
-
+console.log($scope.student);
   $scope.ok = function () {
         $uibModalInstance.close({
             student: $scope.student

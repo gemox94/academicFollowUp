@@ -220,7 +220,7 @@
                                                     @{{ student.key }}
                                                 </td>
                                                 <td>
-                                                    0
+                                                    8.85
                                                 </td>
                                                 <td>
                                                    <i ng-click="editEvaluations(student)" class="btn btn-primary fa fa-pencil-square-o"></i>
@@ -249,7 +249,7 @@
         </div>
         <div class="modal-body contract-modal">
 
-            <div class="row" ng-repeat="evaluation in student.evaluations">
+            <div class="row" ng-repeat="evaluation in student.evaluationsOfSubject">
                 <div class="form-group">
                     <label class="col-md-4 col-xs-12 control-label evaluationNameLabel">
                         @{{ evaluation.name }}

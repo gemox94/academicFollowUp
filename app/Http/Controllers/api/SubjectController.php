@@ -173,7 +173,76 @@ class SubjectController extends Controller
         try{
             $status_code  = 200;
             $subject      = Subject::with('students.evaluations', 'evaluations')->find($subject_id);
+
+            foreach($subject->students as $student){
+                /*
+                 * Initialize evaluations array
+                 */
+                $evaluations = array();
+
+                foreach($student->evaluations as $evaluation){
+                    /*
+                     * Check if this evaluation
+                     * belongs to this subject
+                     */
+                    if($evaluation->subject_id == $subject->id){
+                        array_push($evaluations, $evaluation);
+                    }
+                }
+
+                /*
+                 * Assign the evaluations to the student
+                 */
+                $student->evaluationsOfSubject = $evaluations;
+            }
+
             $response     = $subject;
+
+        }catch(\Throwable $e){
+            $status_code = 500;
+            $response['error_message'] = $e->getMessage();
+            $response['error_type'] = 'unhandled_exception';
+            $response['error_type'] = 500;
+        }
+
+        return response()->json($response, $status_code);
+    }
+
+
+    /*
+     * Save the evaluations for an specific student
+     * of this subject
+     */
+    public function updateStudentEvaluations(Request $request){
+        try{
+            $status_code = 200;
+
+            /*
+             * Get student and subject
+             */
+            $student     = User::find($request->student['id']);
+            $evaluations = array();
+
+            /*
+             * For each evaluation of this subject save it
+             */
+            foreach($request->student['evaluationsOfSubject'] as $evaluation){
+                /*
+                 * Get data of relation
+                 */
+                $grade        = $evaluation['pivot']['grade'];
+                $evaluationId = $evaluation['pivot']['evaluation_id'];
+
+                $evaluations[$evaluationId] = array('grade' => $grade);
+            }
+
+
+            /*
+             * Update relation with sync
+             * Sync expects an array of id's as first argument
+             */
+            $student->evaluations()->sync($evaluations);
+            $response = $student;
 
         }catch(\Throwable $e){
             $status_code = 500;
