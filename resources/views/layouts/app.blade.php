@@ -272,6 +272,16 @@
 												</a>
 											</li>
 
+										<li class="{{Request::is('statistics') ? 'active-link' : ''}}">
+
+                                            <a href="/statistics">
+                                                <i class="fa fa-bar-chart-o"></i>
+                                                <span class="menu-title"></span>
+                                                <strong>Estadísticas</strong>
+                                            </a>
+
+                                        </li>
+
 
 										@if(!$coordinator)
 											<li class="{{ Request::is('coordinator_register') ? 'active-link' : '' }}">

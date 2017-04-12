@@ -50,4 +50,8 @@ class HomeController extends Controller
     public function evaluateStudents(){
         return view('subjects.evaluateStudents');
     }
+
+    public function indexStatistics(){
+        return view('statistics.index');
+    }
 }
