@@ -9,6 +9,7 @@ use App\User;
 use App\Role;
 use App\Subject;
 use App\Evaluation;
+use App\Advertisement;
 
 class SubjectController extends Controller
 {
@@ -172,7 +173,7 @@ class SubjectController extends Controller
     public function getSubject($subject_id, Request $request){
         try{
             $status_code  = 200;
-            $subject      = Subject::with('students.evaluations', 'evaluations')->find($subject_id);
+            $subject      = Subject::with('students.evaluations', 'evaluations', 'advertisements')->find($subject_id);
 
             foreach($subject->students as $student){
                 /*
@@ -270,6 +271,45 @@ class SubjectController extends Controller
             $student->teacher_subjects()->attach($subject->id, ['final_grade' => $finalGrade]);
 
             $response = $finalGrade;
+
+        }catch(\Throwable $e){
+            $status_code = 500;
+            $response['error_message'] = $e->getMessage();
+            $response['error_type'] = 'unhandled_exception';
+            $response['error_type'] = 500;
+        }
+
+        return response()->json($response, $status_code);
+    }
+
+
+
+    /*
+     * Save the evaluations for this subject
+     */
+    public function createAdvertisement($subject_id, Request $request){
+        try{
+            /*
+             * Prepare data
+             */
+            $status_code = 200;
+            $subject     = Subject::with('evaluations')->find($subject_id);
+
+            /*
+             * Create advertisement
+             * and associate it with this subject
+             */
+            $advertisement          = new Advertisement;
+            $advertisement->title   = $request->advertisement['title'];
+            $advertisement->message = $request->advertisement['message'];
+            $advertisement->role_id = 2;
+            $advertisement->subject()->associate($subject);
+            $advertisement->save();
+
+            /*
+             * Response
+             */
+            $response = $advertisement;
 
         }catch(\Throwable $e){
             $status_code = 500;

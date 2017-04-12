@@ -15,6 +15,7 @@ class CreateAdvertisementsTable extends Migration
     {
         Schema::create('advertisements', function(Blueprint $table){
             $table->increments('id');
+            $table->timestamps();
             $table->integer('role_id')->unsigned();
             $table->integer('subject_id')->unsigned()->nullable();
             $table->string('title');
