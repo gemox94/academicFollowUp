@@ -177,6 +177,70 @@
             </div>
         </div>
 
+
+
+        <div ng-if="subject.id" class="col-md-12">
+            <div class="panel">
+                <uib-alert ng-repeat="alert in alerts"
+                       dismiss-on-timeout="5000"
+                       type="@{{alert.type}}"
+                       close="alertService.closeAlert($index)">
+                       @{{alert.msg}}
+                </uib-alert>
+
+                <div class="panel-heading">
+                    <h3 class="panel-title">Anuncios de la materia</h3>
+                </div>
+                <form class="form-horizontal" name="subject_form2" id="subject_form2">
+                    <div class="panel-body tab-content" id="print-section" >
+                        <div class="tab-pane active" id="datos">
+
+                            <div class="row">
+                                <a class="btn btn-primary" href="#" ng-click="advertisementModal()">
+                                    <span class="fa fa-plus"></span>
+                                    Nuevo Anuncio
+                                </a>
+                                <hr>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table table-striped row-border hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Título</th>
+                                                <th>Descripción</th>
+                                                <th>Editar</th>
+                                                <th>Eliminar</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="advertisement in subject.advertisements">
+                                                <td>
+                                                    @{{ advertisement.title }}
+                                                </td>
+                                                <td>
+                                                    @{{ advertisement.description }}
+                                                </td>
+                                                <td>
+                                                   <i ng-click="advertisementModal(advertisement)" class="btn btn-primary fa fa-pencil-square-o"></i>
+                                                </td>
+                                                <td>
+                                                   <i class="btn btn-danger fa fa-times"></i>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+
+
         <div ng-if="subject.id" class="col-md-12">
             <div class="panel">
                 <uib-alert ng-repeat="alert in alerts"
@@ -261,6 +325,48 @@
                                 <span class="fa fa-sort-numeric-desc"></span>
                             </span>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <p>
+              <button class="btn btn-primary" type="button" ng-click="ok()">Guardar</button>
+              <button class="btn btn-warning" type="button" ng-click="cancel()">Cancelar</button>
+            </p>
+        </div>
+    </script>
+
+
+    <script type="text/ng-template" id="advertisement_modal.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Anuncio</h3>
+        </div>
+        <div class="modal-body contract-modal">
+
+            <div class="form-group">
+                <label class="col-md-4 col-xs-12 control-label">
+                    Título
+                </label>
+                <div class="col-md-4 col-xs-12">
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="advertisement.title">
+                        <span class="input-group-addon">
+                            <span class="fa fa-header"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-md-4 col-xs-12 control-label">
+                    Descripción
+                </label>
+                <div class="col-md-4 col-xs-12">
+                    <div class="input-group">
+                        <textarea class="form-control" ng-model="advertisement.description"></textarea>
                     </div>
                 </div>
             </div>
