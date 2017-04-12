@@ -290,7 +290,7 @@
                                                    <i ng-click="editEvaluations(student)" class="btn btn-primary fa fa-pencil-square-o"></i>
                                                 </td>
                                                 <td>
-                                                   <i class="btn btn-default fa fa-clock-o"></i>
+                                                    <a href="/students/@{{ student.id }}/cardex" class="btn btn-default fa fa-clock-o"></a>
                                                 </td>
                                             </tr>
                                         </tbody>
