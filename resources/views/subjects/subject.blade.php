@@ -208,7 +208,7 @@
                                         <thead>
                                             <tr>
                                                 <th>Título</th>
-                                                <th>Descripción</th>
+                                                <th>Mensaje</th>
                                                 <th>Editar</th>
                                                 <th>Eliminar</th>
                                             </tr>
@@ -219,7 +219,7 @@
                                                     @{{ advertisement.title }}
                                                 </td>
                                                 <td>
-                                                    @{{ advertisement.description }}
+                                                    @{{ advertisement.message }}
                                                 </td>
                                                 <td>
                                                    <i ng-click="advertisementModal(advertisement)" class="btn btn-primary fa fa-pencil-square-o"></i>
@@ -365,10 +365,10 @@
             <div class="row">
                 <div class="form-group">
                     <label class="col-md-4 col-xs-12 control-label">
-                        Descripción
+                        Mensaje
                     </label>
                     <div class="col-md-8 col-xs-12">
-                        <textarea class="form-control" ng-model="advertisement.description"></textarea>
+                        <textarea class="form-control" ng-model="advertisement.message"></textarea>
                     </div>
                 </div>
             </div>

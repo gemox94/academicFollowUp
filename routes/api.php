@@ -33,4 +33,6 @@ Route::post('subjects/create', 'api\SubjectController@createSubject');
 Route::post('subjects/update', 'api\SubjectController@updateSubject');
 Route::post('subjects/{id}/delete', 'api\SubjectController@deleteSubject');
 Route::post('subjects/{id}/saveEvaluations', 'api\SubjectController@saveEvaluations');
+Route::post('subjects/{id}/createAdvertisement', 'api\SubjectController@createAdvertisement');
+Route::post('subjects/{id}/editAdvertisement', 'api\SubjectController@editAdvertisement');
 Route::post('student/{id}/updateStudentEvaluations', 'api\SubjectController@updateStudentEvaluations');

@@ -196,13 +196,14 @@ console.log(response);
                  */
                 $http({
                     method: 'POST',
-                    url: '/api/subject/'+result.student.id+'/createAdvertisement',
+                    url: '/api/subjects/'+$scope.subject.id+'/createAdvertisement',
                     data:{
                         advertisement: result.advertisement
                     }
                 }).then(function(response){
                         alertService.add("success", 'Se ha creado el anuncio con éxito', false);
-                        $scope.advertisements.push(response.advertisement);
+console.log(response);
+                        $scope.subject.advertisements.push(response.data);
 
                     }, function(error_response){
                         alertService.add("danger", 'Error al crear anuncio. Porfavor intentelo más tarde', false);
@@ -215,10 +216,11 @@ console.log(response);
                  */
                 $http({
                     method: 'POST',
-                    url: '/api/subject/'+result.student.id+'/editAdvertisement',
+                    url: '/api/subjects/'+$scope.subject.id+'/editAdvertisement',
                     data:{
                         advertisement: result.advertisement
                     }
+
                 }).then(function(response){
                         alertService.add("success", 'Se ha actualizado el anuncio con éxito', false);
 
