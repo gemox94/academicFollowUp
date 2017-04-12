@@ -17,6 +17,7 @@ class CreateAdvertisementsTable extends Migration
             $table->increments('id');
             $table->integer('role_id')->unsigned();
             $table->integer('subject_id')->unsigned()->nullable();
+            $table->string('title');
             $table->string('message');
 
             $table->foreign('role_id')->references('id')->on('roles')->onDelete('restrict');

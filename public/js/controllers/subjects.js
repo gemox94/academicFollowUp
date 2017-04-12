@@ -129,7 +129,6 @@ console.log(response);
     };
 
     $scope.editEvaluations = function (student) {
-console.log(student);
         var modalInstance = $uibModal.open({
           animation: true,
           templateUrl: 'evaluations_modal.html',
@@ -163,29 +162,97 @@ console.log(student);
     };
 
 
+
+    $scope.advertisementModal = function (advertisement) {
+
+        if (advertisement) {
+            advertisement.isNew = false;
+
+        }else{
+            advertisement = {
+                isNew: true
+            };
+        }
+
+        var modalInstance = $uibModal.open({
+          animation: true,
+          templateUrl: 'advertisement_modal.html',
+          controller: 'AdvertisementModalCtrl',
+          resolve: {
+            advertisement: function(){
+              return advertisement;
+            }
+          }
+        });
+
+        modalInstance.result.then(function (result) {
+
+            if (result.advertisement.isNew) {
+                /*
+                 * Create new advertisement for this subject
+                 */
+                //$http({
+                //    method: 'POST',
+                //    url: '/api/student/'+result.student.id+'/updateStudentEvaluations',
+                //    data:{
+                //        student: result.student
+                //    }
+                //}).then(function(response){
+                //        alertService.add("success", 'Las calificaciones del estudiante"'+result.student.name+'" se guardaron con exito', false);
+                //        student.pivot.final_grade = response.data;
+                //
+                //    }, function(error_response){
+                //        alertService.add("danger", 'Error al guardar calificaciones del estudiante"'+result.student.name+'". Porfavor intentelo más tarde', false);
+                //        console.log(error_response);
+                //});
+
+            }else{
+                /*
+                 * Edit an advertisement
+                 */
+            }
+
+        });
+    };
+
 });
 
-app.controller('EvaluationsModalCtrl', function($scope, $http, $uibModalInstance, studentEdit) {
-  $scope.student = studentEdit;
+app.controller('EvaluationsModalCtrl', function($scope, $uibModalInstance, studentEdit) {
+    $scope.student = studentEdit;
 
-  $scope.student.evaluationsOfSubject.forEach(function(evaluation){
-    evaluation.pivot.grade = parseFloat(evaluation.pivot.grade);
-  });
-console.log($scope.student);
-  $scope.ok = function () {
+    $scope.student.evaluationsOfSubject.forEach(function(evaluation){
+        evaluation.pivot.grade = parseFloat(evaluation.pivot.grade);
+    });
+
+    $scope.ok = function () {
         $uibModalInstance.close({
             student: $scope.student
         });
     };
 
-  $scope.cancel = function () {
-    $uibModalInstance.dismiss('cancel');
-  };
+    $scope.cancel = function () {
+        $uibModalInstance.dismiss('cancel');
+    };
 });
 
 
 
-app.controller('SubjectsListCtrl', function($rootScope, $scope, $http, $uibModal, $timeout, alertService, spinnerService, userService){
+app.controller('AdvertisementModalCtrl', function($scope, $uibModalInstance, advertisement) {
+  $scope.advertisement = advertisement;
+
+    $scope.ok = function () {
+        $uibModalInstance.close({
+            advertisement: $scope.advertisement
+        });
+    };
+
+    $scope.cancel = function () {
+        $uibModalInstance.dismiss('cancel');
+    };
+});
+
+
+app.controller('SubjectsListCtrl', function($scope, alertService, userService){
     $scope.loged_user   = userService.getUser();
     $scope.alertService = alertService;
     $scope.subjects     = [];

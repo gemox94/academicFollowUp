@@ -17,4 +17,8 @@ class Subject extends Model
     public function students(){
         return $this->belongsToMany('App\User', 'student_subjects', 'subject_id', 'student_id')->withPivot('final_grade');
     }
+
+    public function advertisements(){
+        return $this->hasMany('App\Advertisement');
+    }
 }
