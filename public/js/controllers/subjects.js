@@ -162,7 +162,10 @@ console.log(response);
     };
 
 
-
+    /*
+     * Function for creating advertisement
+     * modal
+     */
     $scope.advertisementModal = function (advertisement) {
 
         if (advertisement) {
@@ -191,31 +194,47 @@ console.log(response);
                 /*
                  * Create new advertisement for this subject
                  */
-                //$http({
-                //    method: 'POST',
-                //    url: '/api/student/'+result.student.id+'/updateStudentEvaluations',
-                //    data:{
-                //        student: result.student
-                //    }
-                //}).then(function(response){
-                //        alertService.add("success", 'Las calificaciones del estudiante"'+result.student.name+'" se guardaron con exito', false);
-                //        student.pivot.final_grade = response.data;
-                //
-                //    }, function(error_response){
-                //        alertService.add("danger", 'Error al guardar calificaciones del estudiante"'+result.student.name+'". Porfavor intentelo más tarde', false);
-                //        console.log(error_response);
-                //});
+                $http({
+                    method: 'POST',
+                    url: '/api/subject/'+result.student.id+'/createAdvertisement',
+                    data:{
+                        advertisement: result.advertisement
+                    }
+                }).then(function(response){
+                        alertService.add("success", 'Se ha creado el anuncio con éxito', false);
+                        $scope.advertisements.push(response.advertisement);
+
+                    }, function(error_response){
+                        alertService.add("danger", 'Error al crear anuncio. Porfavor intentelo más tarde', false);
+                        console.log(error_response);
+                });
 
             }else{
                 /*
                  * Edit an advertisement
                  */
+                $http({
+                    method: 'POST',
+                    url: '/api/subject/'+result.student.id+'/editAdvertisement',
+                    data:{
+                        advertisement: result.advertisement
+                    }
+                }).then(function(response){
+                        alertService.add("success", 'Se ha actualizado el anuncio con éxito', false);
+
+                    }, function(error_response){
+                        alertService.add("danger", 'Error al editar anuncio. Porfavor intentelo más tarde', false);
+                        console.log(error_response);
+                });
             }
 
         });
     };
 
 });
+
+
+
 
 app.controller('EvaluationsModalCtrl', function($scope, $uibModalInstance, studentEdit) {
     $scope.student = studentEdit;
@@ -237,6 +256,7 @@ app.controller('EvaluationsModalCtrl', function($scope, $uibModalInstance, stude
 
 
 
+
 app.controller('AdvertisementModalCtrl', function($scope, $uibModalInstance, advertisement) {
   $scope.advertisement = advertisement;
 
@@ -250,6 +270,8 @@ app.controller('AdvertisementModalCtrl', function($scope, $uibModalInstance, adv
         $uibModalInstance.dismiss('cancel');
     };
 });
+
+
 
 
 app.controller('SubjectsListCtrl', function($scope, alertService, userService){

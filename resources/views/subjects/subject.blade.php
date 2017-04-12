@@ -345,27 +345,29 @@
         </div>
         <div class="modal-body contract-modal">
 
-            <div class="form-group">
-                <label class="col-md-4 col-xs-12 control-label">
-                    Título
-                </label>
-                <div class="col-md-4 col-xs-12">
-                    <div class="input-group">
-                        <input type="text" class="form-control" ng-model="advertisement.title">
-                        <span class="input-group-addon">
-                            <span class="fa fa-header"></span>
-                        </span>
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-md-4 col-xs-12 control-label">
+                        Título
+                    </label>
+                    <div class="col-md-8 col-xs-12">
+                        <div class="input-group">
+                            <input type="text" class="form-control" ng-model="advertisement.title">
+                            <span class="input-group-addon">
+                                <span class="fa fa-header"></span>
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
 
 
-            <div class="form-group">
-                <label class="col-md-4 col-xs-12 control-label">
-                    Descripción
-                </label>
-                <div class="col-md-4 col-xs-12">
-                    <div class="input-group">
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-md-4 col-xs-12 control-label">
+                        Descripción
+                    </label>
+                    <div class="col-md-8 col-xs-12">
                         <textarea class="form-control" ng-model="advertisement.description"></textarea>
                     </div>
                 </div>
