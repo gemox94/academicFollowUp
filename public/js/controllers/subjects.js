@@ -333,7 +333,7 @@ app.controller('AdvertisementModalCtrl', function($scope, $uibModalInstance, adv
 
 
 
-app.controller('SubjectsListCtrl', function($scope, alertService, userService){
+app.controller('SubjectsListCtrl', function($scope, $http, alertService, userService){
     $scope.loged_user   = userService.getUser();
     $scope.alertService = alertService;
     $scope.subjects     = [];

@@ -37,3 +37,4 @@ Route::post('subjects/{id}/createAdvertisement', 'api\SubjectController@createAd
 Route::post('subjects/{id}/editAdvertisement', 'api\SubjectController@editAdvertisement');
 Route::delete('subjects/{id}/deleteAdvertisement/{advertisement_id}', 'api\SubjectController@deleteAdvertisement');
 Route::post('student/{id}/updateStudentEvaluations', 'api\SubjectController@updateStudentEvaluations');
+Route::get('student/{id}/getAdvertisements', 'api\StudentController@getAdvertisements');
