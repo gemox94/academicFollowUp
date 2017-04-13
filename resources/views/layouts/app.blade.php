@@ -40,7 +40,9 @@
 	<script type="text/javascript" src={{ asset('bower/angular-ui-bootstrap/angular-ui-bootstrap.js') }}></script>
 	<script type="text/javascript" src={{ asset('bower/ngstorage/ngStorage.min.js') }}></script>
 	<script type="text/javascript" src={{ asset('bower/angular-spinners/dist/angular-spinners.min.js') }}></script>
-	<!-- END Angular -->
+	<script type="text/javascript" src={{ asset('bower/angular-sanitize/angular-sanitize.min.js') }}></script>
+	<script type="text/javascript" src={{ asset('bower/angular-bootstrap-confirm/dist/angular-bootstrap-confirm.js') }}></script>
+
 	<script type="text/javascript" src={{ asset("js/app.js") }}></script>
 	<script type="text/javascript" src={{ asset("js/filters/dateFormat.js") }}></script>
 	<script type="text/javascript" src={{ asset("js/directives/enter.js") }}></script>
@@ -176,8 +178,8 @@
 				<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 				<div id="page-title">
 					<h1 class="page-header text-overflow">
-                                                @yield('title')
-                                        </h1>
+						@yield('title')
+					</h1>
 				</div>
 				<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 				<!--End page title-->
@@ -194,7 +196,7 @@
 				<!--===================================================-->
 				<div id="page-content">
 					<div class="row">
-                                                @yield('content')
+                        @yield('content')
 					</div>
 				</div>
 				<!--===================================================-->
@@ -310,6 +312,28 @@
 											</a>
 										</li>
 
+
+										<!--Menu list item-->
+										<li class="{{ Request::is('student/advertisements') ? 'active-link' : '' }}">
+											<a href="/student/advertisements/">
+												<i class="fa fa-newspaper-o"></i>
+												<span class="menu-title">
+													<strong>Anuncios</strong>
+												</span>
+											</a>
+										</li>
+
+
+										<!--Menu list item-->
+										<li class="{{ Request::is('students/*/cardex') ? 'active-link' : '' }}">
+											<a href="/students/{{ Auth::user()->id }}/cardex">
+												<i class="fa fa-newspaper-o"></i>
+												<span class="menu-title">
+													<strong>Historial Académico</strong>
+												</span>
+											</a>
+										</li>
+
                                     @endif
 
 									<!--Menu list item-->
@@ -364,7 +388,6 @@
 			<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 			<!-- Remove the class name "show-fixed" and "hide-fixed" to make the content always appears. -->
 			<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-
 			<p class="pad-lft">&#0169; Benemérita Universidad Autónoma de Puebla - FCC</p>
 
 		</footer>

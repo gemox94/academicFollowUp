@@ -14,7 +14,6 @@ app.controller('SubjectCtrl', function($rootScope, $scope, $http, $uibModal, $ti
          */
         $http.get('/api/subjects/'+$scope.subject.id)
            .then(function(response){
-console.log(response);
                $scope.subject = response.data;
 
            }, function(error_response){
@@ -130,14 +129,14 @@ console.log(response);
 
     $scope.editEvaluations = function (student) {
         var modalInstance = $uibModal.open({
-          animation: true,
-          templateUrl: 'evaluations_modal.html',
-          controller: 'EvaluationsModalCtrl',
-          resolve: {
-            studentEdit: function(){
-              return student;
+            animation: true,
+            templateUrl: 'evaluations_modal.html',
+            controller: 'EvaluationsModalCtrl',
+            resolve: {
+                studentEdit: function(){
+                    return student;
+                }
             }
-          }
         });
 
         modalInstance.result.then(function (result) {
@@ -178,14 +177,14 @@ console.log(response);
         }
 
         var modalInstance = $uibModal.open({
-          animation: true,
-          templateUrl: 'advertisement_modal.html',
-          controller: 'AdvertisementModalCtrl',
-          resolve: {
-            advertisement: function(){
-              return advertisement;
+            animation: true,
+            templateUrl: 'advertisement_modal.html',
+            controller: 'AdvertisementModalCtrl',
+            resolve: {
+                advertisement: function(){
+                    return advertisement;
+                }
             }
-          }
         });
 
         modalInstance.result.then(function (result) {
@@ -202,7 +201,6 @@ console.log(response);
                     }
                 }).then(function(response){
                         alertService.add("success", 'Se ha creado el anuncio con éxito', false);
-console.log(response);
                         $scope.subject.advertisements.push(response.data);
 
                     }, function(error_response){
@@ -223,6 +221,7 @@ console.log(response);
 
                 }).then(function(response){
                         alertService.add("success", 'Se ha actualizado el anuncio con éxito', false);
+                        console.log(response);
 
                     }, function(error_response){
                         alertService.add("danger", 'Error al editar anuncio. Porfavor intentelo más tarde', false);
@@ -230,6 +229,26 @@ console.log(response);
                 });
             }
 
+        });
+    };
+
+
+    $scope.deleteAdvertisement = function(advertisement, index){
+        /*
+         * First is the CONFIRM directive and then the DELETE
+         */
+        $http({
+            method: 'DELETE',
+            url: '/api/subjects/'+$scope.subject.id+'/deleteAdvertisement/'+advertisement.id,
+
+        }).then(function(response){
+                alertService.add("warning", 'Se ha eliminado el anuncio', false);
+                console.log(response);
+                $scope.subject.advertisements.splice(index, 1);
+
+            }, function(error_response){
+                alertService.add("danger", 'Error al eliminar anuncio. Porfavor intentelo más tarde', false);
+                console.log(error_response);
         });
     };
 
@@ -258,9 +277,8 @@ app.controller('EvaluationsModalCtrl', function($scope, $uibModalInstance, stude
 
 
 
-
 app.controller('AdvertisementModalCtrl', function($scope, $uibModalInstance, advertisement) {
-  $scope.advertisement = advertisement;
+    $scope.advertisement = advertisement;
 
     $scope.ok = function () {
         $uibModalInstance.close({

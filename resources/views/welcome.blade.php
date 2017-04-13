@@ -36,6 +36,8 @@
         <script type="text/javascript" src={{ asset('bower/angular-ui-bootstrap/angular-ui-bootstrap.js') }}></script>
         <script type="text/javascript" src={{ asset('bower/ngstorage/ngStorage.min.js') }}></script>
 	<script type="text/javascript" src={{ asset('bower/angular-spinners/dist/angular-spinners.min.js') }}></script>
+		<script type="text/javascript" src={{ asset('bower/angular-sanitize/angular-sanitize.min.js') }}></script>
+	<script type="text/javascript" src={{ asset('bower/angular-bootstrap-confirm/dist/angular-bootstrap-confirm.js') }}></script>
         <script type="text/javascript" src={{ asset('js/app.js') }}></script>
 	<script type="text/javascript" src={{ asset('js/services/user.js') }}></script>
 	<script type="text/javascript" src={{ asset('js/services/alert.js') }}></script>

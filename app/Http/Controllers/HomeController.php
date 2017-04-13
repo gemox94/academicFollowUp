@@ -54,4 +54,8 @@ class HomeController extends Controller
     public function indexStatistics(){
         return view('statistics.index');
     }
+
+    public function studentAdvertisementsView(){
+        return view('students.advertisements');
+    }
 }
