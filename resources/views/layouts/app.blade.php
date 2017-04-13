@@ -323,6 +323,17 @@
 											</a>
 										</li>
 
+
+										<!--Menu list item-->
+										<li class="{{ Request::is('students/*/cardex') ? 'active-link' : '' }}">
+											<a href="/students/{{ Auth::user()->id }}/cardex">
+												<i class="fa fa-newspaper-o"></i>
+												<span class="menu-title">
+													<strong>Historial Académico</strong>
+												</span>
+											</a>
+										</li>
+
                                     @endif
 
 									<!--Menu list item-->
