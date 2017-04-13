@@ -10,7 +10,7 @@
             y:[],
             x: [],
             type: 'bar',
-            orientation: 'h'
+            orientation: 'v'
         };
 
         var data = [trace1];
@@ -41,25 +41,37 @@
             trace1.y = [];
             trace1.x = [];
             i = 1;
+
+            var trace2 = {
+                y: [],
+                x: []
+            };
+
             if($scope.selectedSubject !== undefined && $scope.filter !== undefined){
                 angular.forEach($scope.subjects, function(value, key){
                     if(value[$scope.filter].length !== 0){
+
+                        trace1.y.push(value[$scope.filter].length);
+                        trace1.x.push($scope.filter.toString());
+
                         angular.forEach(value[$scope.filter], function (val) {
                             if(key === $scope.selectedSubject.subject_nrc){
-                                //console.log(val);
-                                trace1.y.push(val.student.name);
-                                trace1.x.push(val.final_grade);
+console.log(val);
+                                //trace1.y.push(val.student.name);
+                                //trace1.x.push(val.final_grade);
                                 i++;
                             }
                         });
+
                     }else{
                         trace1.y.push(0);
                     }
                 });
+
                 Plotly.newPlot('plot', data, layout, {displayModeBar: true});
             }
         };
-        
+
     }
 
 })();
