@@ -14,7 +14,8 @@ app.controller('StudentAdvertisementsCtrl', function($scope, $http, alertService
 
            $scope.subjects.forEach(function(subject){
                 subject.advertisements.forEach(function(advertisement){
-                    advertisement.color = $scope.colors[Math.floor(Math.random()*$scope.colors.length)];
+                    advertisement.color     = $scope.colors[Math.floor(Math.random()*$scope.colors.length)];
+                    advertisement.created_at = advertisement.created_at.replace(/(.+) (.+)/, "$1T$2Z");
                 });
 
                 if (subject.advertisements.length === 0) {
