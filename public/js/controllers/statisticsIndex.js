@@ -16,7 +16,15 @@
         var data = [trace1];
         var layout = {
             title: 'Calificaciones',
-            showlegend: false
+            showlegend: false,
+            yaxis: {
+                title: 'Alumnos',
+                titlefont: {
+                  family: 'Courier New, monospace',
+                  size: 18,
+                  color: '#7f7f7f'
+                }
+            }
         };
         //Plotly.newPlot('plot', data, layout, {displayModeBar: true});
 
@@ -27,7 +35,7 @@
         }).then(function (value) {
             console.log(value.data);
             $scope.subjects = value.data;
-
+console.log($scope.subjects);
         }, function (error) {
             console.log(error);
         });
@@ -45,25 +53,30 @@
             i = 1;
 
             if($scope.selectedSubject !== undefined && $scope.filter !== undefined){
-                angular.forEach($scope.subjects, function(value, key){
-                    if(value[$scope.filter].length !== 0){
+                /*
+                 * 1 Step
+                 * Get the subject according to the NRC - selectedSubject.subject_nrc
+                 */
+                var subjectToPlot = $scope.subjects[$scope.selectedSubject.subject_nrc];
 
-                        trace1.y.push(value[$scope.filter].length);
-                        trace1.x.push($scope.filter.toString());
+                /*
+                 * 2 Step
+                 * Get the correct filter for this subject
+                 */
+                var filterToPlot = subjectToPlot[$scope.filter];
 
-//                        angular.forEach(value[$scope.filter], function (val) {
-//                            if(key === $scope.selectedSubject.subject_nrc){
-//console.log(val);
-//                                //trace1.y.push(val.student.name);
-//                                //trace1.x.push(val.final_grade);
-//                                i++;
-//                            }
-//                        });
+                /*
+                 * 3 Step
+                 * Get the number of students in this filter to plot
+                 */
+                var studentNumberToPlot = filterToPlot.length;
 
-                    }else{
-                        trace1.y.push(0);
-                    }
-                });
+                /*
+                 * 4 Step
+                 * Plot both axis
+                 */
+                trace1.y.push(studentNumberToPlot);
+                trace1.x.push($scope.filter.toString());
 
                 Plotly.newPlot('plot', data, layout, {displayModeBar: true});
             }
