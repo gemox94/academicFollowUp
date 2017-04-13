@@ -30,7 +30,7 @@
                         class="list-group-item list-item-advertisement"
                         ng-class="'list-group-item-'+advertisement.color"
                         ng-click="openAdvertisement(advertisement)">
-                        @{{ advertisement.title }}
+                        @{{ advertisement.created_at | date : "dd / MMM / yyyy" }} - @{{ advertisement.title }}
                     </a>
                 </div>
             </div>
@@ -49,6 +49,10 @@
             </h4>
             <p>
                 @{{ advertisement.message }}
+            </p>
+            <hr>
+            <p>
+                @{{ advertisement.created_at | date : "dd / MMM / yyyy" }}
             </p>
         </div>
         <div class="modal-footer">
