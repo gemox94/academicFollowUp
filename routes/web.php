@@ -59,3 +59,8 @@ Route::get('/subjects/{id}', 'HomeController@showSubjectView');
 */
 Route::get('/students/{id}/cardex', 'CardexController@index');
 Route::get('/subjects/{id}/evaluateStudents', 'HomeController@evaluateStudents');
+
+/**
+ * Statistics' Routes
+ */
+Route::geT('/statistics', 'HomeController@indexStatistics');

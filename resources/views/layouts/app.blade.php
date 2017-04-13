@@ -405,5 +405,9 @@
 	<script src="{{ asset('plugins/skycons/skycons.min.js') }}"></script>
 	<script src="{{ asset('plugins/switchery/switchery.min.js') }}"></script>
 	<script src="{{ asset('plugins/bootstrap-select/bootstrap-select.min.js') }}"></script>
+
+    <script src="{{asset('js/plotly-latest.min.js')}}"></script>
+
+
 </body>
 </html>
