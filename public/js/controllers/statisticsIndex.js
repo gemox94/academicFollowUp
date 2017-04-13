@@ -17,7 +17,7 @@
         var layout = {
             title: 'Calificaciones',
             showlegend: false};
-        Plotly.newPlot('plot', data, layout, {displayModeBar: true});
+        //Plotly.newPlot('plot', data, layout, {displayModeBar: true});
 
         $http({
             method: 'POST',
@@ -30,166 +30,33 @@
             console.log(error);
         });
 
+        $scope.clearPlot = function(){
+            Plotly.purge('plot');
+            $scope.selectedSubject = undefined;
+            $scope.filter = undefined;
+        };
+
         var i;
         $scope.updateFilter = function(){
-            switch ($scope.filter){
-
-                case 'passed':
-                    if($scope.selectedSubject !== undefined){
-                        i = 1;
-                        angular.forEach($scope.subjects, function(value, key){
-                            if(value[$scope.filter].length !== 0){
-                                angular.forEach(value[$scope.filter], function (val) {
-                                    if(key === $scope.selectedSubject.subject_nrc){
-                                        //console.log(val);
-                                        trace1.y.push(i);
-                                        trace1.x.push(val.final_grade);
-                                        i++;
-                                    }
-                                });
+            trace1.y = [];
+            trace1.x = [];
+            i = 1;
+            if($scope.selectedSubject !== undefined && $scope.filter !== undefined){
+                angular.forEach($scope.subjects, function(value, key){
+                    if(value[$scope.filter].length !== 0){
+                        angular.forEach(value[$scope.filter], function (val) {
+                            if(key === $scope.selectedSubject.subject_nrc){
+                                //console.log(val);
+                                trace1.y.push(val.student.name);
+                                trace1.x.push(val.final_grade);
+                                i++;
                             }
                         });
-                        Plotly.newPlot('plot', data, layout, {displayModeBar: true});
+                    }else{
+                        trace1.y.push(0);
                     }
-
-                case 'failed':
-                    if($scope.selectedSubject !== undefined){
-                        i = 1;
-                        angular.forEach($scope.subjects, function(value, key){
-                            if(value[$scope.filter].length !== 0){
-                                angular.forEach(value[$scope.filter], function (val) {
-                                    if(key === $scope.selectedSubject.subject_nrc){
-                                        //console.log(val);
-                                        trace1.y.push(val.student.name);
-                                        trace1.x.push(val.final_grade);
-                                        i++;
-                                    }
-                                });
-                            }
-                        });
-                        Plotly.newPlot('plot', data, layout, {displayModeBar: true});
-                    }
-                    break;
-
-                case 'l_5':
-                    if($scope.selectedSubject !== undefined){
-                        i = 1;
-                        angular.forEach($scope.subjects, function(value, key){
-                            if(value[$scope.filter].length !== 0){
-                                angular.forEach(value[$scope.filter], function (val) {
-                                    if(key === $scope.selectedSubject.subject_nrc){
-                                        //console.log(val);
-                                        trace1.y.push(i);
-                                        trace1.x.push(val.final_grade);
-                                        i++;
-                                    }
-                                });
-                            }
-                        });
-                        Plotly.newPlot('plot', data, layout, {displayModeBar: true});
-                    }
-                    break;
-
-
-                case 'e_6':
-                    if($scope.selectedSubject !== undefined){
-                        i = 1;
-                        angular.forEach($scope.subjects, function(value, key){
-                            if(value[$scope.filter].length !== 0){
-                                angular.forEach(value[$scope.filter], function (val) {
-                                    if(key === $scope.selectedSubject.subject_nrc){
-                                        //console.log(val);
-                                        trace1.y.push(i);
-                                        trace1.x.push(val.final_grade);
-                                        i++;
-                                    }
-                                });
-                            }
-                        });
-                        Plotly.newPlot('plot', data, layout, {displayModeBar: true});
-                    }
-                    break;
-
-
-                case 'e_7':
-                    if($scope.selectedSubject !== undefined){
-                        i = 1;
-                        angular.forEach($scope.subjects, function(value, key){
-                            if(value[$scope.filter].length !== 0){
-                                angular.forEach(value[$scope.filter], function (val) {
-                                    if(key === $scope.selectedSubject.subject_nrc){
-                                        //console.log(val);
-                                        trace1.y.push(i);
-                                        trace1.x.push(val.final_grade);
-                                        i++;
-                                    }
-                                });
-                            }
-                        });
-                        Plotly.newPlot('plot', data, layout, {displayModeBar: true});
-                    }
-                    break;
-
-
-                case 'e_8':
-                    if($scope.selectedSubject !== undefined){
-                        i = 1;
-                        angular.forEach($scope.subjects, function(value, key){
-                            if(value[$scope.filter].length !== 0){
-                                angular.forEach(value[$scope.filter], function (val) {
-                                    if(key === $scope.selectedSubject.subject_nrc){
-                                        //console.log(val);
-                                        trace1.y.push(i);
-                                        trace1.x.push(val.final_grade);
-                                        i++;
-                                    }
-                                });
-                            }
-                        });
-                        Plotly.newPlot('plot', data, layout, {displayModeBar: true});
-                    }
-                    break;
-
-
-                case 'e_9':
-                    if($scope.selectedSubject !== undefined){
-                        i = 1;
-                        angular.forEach($scope.subjects, function(value, key){
-                            if(value[$scope.filter].length !== 0){
-                                angular.forEach(value[$scope.filter], function (val) {
-                                    if(key === $scope.selectedSubject.subject_nrc){
-                                        //console.log(val);
-                                        trace1.y.push(i);
-                                        trace1.x.push(val.final_grade);
-                                        i++;
-                                    }
-                                });
-                            }
-                        });
-                        Plotly.newPlot('plot', data, layout, {displayModeBar: true});
-                    }
-                    break;
-
-
-                case 'e_10':
-                    if($scope.selectedSubject !== undefined){
-                        i = 1;
-                        angular.forEach($scope.subjects, function(value, key){
-                            if(value[$scope.filter].length !== 0){
-                                angular.forEach(value[$scope.filter], function (val) {
-                                    if(key === $scope.selectedSubject.subject_nrc){
-                                        //console.log(val);
-                                        trace1.y.push(i);
-                                        trace1.x.push(val.final_grade);
-                                        i++;
-                                    }
-                                });
-                            }
-                        });
-                        Plotly.newPlot('plot', data, layout, {displayModeBar: true});
-                    }
-                    break;
-
+                });
+                Plotly.newPlot('plot', data, layout, {displayModeBar: true});
             }
         };
         

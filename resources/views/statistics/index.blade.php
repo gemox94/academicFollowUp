@@ -32,6 +32,7 @@
                         <div class="form-group">
                             <label for="subject">Materias</label>
                             <select class="form-control"
+                                    ng-change="updateFilter()"
                                     ng-options="subject.subject_name for subject in subjects" id="subject" ng-model="selectedSubject"></select>
                         </div>
                     </div>
@@ -42,13 +43,19 @@
                             <select ng-model="filter" id="filter" class="form-control" ng-change="updateFilter()">
                                 <option value="passed">Aprobados</option>
                                 <option value="failed">Reprobados</option>
-                                <option value="l_5">5 o menos</option>
                                 <option value="e_6">6</option>
                                 <option value="e_7">7</option>
                                 <option value="e_8">8</option>
                                 <option value="e_9">9</option>
                                 <option value="e_10">10</option>
                             </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-2 col-lg-2">
+                        <div class="form-group">
+                            <label for="">Limpiar</label>
+                            <button class="btn btn-primary form-control" ng-click="clearPlot()"><span class="fa fa-eraser"></span></button>
                         </div>
                     </div>
 
