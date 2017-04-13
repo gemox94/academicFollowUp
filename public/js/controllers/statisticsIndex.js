@@ -14,6 +14,7 @@
         };
 
         var data = [trace1];
+
         var layout = {
             title: 'Calificaciones',
             showlegend: false,
@@ -26,16 +27,21 @@
                 }
             }
         };
+
+// :DELETE: Example Code
         //Plotly.newPlot('plot', data, layout, {displayModeBar: true});
 
         $http({
             method: 'POST',
             url: '/api/statistics',
-            data: {teacher_id: user.id}
+            data: {
+                teacher_id: user.id
+            }
+
         }).then(function (value) {
             console.log(value.data);
             $scope.subjects = value.data;
-console.log($scope.subjects);
+
         }, function (error) {
             console.log(error);
         });
@@ -50,7 +56,7 @@ console.log($scope.subjects);
         $scope.updateFilter = function(){
             trace1.y = [];
             trace1.x = [];
-            i = 1;
+            i        = 1;
 
             if($scope.selectedSubject !== undefined && $scope.filter !== undefined){
                 /*
