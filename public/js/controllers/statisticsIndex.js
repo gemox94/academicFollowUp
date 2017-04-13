@@ -16,7 +16,8 @@
         var data = [trace1];
         var layout = {
             title: 'Calificaciones',
-            showlegend: false};
+            showlegend: false
+        };
         //Plotly.newPlot('plot', data, layout, {displayModeBar: true});
 
         $http({
@@ -26,6 +27,7 @@
         }).then(function (value) {
             console.log(value.data);
             $scope.subjects = value.data;
+
         }, function (error) {
             console.log(error);
         });
@@ -42,11 +44,6 @@
             trace1.x = [];
             i = 1;
 
-            var trace2 = {
-                y: [],
-                x: []
-            };
-
             if($scope.selectedSubject !== undefined && $scope.filter !== undefined){
                 angular.forEach($scope.subjects, function(value, key){
                     if(value[$scope.filter].length !== 0){
@@ -54,14 +51,14 @@
                         trace1.y.push(value[$scope.filter].length);
                         trace1.x.push($scope.filter.toString());
 
-                        angular.forEach(value[$scope.filter], function (val) {
-                            if(key === $scope.selectedSubject.subject_nrc){
-console.log(val);
-                                //trace1.y.push(val.student.name);
-                                //trace1.x.push(val.final_grade);
-                                i++;
-                            }
-                        });
+//                        angular.forEach(value[$scope.filter], function (val) {
+//                            if(key === $scope.selectedSubject.subject_nrc){
+//console.log(val);
+//                                //trace1.y.push(val.student.name);
+//                                //trace1.x.push(val.final_grade);
+//                                i++;
+//                            }
+//                        });
 
                     }else{
                         trace1.y.push(0);
