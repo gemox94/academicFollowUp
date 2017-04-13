@@ -27,7 +27,7 @@
             <div class="panel-body">
                 <div class="list-group">
                     <a  ng-repeat="advertisement in subject.advertisements"
-                        class="list-group-item"
+                        class="list-group-item list-item-advertisement"
                         ng-class="'list-group-item-'+advertisement.color"
                         ng-click="openAdvertisement(advertisement)">
                         @{{ advertisement.title }}
