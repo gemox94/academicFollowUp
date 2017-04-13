@@ -52,7 +52,7 @@
             </p>
             <hr>
             <p>
-                @{{ advertisement.created_at }}
+                @{{ advertisement.created_at | date : "dd / MMM / yyyy" }}
             </p>
         </div>
         <div class="modal-footer">
