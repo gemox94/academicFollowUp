@@ -35,4 +35,5 @@ Route::post('subjects/{id}/delete', 'api\SubjectController@deleteSubject');
 Route::post('subjects/{id}/saveEvaluations', 'api\SubjectController@saveEvaluations');
 Route::post('subjects/{id}/createAdvertisement', 'api\SubjectController@createAdvertisement');
 Route::post('subjects/{id}/editAdvertisement', 'api\SubjectController@editAdvertisement');
+Route::delete('subjects/{id}/deleteAdvertisement/{advertisement_id}', 'api\SubjectController@deleteAdvertisement');
 Route::post('student/{id}/updateStudentEvaluations', 'api\SubjectController@updateStudentEvaluations');

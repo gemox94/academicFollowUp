@@ -326,6 +326,74 @@ class SubjectController extends Controller
     /*
      * Save the evaluations for this subject
      */
+    public function editAdvertisement($subject_id, Request $request){
+        try{
+            /*
+             * Prepare data
+             */
+            $status_code = 200;
+            $subject     = Subject::with('evaluations')->find($subject_id);
+
+            /*
+             * Create advertisement
+             * and associate it with this subject
+             */
+            $advertisement          = Advertisement::find($request->advertisement['id']);
+            $advertisement->title   = $request->advertisement['title'];
+            $advertisement->message = $request->advertisement['message'];
+            $advertisement->save();
+
+            /*
+             * Response
+             */
+            $response = $advertisement;
+
+        }catch(\Throwable $e){
+            $status_code = 500;
+            $response['error_message'] = $e->getMessage();
+            $response['error_type'] = 'unhandled_exception';
+            $response['error_type'] = 500;
+        }
+
+        return response()->json($response, $status_code);
+    }
+
+
+    /*
+     * Delete an advertisement of this subject
+     */
+    public function deleteAdvertisement($subject_id, $advertisement_id, Request $request){
+        try{
+            /*
+             * Prepare data
+             */
+            $status_code   = 200;
+            $advertisement = Advertisement::find($advertisement_id);
+
+            /*
+             * Delete this advertisement
+             */
+            $advertisement->delete();
+
+            /*
+             * Response
+             */
+            $response = "ok";
+
+        }catch(\Throwable $e){
+            $status_code = 500;
+            $response['error_message'] = $e->getMessage();
+            $response['error_type'] = 'unhandled_exception';
+            $response['error_type'] = 500;
+        }
+
+        return response()->json($response, $status_code);
+    }
+
+
+    /*
+     * Save the evaluations for this subject
+     */
     public function saveEvaluations($subject_id, Request $request){
         try{
             $status_code = 200;
