@@ -1,4 +1,4 @@
-app.controller('StudentAdvertisementsCtrl', function($scope, $http, alertService, userService){
+app.controller('StudentAdvertisementsCtrl', function($scope, $http, alertService, userService, $uibModal){
     $scope.loged_user   = userService.getUser();
     $scope.alertService = alertService;
     $scope.subjects     = [];
@@ -30,4 +30,37 @@ app.controller('StudentAdvertisementsCtrl', function($scope, $http, alertService
        }, function(error_response){
            console.log('error', error_response);
        });
+
+
+    /*
+     * See the info of an advertisement
+     */
+    $scope.openAdvertisement = function (advertisement) {
+        var modalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: 'advertisement_modal.html',
+            controller: 'AdvertisementModalCtrl',
+            resolve: {
+                advertisement: function(){
+                    return advertisement;
+                }
+            }
+        });
+
+        modalInstance.result.then(function () {
+            /*
+             * Do NOTHING
+             */
+        });
+    };
+
+});
+
+
+app.controller('AdvertisementModalCtrl', function($scope, $uibModalInstance, advertisement) {
+    $scope.advertisement = advertisement;
+
+    $scope.ok = function () {
+        $uibModalInstance.dismiss('cancel');
+    };
 });

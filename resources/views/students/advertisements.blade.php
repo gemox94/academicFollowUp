@@ -32,17 +32,31 @@
                         ng-click="openAdvertisement(advertisement)">
                         @{{ advertisement.title }}
                     </a>
-                    <!--<a class="list-group-item list-group-item-success" href="#">Dapibus ac facilisis in</a>
-                    <a class="list-group-item list-group-item-info" href="#">Cras sit amet nibh libero</a>
-                    <a class="list-group-item list-group-item-warning" href="#">Porta ac consectetur ac</a>
-                    <a class="list-group-item list-group-item-danger" href="#">Vestibulum at eros</a>
-                    <a class="list-group-item list-group-item-mint" href="#">Dapibus ac facilisis in</a>
-                    <a class="list-group-item list-group-item-purple" href="#">Cras sit amet nibh libero</a>
-                    <a class="list-group-item list-group-item-pink" href="#">Porta ac consectetur ac</a>
-                    <a class="list-group-item list-group-item-dark" href="#">Vestibulum at eros</a>-->
                 </div>
             </div>
         </div>
     </div>
+
+
+
+    <script type="text/ng-template" id="advertisement_modal.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Información del anuncio</h3>
+        </div>
+        <div class="modal-body">
+            <h4 class="">
+                @{{ advertisement.title }}
+            </h4>
+            <p>
+                @{{ advertisement.message }}
+            </p>
+        </div>
+        <div class="modal-footer">
+            <p>
+              <button class="btn btn-primary" type="button" ng-click="ok()">Cerrar</button>
+            </p>
+        </div>
+    </script>
+
 </div>
 @endsection

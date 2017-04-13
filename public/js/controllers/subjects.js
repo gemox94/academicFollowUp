@@ -234,62 +234,23 @@ app.controller('SubjectCtrl', function($rootScope, $scope, $http, $uibModal, $ti
 
 
     $scope.deleteAdvertisement = function(advertisement, index){
-            /*
-             * DELETE
-             */
-            $http({
-                method: 'DELETE',
-                url: '/api/subjects/'+$scope.subject.id+'/deleteAdvertisement/'+advertisement.id,
+        /*
+         * First is the CONFIRM directive and then the DELETE
+         */
+        $http({
+            method: 'DELETE',
+            url: '/api/subjects/'+$scope.subject.id+'/deleteAdvertisement/'+advertisement.id,
 
-            }).then(function(response){
-                    alertService.add("warning", 'Se ha eliminado el anuncio', false);
-                    console.log(response);
-                    $scope.subject.advertisements.splice(index, 1);
+        }).then(function(response){
+                alertService.add("warning", 'Se ha eliminado el anuncio', false);
+                console.log(response);
+                $scope.subject.advertisements.splice(index, 1);
 
-                }, function(error_response){
-                    alertService.add("danger", 'Error al eliminar anuncio. Porfavor intentelo más tarde', false);
-                    console.log(error_response);
-            });
+            }, function(error_response){
+                alertService.add("danger", 'Error al eliminar anuncio. Porfavor intentelo más tarde', false);
+                console.log(error_response);
+        });
     };
-
-
-
-    /*
-     * Function for creating advertisement
-     * modal
-     */
-//    $scope.deleteAdvertisementModal = function (advertisement) {
-//console.log(advertisement);
-//        var modalInstance = $uibModal.open({
-//            animation: true,
-//            templateUrl: 'advertisementDelete_modal.html',
-//            resolve: {
-//                advertisement: function(){
-//                    return advertisement;
-//                }
-//            },
-//            controller: function(){
-//console.log(advertisement);
-//                $scope.advertisement = advertisement;
-//
-//                $scope.ok = function () {
-//                    $uibModalInstance.close({
-//                        advertisement: $scope.advertisement
-//                    });
-//                };
-//
-//                $scope.cancel = function () {
-//                    $uibModalInstance.dismiss('cancel');
-//                };
-//            }
-//        });
-//
-//        modalInstance.result.then(function (result) {
-//console.log(result);
-//
-//
-//        });
-//    };
 
 });
 
@@ -317,7 +278,7 @@ app.controller('EvaluationsModalCtrl', function($scope, $uibModalInstance, stude
 
 
 app.controller('AdvertisementModalCtrl', function($scope, $uibModalInstance, advertisement) {
-  $scope.advertisement = advertisement;
+    $scope.advertisement = advertisement;
 
     $scope.ok = function () {
         $uibModalInstance.close({
