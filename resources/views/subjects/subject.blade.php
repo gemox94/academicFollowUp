@@ -24,13 +24,6 @@
 
     <div class="panel panel-default tabs" ng-controller="SubjectCtrl">
 
-        <uib-alert ng-repeat="alert in alerts"
-               dismiss-on-timeout="5000"
-               type="@{{alert.type}}"
-               close="alertService.closeAlert($index)">
-               @{{alert.msg}}
-        </uib-alert>
-
         <form class="form-horizontal" name="subject_form" ng-submit="saveSubject()" id="subject_form">
             <div class="panel-body tab-content" id="print-section">
                 <div class="tab-pane active" id="datos">
@@ -39,6 +32,13 @@
                         <h4>
                           Datos de la Materia <span ng-if="subject.id">@{{ subject.name }}</span>
                         </h4>
+
+                        <uib-alert ng-repeat="alert in alerts"
+                                dismiss-on-timeout="5000"
+                                type="@{{alert.type}}"
+                                close="alertService.closeAlert($index)">
+                                @{{alert.msg}}
+                        </uib-alert>
 
                         <div class="form-group">
                             <label class="col-md-3 col-xs-12 control-label">Nombre*</label>
@@ -132,6 +132,11 @@
 
         <div ng-if="subject.id" class="col-md-12">
             <div class="panel">
+
+                <div class="panel-heading">
+                    <h3 class="panel-title">Criterios de evaluacion</h3>
+                </div>
+
                 <uib-alert ng-repeat="alert in alerts"
                        dismiss-on-timeout="5000"
                        type="@{{alert.type}}"
@@ -139,9 +144,6 @@
                        @{{alert.msg}}
                 </uib-alert>
 
-                <div class="panel-heading">
-                    <h3 class="panel-title">Criterios de evaluacion</h3>
-                </div>
                 <form class="form-horizontal" name="subject_form3" ng-submit="saveEvaluations()" id="subject_form3">
                     <div class="panel-body tab-content" id="print-section" >
                         <div class="tab-pane active" id="evaluations">
@@ -181,6 +183,10 @@
 
         <div ng-if="subject.id" class="col-md-12">
             <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Anuncios de la materia</h3>
+                </div>
+
                 <uib-alert ng-repeat="alert in alerts"
                        dismiss-on-timeout="5000"
                        type="@{{alert.type}}"
@@ -188,9 +194,6 @@
                        @{{alert.msg}}
                 </uib-alert>
 
-                <div class="panel-heading">
-                    <h3 class="panel-title">Anuncios de la materia</h3>
-                </div>
                 <form class="form-horizontal" name="subject_form2" id="subject_form2">
                     <div class="panel-body tab-content" id="print-section" >
                         <div class="tab-pane active" id="datos">
@@ -252,6 +255,11 @@
 
         <div ng-if="subject.id" class="col-md-12">
             <div class="panel">
+
+                <div class="panel-heading">
+                    <h3 class="panel-title">Alumnos de la materia</h3>
+                </div>
+
                 <uib-alert ng-repeat="alert in alerts"
                        dismiss-on-timeout="5000"
                        type="@{{alert.type}}"
@@ -259,9 +267,6 @@
                        @{{alert.msg}}
                 </uib-alert>
 
-                <div class="panel-heading">
-                    <h3 class="panel-title">Alumnos de la materia</h3>
-                </div>
                 <form class="form-horizontal" name="subject_form2" id="subject_form2">
                     <div class="panel-body tab-content" id="print-section" >
                         <div class="tab-pane active" id="datos">
