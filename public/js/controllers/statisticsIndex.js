@@ -79,6 +79,12 @@
 
                 /*
                  * 4 Step
+                 * Fix the yAxis to get integer numbers
+                 */
+                layout.yaxis.range =  [0, studentNumberToPlot + 2];
+
+                /*
+                 * 5 Step
                  * Plot both axis
                  */
                 trace1.y.push(studentNumberToPlot);
