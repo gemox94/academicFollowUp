@@ -44,35 +44,35 @@ class StatisticController extends Controller
                         ]);
                     }
 
-                    if($student->pivot->final_grade == 6){
+                    if($student->pivot->final_grade >= 6){
                         array_push($response[$subject->nrc]['e_6'], [
                             'student' => $student,
                             'final_grade' => $student->pivot->final_grade,
                         ]);
                     }
 
-                    if($student->pivot->final_grade == 7){
+                    if($student->pivot->final_grade >= 7){
                         array_push($response[$subject->nrc]['e_7'], [
                             'student' => $student,
                             'final_grade' => $student->pivot->final_grade,
                         ]);
                     }
 
-                    if($student->pivot->final_grade == 8){
+                    if($student->pivot->final_grade >= 8){
                         array_push($response[$subject->nrc]['e_8'], [
                             'student' => $student,
                             'final_grade' => $student->pivot->final_grade,
                         ]);
                     }
 
-                    if($student->pivot->final_grade == 9){
+                    if($student->pivot->final_grade >= 9){
                         array_push($response[$subject->nrc]['e_9'], [
                             'student' => $student,
                             'final_grade' => $student->pivot->final_grade,
                         ]);
                     }
 
-                    if($student->pivot->final_grade == 10){
+                    if($student->pivot->final_grade >= 10){
                         array_push($response[$subject->nrc]['e_10'], [
                             'student' => $student,
                             'final_grade' => $student->pivot->final_grade,
