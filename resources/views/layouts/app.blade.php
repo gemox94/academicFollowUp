@@ -313,6 +313,16 @@
 										</li>
 
 
+										<li class="{{Request::is('subjects') ? 'active-link' : ''}}">
+											<a href="/api/student/{{Auth::user()->id}}/subjects">
+												<i class="fa fa-dashboard"></i>
+												<span class="menu-title">
+													<strong>Materias</strong>
+												</span>	
+											</a>
+										</li>
+
+
 										<!--Menu list item-->
 										<li class="{{ Request::is('student/advertisements') ? 'active-link' : '' }}">
 											<a href="/student/advertisements/">

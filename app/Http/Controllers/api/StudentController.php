@@ -42,4 +42,16 @@ class StudentController extends Controller
 
         return response()->json($response, $status_code);
     }
+
+    public function getSubjects($student_id){
+        $status_code = 200;
+        $response = [];
+
+        try {
+            dd($student_id);
+        } catch (\Exception $e) {
+            $status_code = 500;
+            $response['status_code'] = $status_code;
+        }
+    }
 }

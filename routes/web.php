@@ -58,6 +58,7 @@ Route::get('/subjects/{id}', 'HomeController@showSubjectView');
  * Student views
  */
 Route::get('/student/advertisements', 'HomeController@studentAdvertisementsView');
+Route::geT('/student/subjects', 'HomeController@studentSubjects');
 
 /*
 * Students' Routes (cardex)
