@@ -239,6 +239,16 @@
 										</a>
 									</li>
 
+									<!--Menu list item-->
+									<li class="{{ Request::is('coordinator/advertisements') ? 'active-link' : '' }}">
+										<a href="/coordinator/advertisements/">
+											<i class="fa fa-newspaper-o"></i>
+											<span class="menu-title">
+												<strong>Anuncios</strong>
+											</span>
+										</a>
+									</li>
+
                                     @endif
 
 									@if(Auth::user()->role->name == "teacher")

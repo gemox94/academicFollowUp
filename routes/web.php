@@ -55,9 +55,11 @@ Route::get('/subjects/create', 'HomeController@newSubjectView');
 Route::get('/subjects/{id}', 'HomeController@showSubjectView');
 
 /*
- * Student views
+ * Advertisements views
  */
 Route::get('/student/advertisements', 'HomeController@studentAdvertisementsView');
+Route::get('/teacher/advertisements', 'HomeController@teacherAdvertisementsView');
+Route::get('/coordinator/advertisements', 'HomeController@coordinatorAdvertisementsView');
 
 /*
 * Students' Routes (cardex)

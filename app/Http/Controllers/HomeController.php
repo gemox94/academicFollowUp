@@ -58,4 +58,8 @@ class HomeController extends Controller
     public function studentAdvertisementsView(){
         return view('students.advertisements');
     }
+
+    public function coordinatorAdvertisementsView(){
+        return view('coordinator.advertisements');
+    }
 }
