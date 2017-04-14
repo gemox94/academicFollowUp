@@ -44,5 +44,8 @@ Route::post('student/{id}/updateStudentEvaluations', 'api\SubjectController@upda
 Route::post('/statistics', 'api\StatisticController@index');
 
 
+/*
+ * Routes for students
+ */
 Route::get('student/{id}/getAdvertisements', 'api\StudentController@getAdvertisements');
-
+Route::get('student/{id}/subjects', 'api\StudentController@getSubjects');
