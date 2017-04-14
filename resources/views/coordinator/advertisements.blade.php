@@ -88,5 +88,44 @@
         </div>
     </div>
 
+
+    <script type="text/ng-template" id="advertisement_modal.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Anuncio</h3>
+        </div>
+        <div class="modal-body contract-modal">
+
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-md-4 col-xs-12 control-label">
+                        Título
+                    </label>
+                    <div class="col-md-8 col-xs-12">
+                        <input type="text" class="form-control" ng-model="advertisement.title">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-md-4 col-xs-12 control-label">
+                        Mensaje
+                    </label>
+                    <div class="col-md-8 col-xs-12">
+                        <textarea class="form-control" ng-model="advertisement.message"></textarea>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <p>
+              <button class="btn btn-primary" type="button" ng-click="ok()">Guardar</button>
+              <button class="btn btn-warning" type="button" ng-click="cancel()">Cancelar</button>
+            </p>
+        </div>
+    </script>
+
 </div>
 @endsection

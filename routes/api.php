@@ -38,6 +38,14 @@ Route::post('subjects/{id}/editAdvertisement', 'api\SubjectController@editAdvert
 Route::delete('subjects/{id}/deleteAdvertisement/{advertisement_id}', 'api\SubjectController@deleteAdvertisement');
 Route::post('student/{id}/updateStudentEvaluations', 'api\SubjectController@updateStudentEvaluations');
 
+/*
+ * Routes for advertisements on coordinator
+ */
+Route::post('coordinator/{id}/createAdvertisement', 'api\CoordinatorController@createAdvertisement');
+Route::post('coordinator/{id}/editAdvertisement', 'api\CoordinatorController@editAdvertisement');
+Route::delete('coordinator/{id}/deleteAdvertisement/{advertisement_id}', 'api\CoordinatorController@deleteAdvertisement');
+Route::get('coordinator/{id}/getAdvertisements', 'api\CoordinatorController@getAdvertisements');
+
 /**
  * Routes for statistics
  */
