@@ -64,6 +64,10 @@ class HomeController extends Controller
         return view('coordinator.advertisements');
     }
 
+    public function teacherAdvertisementsView(){
+        return view('teacher.advertisements');
+    }
+
     public function studentSubjects(){
         return view('students.subjects');
     }

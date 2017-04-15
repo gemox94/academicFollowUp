@@ -266,6 +266,16 @@
 										</li>
 
 										<!--Menu list item-->
+										<li class="{{ Request::is('teacher/advertisements') ? 'active-link' : '' }}">
+											<a href="/teacher/advertisements/">
+												<i class="fa fa-newspaper-o"></i>
+												<span class="menu-title">
+													<strong>Anuncios</strong>
+												</span>
+											</a>
+										</li>
+
+										<!--Menu list item-->
 										<li class="{{ Request::is('subjects') ? 'active-link' : '' }}">
 											<a href="/subjects">
 												<i class="fa fa-th"></i>
@@ -328,7 +338,7 @@
 												<i class="fa fa-dashboard"></i>
 												<span class="menu-title">
 													<strong>Materias</strong>
-												</span>	
+												</span>
 											</a>
 										</li>
 

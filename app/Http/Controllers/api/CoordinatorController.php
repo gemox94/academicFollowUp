@@ -47,7 +47,6 @@ class CoordinatorController extends Controller
     }
 
 
-
     /*
      * Save advertisement for profesors
      */
@@ -58,7 +57,6 @@ class CoordinatorController extends Controller
              */
             $status_code    = 200;
             $advertisements = Advertisement::where('role_id', 1)->get();
-
 
             /*
              * Response

@@ -58,6 +58,63 @@ app.controller('StudentAdvertisementsCtrl', function($scope, $http, alertService
 });
 
 
+app.controller('TeacherAdvertisementsCtrl', function($scope, $http, alertService, userService, $uibModal){
+    $scope.loged_user     = userService.getUser();
+    $scope.alertService   = alertService;
+    $scope.advertisements = [];
+    $scope.colors         = ['primary', 'success', 'info', 'warning', 'danger', 'mint', 'purple', 'pink', 'dark'];
+
+    /*
+     * Ask for subjects info
+     */
+    $http.get('/api/teacher/'+$scope.loged_user.id+'/getAdvertisements')
+       .then(function(response){
+           $scope.advertisements = response.data;
+
+           $scope.advertisements.forEach(function(advertisement){
+                advertisement.color      = $scope.colors[Math.floor(Math.random()*$scope.colors.length)];
+                advertisement.created_at = advertisement.created_at.replace(/(.+) (.+)/, "$1T$2Z");
+            });
+
+            if ($scope.advertisements.length === 0) {
+                var advertisement = {
+                    title: 'No hay ningun anuncio',
+                    message: 'No hay ningun anuncio'
+                };
+
+                $scope.advertisements.push(advertisement);
+            }
+
+       }, function(error_response){
+           console.log('error', error_response);
+       });
+
+
+    /*
+     * See the info of an advertisement
+     */
+    $scope.openAdvertisement = function (advertisement) {
+        var modalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: 'advertisement_modal.html',
+            controller: 'AdvertisementModalCtrl',
+            resolve: {
+                advertisement: function(){
+                    return advertisement;
+                }
+            }
+        });
+
+        modalInstance.result.then(function () {
+            /*
+             * Do NOTHING
+             */
+        });
+    };
+
+});
+
+
 app.controller('AdvertisementModalCtrl', function($scope, $uibModalInstance, advertisement) {
     $scope.advertisement = advertisement;
 

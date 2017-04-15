@@ -57,3 +57,9 @@ Route::post('/statistics', 'api\StatisticController@index');
  */
 Route::get('student/{id}/getAdvertisements', 'api\StudentController@getAdvertisements');
 Route::get('student/{id}/subjects', 'api\StudentController@getSubjects');
+
+
+/*
+ * Routes specific for profesor
+ */
+Route::get('teacher/{id}/getAdvertisements', 'api\TeacherController@getAdvertisements');
