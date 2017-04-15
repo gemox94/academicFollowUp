@@ -227,27 +227,48 @@
 
                                     @if(Auth::user()->role->name == "coordinator")
 
-									<li class="list-header">Menú - Coordinador</li>
+										<li class="list-header">Menú - Coordinador</li>
 
-									<!--Menu list item-->
-									<li class="{{ Request::is('dashboard') ? 'active-link' : '' }}">
-										<a href="/dashboard">
-											<i class="fa fa-dashboard"></i>
-											<span class="menu-title">
-												<strong>Inicio</strong>
-											</span>
-										</a>
-									</li>
+										<!--Menu list item-->
+										<li class="{{ Request::is('dashboard') ? 'active-link' : '' }}">
+											<a href="/dashboard">
+												<i class="fa fa-dashboard"></i>
+												<span class="menu-title">
+													<strong>Inicio</strong>
+												</span>
+											</a>
+										</li>
 
-									<!--Menu list item-->
-									<li class="{{ Request::is('coordinator/advertisements') ? 'active-link' : '' }}">
-										<a href="/coordinator/advertisements/">
-											<i class="fa fa-newspaper-o"></i>
-											<span class="menu-title">
-												<strong>Anuncios</strong>
-											</span>
-										</a>
-									</li>
+										<!--Menu list item-->
+										<li class="{{ Request::is('coordinator/advertisements') ? 'active-link' : '' }}">
+											<a href="/coordinator/advertisements/">
+												<i class="fa fa-newspaper-o"></i>
+												<span class="menu-title">
+													<strong>Anuncios</strong>
+												</span>
+											</a>
+										</li>
+
+										<!--Menu list item-->
+										<li class="{{ Request::is('statistics/*') ? 'active-sub active' : '' }}">
+											<a href="#">
+												<i class="fa fa-bar-chart"></i>
+												<span class="menu-title">
+													<strong>Estadísticas</strong>
+												</span>
+												<i class="arrow"></i>
+											</a>
+
+											<!--Submenu-->
+											<ul class="collapse">
+												<li class="{{ Request::is('statistics/section') ? 'active-link' : '' }}">
+													<a href="/statistics/section">Sección</a>
+												</li>
+												<li class="{{ Request::is('statistics/subject') ? 'active-link' : '' }}">
+													<a href="/statistics/subject">Materia</a>
+												</li>
+											</ul>
+										</li>
 
                                     @endif
 

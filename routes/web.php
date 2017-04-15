@@ -73,7 +73,10 @@ Route::get('/subjects/{id}/evaluateStudents', 'HomeController@evaluateStudents')
 /**
  * Statistics' Routes
  */
+
 Route::get('/statistics', 'HomeController@indexStatistics');
+Route::get('/statistics/section', 'HomeController@sectionStatistics');
+Route::get('/statistics/subject', 'HomeController@subjectStatistics');
 
 /**
  * Cordinator's Routes
