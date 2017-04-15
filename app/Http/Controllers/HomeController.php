@@ -79,4 +79,8 @@ class HomeController extends Controller
     public function sectionStatistics(){
         return view('statistics.section');
     }
+
+    public function subjectStatistics(){
+        return view('statistics.subject');
+    }
 }

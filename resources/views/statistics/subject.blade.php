@@ -2,7 +2,7 @@
 
 @section('title_tab', 'Estadísticas')
 
-@section('title', 'Estadísticas por sección')
+@section('title', 'Estadísticas por materia')
 
 @section('controller_js')
     <script type="text/javascript" src={{ asset("js/controllers/statisticsIndex.js") }}></script>
@@ -12,11 +12,11 @@
 @endsection
 
 @section('breadcrumb')
-<li><a href="/statistics"></a></li>
+<li><a href="/statistics/subject"></a></li>
 @endsection
 
 @section('content')
-    <div ng-controller="StatisticsSectionCtrl">
+    <div ng-controller="StatisticsSubjectCtrl">
 
         <div class="eq-height">
             <div class="col-sm-4 eq-box-sm">
@@ -32,10 +32,10 @@
 
                     <div class="col-sm-12 col-md-2 col-lg-2">
                         <div class="form-group">
-                            <label for="subject">Secciones</label>
+                            <label for="subject">Materias</label>
                             <select class="form-control"
                                     ng-change="updateFilter()"
-                                    ng-options="subject.subject_section for subject in subjects" id="subject" ng-model="selectedSubject"></select>
+                                    ng-options="subject.subject_name for subject in subjects" id="subject" ng-model="selectedSubject"></select>
                         </div>
                     </div>
 

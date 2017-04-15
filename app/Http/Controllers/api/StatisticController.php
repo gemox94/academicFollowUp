@@ -4,6 +4,8 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Subject;
+use App\User;
+use App\SubjectName;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -170,6 +172,89 @@ class StatisticController extends Controller
             $status_code = 500;
             $response['status_code'] = $status_code;
             $response['error'] = $e;
+
+        }
+        return response()->json($response);
+    }
+
+
+    /*
+     * Subject statistics
+     */
+    public function subject(Request $request)
+    {
+        $status_code = 200;
+        $response    = [];
+
+        try{
+            $subjectNames = SubjectName::get();
+
+            foreach ($subjectNames as $subjectName){
+                $response[$subjectName->name]['subject_name'] = $subjectName->name;
+                $response[$subjectName->name]['grades']['5']  = [];
+                $response[$subjectName->name]['grades']['6']  = [];
+                $response[$subjectName->name]['grades']['7']  = [];
+                $response[$subjectName->name]['grades']['8']  = [];
+                $response[$subjectName->name]['grades']['9']  = [];
+                $response[$subjectName->name]['grades']['10'] = [];
+
+                $subjectsSameName = Subject::where('name', $subjectName->name)->with('students.teacher_subjects')->get();
+
+                foreach ($subjectsSameName as $subject){
+
+                    foreach($subject->students as $student){
+                        if($student->pivot->final_grade <= 5){
+                            array_push($response[$subjectName->name]['grades']['5'], [
+                                'student'     => $student,
+                                'final_grade' => $student->pivot->final_grade,
+                            ]);
+                        }
+
+                        if($student->pivot->final_grade >= 6 && $student->pivot->final_grade < 7){
+                            array_push($response[$subjectName->name]['grades']['6'], [
+                                'student'     => $student,
+                                'final_grade' => $student->pivot->final_grade,
+                            ]);
+                        }
+
+                        if($student->pivot->final_grade >= 7 && $student->pivot->final_grade < 8){
+                            array_push($response[$subjectName->name]['grades']['7'], [
+                                'student'     => $student,
+                                'final_grade' => $student->pivot->final_grade,
+                            ]);
+                        }
+
+                        if($student->pivot->final_grade >= 8 && $student->pivot->final_grade < 9){
+                            array_push($response[$subjectName->name]['grades']['8'], [
+                                'student'     => $student,
+                                'final_grade' => $student->pivot->final_grade,
+                            ]);
+                        }
+
+                        if($student->pivot->final_grade >= 9 && $student->pivot->final_grade < 10){
+                            array_push($response[$subjectName->name]['grades']['9'], [
+                                'student'     => $student,
+                                'final_grade' => $student->pivot->final_grade,
+                            ]);
+                        }
+
+                        if($student->pivot->final_grade >= 10){
+                            array_push($response[$subjectName->name]['grades']['10'], [
+                                'student'     => $student,
+                                'final_grade' => $student->pivot->final_grade,
+                            ]);
+                        }
+
+                    }
+
+                }
+            }
+
+        }catch(\Exception $e){
+
+            $status_code             = 500;
+            $response['status_code'] = $status_code;
+            $response['error']       = $e->getMessage();
 
         }
         return response()->json($response);

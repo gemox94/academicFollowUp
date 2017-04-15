@@ -1,7 +1,105 @@
 (function(){
     angular.module('academic')
         .controller('statisticsIndexCtrl', statisticsIndexCtrl)
+        .controller('StatisticsSubjectCtrl', StatisticsSubjectCtrl)
         .controller('StatisticsSectionCtrl', StatisticsSectionCtrl);
+
+
+    function StatisticsSubjectCtrl($scope, $http, userService){
+        var user        = userService.getUser();
+        $scope.subjects = [];
+
+        var trace1 = {
+            y:[],
+            x: [],
+            type: 'bar',
+            orientation: 'v'
+        };
+
+        var data = [trace1];
+
+        var layout = {
+            title: 'Calificaciones',
+            showlegend: false,
+            yaxis: {
+                title: 'Alumnos',
+                titlefont: {
+                  family: 'Courier New, monospace',
+                  size: 18,
+                  color: '#7f7f7f'
+                }
+            }
+        };
+
+
+        /*
+         * Load the all sections
+         */
+        $http({
+            method: 'GET',
+            url: '/api/statistics/subject'
+
+        }).then(function (value) {
+            console.log(value.data);
+            $scope.subjects = value.data;
+
+        }, function (error) {
+            console.log(error);
+        });
+
+
+        /*
+         * Clear the plot
+         */
+        $scope.clearPlot = function(){
+            Plotly.purge('plot');
+            $scope.selectedSubject = undefined;
+            $scope.filter = undefined;
+        };
+
+
+        var i;
+        $scope.updateFilter = function(){
+            trace1.y = [];
+            trace1.x = [];
+            i        = 1;
+
+            if($scope.selectedSubject !== undefined){
+                /*
+                 * 1 Step
+                 * Get the subject according to the NAME - selectedSubject.subject_name
+                 */
+                var subjectToPlot = $scope.subjects[$scope.selectedSubject.subject_name];
+console.log(subjectToPlot);
+                /*
+                 * 3 Step
+                 * Get the number of students to plot
+                 * for each calification
+                 */
+                for(var calification in subjectToPlot.grades){
+                    /*
+                     * Get the number of students to plot
+                     * for each calification
+                     */
+                    var studentNumberToPlot = subjectToPlot.grades[calification].length;
+
+                    trace1.y.push(studentNumberToPlot);
+                    trace1.x.push(calification);
+                }
+
+
+
+                /*
+                 * 4 Step
+                 * Fix the yAxis to get integer numbers
+                 */
+                //layout.yaxis.range =  [0, studentNumberToPlot + 2];
+                Plotly.newPlot('plot', data, layout, {displayModeBar: true});
+            }
+        };
+
+    };
+
 
     function StatisticsSectionCtrl($scope, $http, userService){
         var user        = userService.getUser();
@@ -65,10 +163,10 @@
             if($scope.selectedSubject !== undefined){
                 /*
                  * 1 Step
-                 * Get the subject according to the SECTION - selectedSubject.subject_section
+                 * Get the subject according to the NAME - selectedSubject.subject_name
                  */
                 var subjectToPlot = $scope.subjects[$scope.selectedSubject.subject_section];
-
+console.log(subjectToPlot);
                 /*
                  * 3 Step
                  * Get the number of students to plot
