@@ -31,7 +31,7 @@
                    @{{alert.msg}}
             </uib-alert>
 
-            <form class="form-horizontal" name="advertisements" id="advertisements">
+            <form class="form-horizontal" name="subjects" id="subjects">
                 <div class="panel-body tab-content" id="print-section">
                     <div class="tab-pane active" id="datos">
 
@@ -47,34 +47,33 @@
                                 <table class="table table-striped row-border hover">
                                     <thead>
                                         <tr>
-                                            <th>Título</th>
-                                            <th>Mensaje</th>
-                                            <th>Editar</th>
-                                            <th>Eliminar</th>
+                                            <th>Nombre</th>
+                                            <th>NRC</th>
+                                            <th>Sección</th>
+                                            <th>Clave</th>
+                                            <th>Horario</th>
+                                            <th>Periodo</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="advertisement in advertisements">
+                                        <tr ng-repeat="subject in subjects">
                                             <td>
-                                                @{{ advertisement.title }}
+                                                @{{ subject.name }}
                                             </td>
                                             <td>
-                                                @{{ advertisement.message }}
+                                                @{{ subject.nrc }}
                                             </td>
                                             <td>
-                                               <i ng-click="advertisementModal(advertisement)" class="btn btn-primary fa fa-pencil-square-o"></i>
+                                                @{{ subject.section }}
                                             </td>
                                             <td>
-                                               <i mwl-confirm
-                                                  on-confirm="deleteAdvertisement(advertisement)"
-                                                  confirm-text="Eliminar"
-                                                  cancel-text="Cancelar"
-                                                  title="Eliminar anuncio"
-                                                  message="¿Desea eliminar el anuncio?"
-                                                  confirm-button-type="danger"
-                                                  placement="right"
-                                                  class="btn btn-danger fa fa-times">
-                                               </i>
+                                                @{{ subject.key }}
+                                            </td>
+                                            <td>
+                                                @{{ subject.schedule_json }}
+                                            </td>
+                                            <td>
+                                                @{{ subject.period_id }}
                                             </td>
                                         </tr>
                                     </tbody>
@@ -87,45 +86,6 @@
             </form>
         </div>
     </div>
-
-
-    <script type="text/ng-template" id="advertisement_modal.html">
-        <div class="modal-header">
-            <h3 class="modal-title">Anuncio</h3>
-        </div>
-        <div class="modal-body contract-modal">
-
-            <div class="row">
-                <div class="form-group">
-                    <label class="col-md-4 col-xs-12 control-label">
-                        Título
-                    </label>
-                    <div class="col-md-8 col-xs-12">
-                        <input type="text" class="form-control" ng-model="advertisement.title">
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="row">
-                <div class="form-group">
-                    <label class="col-md-4 col-xs-12 control-label">
-                        Mensaje
-                    </label>
-                    <div class="col-md-8 col-xs-12">
-                        <textarea class="form-control" ng-model="advertisement.message"></textarea>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <div class="modal-footer">
-            <p>
-              <button class="btn btn-primary" type="button" ng-click="ok()">Guardar</button>
-              <button class="btn btn-warning" type="button" ng-click="cancel()">Cancelar</button>
-            </p>
-        </div>
-    </script>
 
 </div>
 @endsection
