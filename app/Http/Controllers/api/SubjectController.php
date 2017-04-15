@@ -54,6 +54,7 @@ class SubjectController extends Controller
         try{
             $status_code = 200;
             $teacher     = User::find($request->subject['teacher_id']);
+            $period      = Period::where('status', 'active')->first();
 
             /*
              * Create new subject
@@ -61,7 +62,7 @@ class SubjectController extends Controller
             $subject                = new Subject;
             $subject->name          = $request->subject['name'];
             $subject->nrc           = $request->subject['nrc'];
-            $subject->period        = $request->subject['period'];
+            $subject->period        = $period->period;
             $subject->key           = $request->subject['key'];
             $subject->section       = $request->subject['section'];
             $subject->schedule_json = $request->subject['schedule_json'];

@@ -185,6 +185,13 @@ class CoordinatorController extends Controller
         try {
             $coordinator = User::find($request->input('coordinator_id'));
 
+            $current_period = Period::where('status', 'active')->first();
+
+            if($current_period){
+                $current_period->status = 'inactive';
+                $current_period->save();
+            }
+
             $period = new Period;
             $period->period = $request->input('period');
             $period->status = 'active';
