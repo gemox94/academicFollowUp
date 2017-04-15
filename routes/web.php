@@ -74,3 +74,5 @@ Route::get('/subjects/{id}/evaluateStudents', 'HomeController@evaluateStudents')
  * Statistics' Routes
  */
 Route::geT('/statistics', 'HomeController@indexStatistics');
+Route::geT('/statistics/section', 'HomeController@sectionStatistics');
+Route::geT('/statistics/subject', 'HomeController@subjectStatistics');
