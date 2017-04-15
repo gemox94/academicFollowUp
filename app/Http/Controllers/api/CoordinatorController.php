@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\User;
 use App\Role;
+use App\Subject;
 use App\Advertisement;
 use App\Period;
 
@@ -189,7 +190,7 @@ class CoordinatorController extends Controller
         $response = [];
 
         try {
-            
+
             $coordinator = User::find($request->input('coordinator_id'));
 
             $current_period = Period::where('status', 'active')->first();
@@ -222,27 +223,46 @@ class CoordinatorController extends Controller
     }
 
 
-    /**
+    /*
      * Function to get all periods
      * @return json object
      */
-
     public function getPeriods(){
         $status_code = 200;
-        $response = [];
+        $response    = [];
 
         try {
-
-            /**
+            /*
              * Ordering the periods by created_at descendantly (desc)
              */
-
-            $periods = Period::orderBy('created_at','desc')->get();
+            $periods                 = Period::orderBy('created_at','desc')->get();
             $response['status_code'] = $status_code;
-            $response['periods'] = $periods;
-            
+            $response['periods']     = $periods;
+
         } catch (\Exception $e) {
-            $status_code = 500;
+            $status_code            = 500;
+            $reponse['status_code'] = $status_code;
+        }
+
+        return response()->json($response);
+    }
+
+
+    /*
+     * Function to get all periods
+     * @return json object
+     */
+    public function getSubjects(){
+        $status_code = 200;
+        $response    = [];
+
+        try{
+            $subjects = Subject::with('period')->get();
+
+            $response = $subjects;
+
+        } catch (\Exception $e) {
+            $status_code            = 500;
             $reponse['status_code'] = $status_code;
         }
 
