@@ -65,12 +65,12 @@ Route::get('/coordinator/advertisements', 'HomeController@coordinatorAdvertiseme
 Route::get('/student/subjects', 'HomeController@studentSubjects');
 
 /*
-* Students' Routes (cardex)
-*/
+ * Students' Routes (cardex)
+ */
 Route::get('/students/{id}/cardex', 'CardexController@index');
 Route::get('/subjects/{id}/evaluateStudents', 'HomeController@evaluateStudents');
 
-/**
+/*
  * Statistics' Routes
  */
 
@@ -78,8 +78,8 @@ Route::get('/statistics', 'HomeController@indexStatistics');
 Route::get('/statistics/section', 'HomeController@sectionStatistics');
 Route::get('/statistics/subject', 'HomeController@subjectStatistics');
 
-/**
+/*
  * Cordinator's Routes
  */
-
 Route::get('/coordinator/periods', 'HomeController@periodsView');
+Route::get('/coordinator/academicProgrmmation', 'HomeController@academicProgrmmationView');
