@@ -365,12 +365,7 @@
                         Título
                     </label>
                     <div class="col-md-8 col-xs-12">
-                        <div class="input-group">
-                            <input type="text" class="form-control" ng-model="advertisement.title">
-                            <span class="input-group-addon">
-                                <span class="fa fa-header"></span>
-                            </span>
-                        </div>
+                        <input type="text" class="form-control" ng-model="advertisement.title">
                     </div>
                 </div>
             </div>
@@ -391,26 +386,6 @@
         <div class="modal-footer">
             <p>
               <button class="btn btn-primary" type="button" ng-click="ok()">Guardar</button>
-              <button class="btn btn-warning" type="button" ng-click="cancel()">Cancelar</button>
-            </p>
-        </div>
-    </script>
-
-
-    <script type="text/ng-template" id="advertisementDelete_modal.html">
-        <div class="modal-header">
-            <h3 class="modal-title">Eliminar Anuncio</h3>
-        </div>
-        <div class="modal-body contract-modal">
-
-            <div class="row">
-                ¿ Está seguro que desea eliminar el anuncio "@{{ advertisement.title }}" ?
-            </div>
-
-        </div>
-        <div class="modal-footer">
-            <p>
-              <button class="btn btn-primary" type="button" ng-click="ok()">Eliminar</button>
               <button class="btn btn-warning" type="button" ng-click="cancel()">Cancelar</button>
             </p>
         </div>
