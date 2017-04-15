@@ -43,6 +43,37 @@
 
                 </div>
             </div>
+
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">Periodos existentes</h3>
+            </div>
+
+            <div class="panel-body tab-content">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3">
+                        <table class="table table-bordered" datatable="ng">
+                            <thead>
+                                <tr>
+                                    <th>Periodo</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr ng-repeat="period in periods" ng-class="{'bg-success': period.status === 'active'}">
+                                    <td>@{{period.period}}</td>
+                                    <td>@{{period.status === 'active' ? 'Activo' : 'Inactivo'}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
