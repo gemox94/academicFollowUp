@@ -66,6 +66,7 @@ Route::get('/statistics/subject', 'api\StatisticController@subject');
  */
 Route::get('student/{id}/getAdvertisements', 'api\StudentController@getAdvertisements');
 Route::get('student/{id}/subjects', 'api\StudentController@getSubjects');
+Route::get('student/teachers', 'api\StudentController@getTeachers');
 
 
 /*
