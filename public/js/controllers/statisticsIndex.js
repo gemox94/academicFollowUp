@@ -62,38 +62,36 @@
             trace1.x = [];
             i        = 1;
 
-            if($scope.selectedSubject !== undefined && $scope.filter !== undefined){
+            if($scope.selectedSubject !== undefined){
                 /*
                  * 1 Step
-                 * Get the subject according to the NRC - selectedSubject.subject_nrc
+                 * Get the subject according to the SECTION - selectedSubject.subject_section
                  */
-                var subjectToPlot = $scope.subjects[$scope.selectedSubject.subject_nrc];
-
-                /*
-                 * 2 Step
-                 * Get the correct filter for this subject
-                 */
-                var filterToPlot = subjectToPlot[$scope.filter];
+                var subjectToPlot = $scope.subjects[$scope.selectedSubject.subject_section];
 
                 /*
                  * 3 Step
-                 * Get the number of students in this filter to plot
+                 * Get the number of students to plot
+                 * for each calification
                  */
-                var studentNumberToPlot = filterToPlot.length;
+                for(var calification in subjectToPlot.grades){
+                    /*
+                     * Get the number of students to plot
+                     * for each calification
+                     */
+                    var studentNumberToPlot = subjectToPlot.grades[calification].length;
+
+                    trace1.y.push(studentNumberToPlot);
+                    trace1.x.push(calification);
+                }
+
+
 
                 /*
                  * 4 Step
                  * Fix the yAxis to get integer numbers
                  */
-                layout.yaxis.range =  [0, studentNumberToPlot + 2];
-
-                /*
-                 * 5 Step
-                 * Plot both axis
-                 */
-                trace1.y.push(studentNumberToPlot);
-                trace1.x.push($scope.filter.toString());
-
+                //layout.yaxis.range =  [0, studentNumberToPlot + 2];
                 Plotly.newPlot('plot', data, layout, {displayModeBar: true});
             }
         };

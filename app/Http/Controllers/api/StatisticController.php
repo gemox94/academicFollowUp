@@ -14,12 +14,94 @@ class StatisticController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function section(Request $request)
+    {
+        $status_code = 200;
+        $response    = [];
+
+        try{
+            $subjects = Subject::with('students.teacher_subjects')->get();
+
+            foreach ($subjects as $subject) {
+                $response[$subject->section]['subject_name']    = $subject->name;
+                $response[$subject->section]['subject_nrc']     = $subject->nrc;
+                $response[$subject->section]['subject_section'] = $subject->section;
+                $response[$subject->section]['grades']['5']     = [];
+                $response[$subject->section]['grades']['6']     = [];
+                $response[$subject->section]['grades']['7']     = [];
+                $response[$subject->section]['grades']['8']     = [];
+                $response[$subject->section]['grades']['9']     = [];
+                $response[$subject->section]['grades']['10']    = [];
+
+                foreach ($subject->students as $student) {
+
+                    if($student->pivot->final_grade <= 5){
+                        array_push($response[$subject->section]['grades']['5'], [
+                            'student'     => $student,
+                            'final_grade' => $student->pivot->final_grade,
+                        ]);
+                    }
+
+                    if($student->pivot->final_grade >= 6 && $student->pivot->final_grade < 7){
+                        array_push($response[$subject->section]['grades']['6'], [
+                            'student'     => $student,
+                            'final_grade' => $student->pivot->final_grade,
+                        ]);
+                    }
+
+                    if($student->pivot->final_grade >= 7 && $student->pivot->final_grade < 8){
+                        array_push($response[$subject->section]['grades']['7'], [
+                            'student'     => $student,
+                            'final_grade' => $student->pivot->final_grade,
+                        ]);
+                    }
+
+                    if($student->pivot->final_grade >= 8 && $student->pivot->final_grade < 9){
+                        array_push($response[$subject->section]['grades']['8'], [
+                            'student'     => $student,
+                            'final_grade' => $student->pivot->final_grade,
+                        ]);
+                    }
+
+                    if($student->pivot->final_grade >= 9 && $student->pivot->final_grade < 10){
+                        array_push($response[$subject->section]['grades']['9'], [
+                            'student'     => $student,
+                            'final_grade' => $student->pivot->final_grade,
+                        ]);
+                    }
+
+                    if($student->pivot->final_grade >= 10){
+                        array_push($response[$subject->section]['grades']['10'], [
+                            'student'     => $student,
+                            'final_grade' => $student->pivot->final_grade,
+                        ]);
+                    }
+
+                }
+            }
+
+        }catch(\Exception $e){
+
+            $status_code             = 500;
+            $response['status_code'] = $status_code;
+            $response['error']       = $e->getMessage();
+
+        }
+        return response()->json($response);
+    }
+
+
+    /*
+     *
+     */
     public function index(Request $request)
     {
         $status_code = 200;
-        $response = [];
+        $response    = [];
+
         try{
             $subjects = Subject::where('teacher_id', $request->input('teacher_id'))->with('students.teacher_subjects')->get();
+
             foreach ($subjects as $subject) {
                 $response[$subject->nrc]['subject_name'] = $subject->name;
                 $response[$subject->nrc]['subject_nrc'] = $subject->nrc;
@@ -81,7 +163,7 @@ class StatisticController extends Controller
 
                 }
             }
-            
+
 
         }catch(\Exception $e){
 
@@ -91,71 +173,5 @@ class StatisticController extends Controller
 
         }
         return response()->json($response);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

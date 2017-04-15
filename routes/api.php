@@ -55,6 +55,7 @@ Route::post('coordinator/periods', 'api\CoordinatorController@createPeriod');
  * Routes for statistics
  */
 Route::post('/statistics', 'api\StatisticController@index');
+Route::get('/statistics/section', 'api\StatisticController@section');
 
 
 /*

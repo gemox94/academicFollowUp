@@ -35,7 +35,7 @@
                             <label for="subject">Secciones</label>
                             <select class="form-control"
                                     ng-change="updateFilter()"
-                                    ng-options="subject.subject_name for subject in subjects" id="subject" ng-model="selectedSubject"></select>
+                                    ng-options="subject.subject_section for subject in subjects" id="subject" ng-model="selectedSubject"></select>
                         </div>
                     </div>
 
