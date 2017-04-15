@@ -1,1 +1,1 @@
-var app = angular.module("academic",  ['ui.bootstrap', 'angularSpinners', 'angularUtils.directives.dirPagination', 'datatables', 'ngResource', 'ngStorage', 'mwl.confirm']);
+var app = angular.module("academic",  ['ui.bootstrap', 'angularSpinners', 'angularUtils.directives.dirPagination', 'datatables', 'datatables.columnfilter', 'ngResource', 'ngStorage', 'mwl.confirm']);

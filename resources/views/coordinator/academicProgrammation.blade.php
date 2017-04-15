@@ -44,7 +44,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <table datatable="ng" class="table table-striped row-border hover">
+                                <table datatable="ng" dt-options="dtOptions" class="table table-striped row-border hover">
                                     <thead>
                                         <tr>
                                             <th>Nombre</th>
