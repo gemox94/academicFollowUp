@@ -75,4 +75,8 @@ class HomeController extends Controller
     public function periodsView(){
         return view('coordinator.periods');
     }
+
+    public function sectionStatistics(){
+        return view('statistics.section');
+    }
 }
