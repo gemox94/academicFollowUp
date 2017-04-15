@@ -239,6 +239,15 @@
 											</a>
 										</li>
 
+										<li class="{{Request::is('coordinator/periods') ? 'active' : ''}}">
+											<a href="/coordinator/periods">
+												<i class="fa fa-calendar"></i>
+												<span class="menu-title">
+													<strong>Periodos</strong>
+												</span>
+											</a>
+										</li>
+
 										<!--Menu list item-->
 										<li class="{{ Request::is('coordinator/advertisements') ? 'active-link' : '' }}">
 											<a href="/coordinator/advertisements/">

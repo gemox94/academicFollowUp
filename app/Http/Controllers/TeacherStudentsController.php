@@ -100,9 +100,17 @@ class TeacherStudentsController extends Controller
                 ['status', '=', null]
                 ])->get();
 
+            $active_subjects = [];
+
+            foreach ($subjects as $subject) {
+                if($subject->period->status === 'active'){
+                    array_push($active_subjects, $subject);
+                }
+            }
+
             if ($student){
                 $response['student']     = $student;
-                $response['subjects']    = $subjects;
+                $response['subjects']    = $active_subjects;
                 $response['status_code'] = $status_code;
             }else{
                 $status_code = 404;
