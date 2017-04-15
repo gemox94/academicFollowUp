@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\User;
 use App\Role;
 use App\Advertisement;
+use App\Period;
 
 class CoordinatorController extends Controller
 {
@@ -175,6 +176,32 @@ class CoordinatorController extends Controller
         }
 
         return response()->json($response, $status_code);
+    }
+
+    public function createPeriod(Request $request){
+        $status_code = 200;
+        $response = [];
+
+        try {
+            $coordinator = User::find($request->input('coordinator_id'));
+
+            $period = new Period;
+            $period->period = $request->input('period');
+            $period->status = 'active';
+            $period->coordinator()->associate($coordinator);
+            $period->save();
+
+            $response['status_code'] = $status_code;
+            $response['period'] = $period;
+
+        } catch (\Exception $e) {
+            $status_code = 500;
+            $response['status_code'] = $status_code;
+            $response['error'] = $e;
+        }
+
+        return response()->json($response);
+
     }
 
 }

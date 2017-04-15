@@ -47,6 +47,11 @@ Route::delete('coordinator/{id}/deleteAdvertisement/{advertisement_id}', 'api\Co
 Route::get('coordinator/{id}/getAdvertisements', 'api\CoordinatorController@getAdvertisements');
 
 /**
+ * Routes for periods on coordinator
+ */
+Route::post('coordinator/periods', 'api\CoordinatorController@createPeriod');
+
+/**
  * Routes for statistics
  */
 Route::post('/statistics', 'api\StatisticController@index');

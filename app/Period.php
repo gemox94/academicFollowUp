@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Period extends Model
 {
-    public function cordinator(){
+    public function coordinator(){
     	return $this->belongsTo('App\User', 'cordinator_id');
     }
 }

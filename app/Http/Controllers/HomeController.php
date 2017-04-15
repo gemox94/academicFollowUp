@@ -71,4 +71,8 @@ class HomeController extends Controller
     public function studentSubjects(){
         return view('students.subjects');
     }
+
+    public function periodsView(){
+        return view('coordinator.periods');
+    }
 }
