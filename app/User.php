@@ -40,6 +40,10 @@ class User extends Authenticatable
         return $this->HasMany('App\Subject', 'teacher_id');
     }
 
+    public function periods(){
+        return $this->hasMany('App\Period', 'cordinator_id');
+    }
+
     public function teacher_subjects(){
         return $this->belongsToMany('App\Subject', 'student_subjects','student_id', 'subject_id')->withPivot('final_grade');
     }
