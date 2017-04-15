@@ -100,7 +100,7 @@
                             <div class="col-md-6 col-xs-12">
                                 <div class="input-group">
                                     <input type="text" class="form-control" 
-                                    ng-model="subject.period.period" readonly>
+                                    value="{{session()->get('period')}}" readonly>
                                     <span class="input-group-addon">
                                         <span class="fa fa-calendar"></span>
                                     </span>

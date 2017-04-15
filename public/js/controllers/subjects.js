@@ -88,7 +88,12 @@ app.controller('SubjectCtrl', function($rootScope, $scope, $http, $uibModal, $ti
                     window.location.href = '/subjects';
 
                 }, function(error_response){
-                    alertService.add("danger", 'Error al crear materia "'+$scope.subject.name+'". Porfavor intentelo más tarde');
+
+                    if(error_response.status === 403){
+                        alertService.add("warning", error_response.data.error_message);
+                    }else{
+                        alertService.add("danger", 'Error al crear materia "'+$scope.subject.name+'". Porfavor intentelo más tarde');
+                    }
                     console.log(error_response);
 
             }).finally(function() {

@@ -57,46 +57,56 @@ class SubjectController extends Controller
             $teacher     = User::find($request->subject['teacher_id']);
             $period      = Period::where('status', 'active')->first();
 
-            /*
-             * Create new subject
+            /**
+             * Validate if period exists
              */
-            $subject                = new Subject;
-            $subject->name          = $request->subject['name'];
-            $subject->nrc           = $request->subject['nrc'];
-            $subject->key           = $request->subject['key'];
-            $subject->section       = $request->subject['section'];
-            $subject->schedule_json = $request->subject['schedule_json'];
-            $subject->teacher()->associate($teacher);
-            $subject->period()->associate($period);
-            $subject->save();
+            
+            if($period){
+                /*
+                 * Create new subject
+                 */
+                $subject                = new Subject;
+                $subject->name          = $request->subject['name'];
+                $subject->nrc           = $request->subject['nrc'];
+                $subject->key           = $request->subject['key'];
+                $subject->section       = $request->subject['section'];
+                $subject->schedule_json = $request->subject['schedule_json'];
+                $subject->teacher()->associate($teacher);
+                $subject->period()->associate($period);
+                $subject->save();
 
-            /*
-             * Create evaluations for this subject:
-             * TAREAS
-             * EXAMENES
-             * PARTICIPACION
-             * PROYECTO
-             * PRACTICAS
-             * EXPOSICION
-             * OTROS
-             */
-            $evaluations = array('examenes', 'tareas', 'participacion', 'proyecto', 'practicas', 'exposicion', 'otros');
+                /*
+                 * Create evaluations for this subject:
+                 * TAREAS
+                 * EXAMENES
+                 * PARTICIPACION
+                 * PROYECTO
+                 * PRACTICAS
+                 * EXPOSICION
+                 * OTROS
+                 */
+                $evaluations = array('examenes', 'tareas', 'participacion', 'proyecto', 'practicas', 'exposicion', 'otros');
 
-            foreach($evaluations as $evaluation){
-                $tempEvaluation             = new Evaluation;
-                $tempEvaluation->name       = $evaluation;
-                $tempEvaluation->percentage = 0;
-                $tempEvaluation->subject()->associate($subject);
-                $tempEvaluation->save();
+                foreach($evaluations as $evaluation){
+                    $tempEvaluation             = new Evaluation;
+                    $tempEvaluation->name       = $evaluation;
+                    $tempEvaluation->percentage = 0;
+                    $tempEvaluation->subject()->associate($subject);
+                    $tempEvaluation->save();
+                }
+
+                $response = $subject;
+            }else{
+                $status_code = 403;
+                $response['error_message'] = 'No hay periodos activos';
+                $response['error_type'] = 'forbidden';
             }
 
-            $response = $subject;
 
         }catch(\Throwable $e){
             $status_code = 500;
             $response['error_message'] = $e->getMessage();
             $response['error_type'] = 'unhandled_exception';
-            $response['error_type'] = 500;
         }
 
         return response()->json($response, $status_code);
