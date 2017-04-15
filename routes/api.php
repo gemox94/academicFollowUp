@@ -51,6 +51,7 @@ Route::get('coordinator/{id}/getAdvertisements', 'api\CoordinatorController@getA
  */
 Route::get('coordinator/periods', 'api\CoordinatorController@getPeriods');
 Route::post('coordinator/periods', 'api\CoordinatorController@createPeriod');
+Route::get('coordinator/subjects', 'api\CoordinatorController@getSubjects');
 
 /**
  * Routes for statistics

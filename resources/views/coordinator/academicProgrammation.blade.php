@@ -44,7 +44,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <table class="table table-striped row-border hover">
+                                <table datatable="ng" class="table table-striped row-border hover">
                                     <thead>
                                         <tr>
                                             <th>Nombre</th>
@@ -73,7 +73,7 @@
                                                 @{{ subject.schedule_json }}
                                             </td>
                                             <td>
-                                                @{{ subject.period_id }}
+                                                @{{ subject.period.period }}
                                             </td>
                                         </tr>
                                     </tbody>
