@@ -60,6 +60,6 @@ class HomeController extends Controller
     }
 
     public function studentSubjects(){
-        return view('students.subjects
+        return view('students.subjects');
     }
 }

@@ -6,6 +6,8 @@
 
 @section('controller_js')
 
+<script type="text/javascript" src="{{asset('js/controllers/studentSubjects.js')}}"></script>
+
 @endsection
 
 @section('extra_css')
@@ -17,7 +19,7 @@
 @endsection
 
 @section('content')
-<div class="eq-height">
+<div class="eq-height" ng-controller="studentSubjectsCtrl">
     <div class="col-sm-4 eq-box-sm">
         <div class="panel">
             <div class="panel-body">
@@ -38,20 +40,17 @@
                             <th>Sección</th>
                             <th>Periodo</th>
                             <th>Calificación Final</th>
-
                         </tr>
                         </thead>
                         <tbody>
-                            @foreach ($student->teacher_subjects as $subject)
-                                <tr>
-                                    <td>{{$subject->name}}</td>
-                                    <td>{{$subject->nrc}}</td>
-                                    <td>{{$subject->schedule_json}}</td>
-                                    <td>{{$subject->section}}</td>
-                                    <td>{{$subject->period}}</td>
-                                    <td>{{$subject->pivot->final_grade}}</td>
-                                </tr>
-                            @endforeach
+                            <tr ng-repeat="subject in subjects">
+                                <td>@{{subject.name}}</td>
+                                <td>@{{subject.nrc}}</td>
+                                <td>@{{subject.schedule}}</td>
+                                <td>@{{subject.section}}</td>
+                                <td>@{{subject.period}}</td>
+                                <td>@{{subject.pivot.final_grade}}</td>
+                            </tr>
 
                         </tbody>
                     </table>

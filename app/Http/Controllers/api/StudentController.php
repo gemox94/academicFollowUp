@@ -48,10 +48,14 @@ class StudentController extends Controller
         $response = [];
 
         try {
-            dd($student_id);
+            $student = User::find($student_id);
+            $response['status_code'] = $status_code;
+            $response['subjects'] = $student->teacher_subjects;
         } catch (\Exception $e) {
             $status_code = 500;
             $response['status_code'] = $status_code;
         }
+
+        return response()->json($response);
     }
 }
