@@ -21,4 +21,8 @@ class Subject extends Model
     public function advertisements(){
         return $this->hasMany('App\Advertisement');
     }
+
+    public function period(){
+        return $this->belongsTo('App\Period', 'period_id');
+    }
 }

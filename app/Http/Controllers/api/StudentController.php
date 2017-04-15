@@ -9,6 +9,7 @@ use App\Role;
 use App\Subject;
 use App\Evaluation;
 use App\Advertisement;
+use App\Period;
 
 class StudentController extends Controller
 {
@@ -49,8 +50,18 @@ class StudentController extends Controller
 
         try {
             $student = User::find($student_id);
+            $period = Period::where('status', 'active')->first();
+            $active_subjects = [];
+            $subjects = $student->teacher_subjects;
+
+            foreach ($subjects as $subject) {
+                if($subject->period->status === 'active' && $subject->status !== 'disabled'){
+                    array_push($active_subjects, $subject);
+                }
+            }    
+
             $response['status_code'] = $status_code;
-            $response['subjects'] = $student->teacher_subjects;
+            $response['subjects'] = $active_subjects;
         } catch (\Exception $e) {
             $status_code = 500;
             $response['status_code'] = $status_code;

@@ -48,7 +48,7 @@
                                 <td>@{{subject.nrc}}</td>
                                 <td>@{{subject.schedule}}</td>
                                 <td>@{{subject.section}}</td>
-                                <td>@{{subject.period}}</td>
+                                <td>@{{subject.period.period}}</td>
                                 <td>@{{subject.pivot.final_grade}}</td>
                             </tr>
 

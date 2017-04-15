@@ -21,10 +21,8 @@ class CreateSubjectsTable extends Migration
             $table->string('name');
             $table->string('nrc');
             $table->string('schedule_json');
-            $table->string('period');
             $table->string('key');
             $table->string('section');
-
             $table->foreign('teacher_id')->references('id')->on('users')->onDelete('restrict');
         });
     }

@@ -10,6 +10,7 @@ use App\Role;
 use App\Subject;
 use App\Evaluation;
 use App\Advertisement;
+use App\Period;
 
 class SubjectController extends Controller
 {
@@ -62,11 +63,11 @@ class SubjectController extends Controller
             $subject                = new Subject;
             $subject->name          = $request->subject['name'];
             $subject->nrc           = $request->subject['nrc'];
-            $subject->period        = $period->period;
             $subject->key           = $request->subject['key'];
             $subject->section       = $request->subject['section'];
             $subject->schedule_json = $request->subject['schedule_json'];
             $subject->teacher()->associate($teacher);
+            $subject->period()->associate($period);
             $subject->save();
 
             /*
