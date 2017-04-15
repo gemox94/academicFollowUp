@@ -124,6 +124,13 @@
 					<ul class="nav navbar-top-links pull-right">
 						<!--User dropdown-->
 						<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+						<li>
+							<a style="pointer-events: none; cursor: default;"> 
+								<strong>
+									{{session()->get('period')}}
+								</strong>
+							</a>
+						</li>
 						<li id="dropdown-user" class="dropdown">
 							<a href="#" data-toggle="dropdown" class="dropdown-toggle text-right">
 								<!--<span class="pull-right">

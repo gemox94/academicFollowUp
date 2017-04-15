@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 
 use App\User;
+use App\Period;
 
 class LoginController extends Controller
 {
@@ -61,6 +62,8 @@ class LoginController extends Controller
 
         if (Auth::attempt(['email' => $email, 'password' => $password])){
             $user             = Auth::user()->load('role');
+            $period = Period::where('status', 'active')->first();
+            \session(['period' => $period->period]);
             $response['user'] = $user;
 
         }else{
