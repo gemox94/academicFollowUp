@@ -80,12 +80,12 @@ app.controller('AcademicProgramamtionCtrl', function($scope, $http, alertService
             ]
         });
 
-    $scope.dtColumns = [
-        DTColumnBuilder.newColumn('id').withTitle('Nombre'),
-        DTColumnBuilder.newColumn('firstName').withTitle('NRC'),
-        DTColumnBuilder.newColumn('lastName').withTitle('Sección'),
-        DTColumnBuilder.newColumn('lastName').withTitle('Clave'),
-        DTColumnBuilder.newColumn('lastName').withTitle('Horario'),
-        DTColumnBuilder.newColumn('lastName').withTitle('Periodo')
-    ];
+    //$scope.dtColumns = [
+    //    DTColumnBuilder.newColumn('id').withTitle('Nombre'),
+    //    DTColumnBuilder.newColumn('firstName').withTitle('NRC'),
+    //    DTColumnBuilder.newColumn('lastName').withTitle('Sección'),
+    //    DTColumnBuilder.newColumn('lastName').withTitle('Clave'),
+    //    DTColumnBuilder.newColumn('lastName').withTitle('Horario'),
+    //    DTColumnBuilder.newColumn('lastName').withTitle('Periodo')
+    //];
 });
