@@ -43,9 +43,6 @@ app.controller('AcademicProgramamtionCtrl', function($scope, $http, alertService
         }).withColumnFilter({
             aoColumns: [
                 {
-                    type: 'number'
-                },
-                {
                     type: 'text',
                     bRegex: true,
                     bSmart: true
@@ -71,10 +68,15 @@ app.controller('AcademicProgramamtionCtrl', function($scope, $http, alertService
                     bSmart: true
                 },
                 {
-                    type: 'select',
-                    bRegex: false,
-                    values: ['Yoda', 'Titi', 'Kyle', 'Bar', 'Whateveryournameis']
+                    type: 'text',
+                    bRegex: true,
+                    bSmart: true
                 }
+                //{
+                //    type: 'select',
+                //    bRegex: false,
+                //    values: ['Yoda', 'Titi', 'Kyle', 'Bar', 'Whateveryournameis']
+                //}
             ]
         });
 
