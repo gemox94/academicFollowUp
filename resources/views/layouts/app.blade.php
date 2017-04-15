@@ -125,7 +125,7 @@
 						<!--User dropdown-->
 						<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 						<li>
-							<a style="pointer-events: none; cursor: default;"> 
+							<a style="pointer-events: none; cursor: default;">
 								<strong>
 									{{session()->get('period')}}
 								</strong>
@@ -284,6 +284,16 @@
 													<a href="/statistics/subject">Materia</a>
 												</li>
 											</ul>
+										</li>
+
+										<!--Menu list item-->
+										<li class="{{ Request::is('coordinator/academicProgrmmation') ? 'active-link' : '' }}">
+											<a href="/coordinator/academicProgrmmation/">
+												<i class="fa fa-book"></i>
+												<span class="menu-title">
+													<strong>Programación Académica</strong>
+												</span>
+											</a>
 										</li>
 
                                     @endif

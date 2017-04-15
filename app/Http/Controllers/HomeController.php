@@ -83,4 +83,8 @@ class HomeController extends Controller
     public function subjectStatistics(){
         return view('statistics.subject');
     }
+
+    public function academicProgrmmationView(){
+        return view('coordinator.academicProgrammation');
+    }
 }
