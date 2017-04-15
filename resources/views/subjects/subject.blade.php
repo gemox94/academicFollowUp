@@ -99,7 +99,8 @@
                             <label class="col-md-3 col-xs-12 control-label">Periodo*</label>
                             <div class="col-md-6 col-xs-12">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" ng-model="subject.period" required>
+                                    <input type="text" class="form-control" 
+                                    ng-model="subject.period.period" readonly>
                                     <span class="input-group-addon">
                                         <span class="fa fa-calendar"></span>
                                     </span>

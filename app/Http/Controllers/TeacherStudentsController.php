@@ -92,8 +92,13 @@ class TeacherStudentsController extends Controller
         $status_code = 200;
         try{
 
-            $student  = User::where('key', $request->input('matricula'))->where('role_id',3)->first();
-            $subjects = Subject::where('teacher_id', Auth::user()->id)->get();
+            $student  = User::where('key', $request->input('matricula'))
+            ->where('role_id',3)->first();
+
+            $subjects = Subject::where([
+                ['teacher_id', '=',Auth::user()->id],
+                ['status', '=', null]
+                ])->get();
 
             if ($student){
                 $response['student']     = $student;

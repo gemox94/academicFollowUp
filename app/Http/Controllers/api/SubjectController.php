@@ -138,7 +138,7 @@ class SubjectController extends Controller
             $status_code = 200;
             $teacher     = User::find($teacher_id);
 
-            $subjects = $teacher->subjects()->whereNull('status')->get();
+            $subjects = $teacher->subjects()->with('period')->whereNull('status')->get();
 
             $response = $subjects;
 
@@ -175,7 +175,7 @@ class SubjectController extends Controller
     public function getSubject($subject_id, Request $request){
         try{
             $status_code  = 200;
-            $subject      = Subject::with('students.evaluations', 'evaluations', 'advertisements')->find($subject_id);
+            $subject      = Subject::with('students.evaluations', 'evaluations', 'advertisements', 'period')->find($subject_id);
 
             foreach($subject->students as $student){
                 /*

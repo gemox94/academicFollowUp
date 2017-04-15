@@ -53,7 +53,7 @@
                         <tr ng-repeat="subject in subjects">
                             <td>@{{ subject.name }}</td>
                             <td>@{{ subject.nrc }}</td>
-                            <td>@{{ subject.period }}</td>
+                            <td>@{{ subject.period.period }}</td>
                             <td>@{{ subject.key }}</td>
                             <td>@{{ subject.section }}</td>
                             <td>@{{ subject.schedule_json }}</td>
