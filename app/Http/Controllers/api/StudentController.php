@@ -69,4 +69,26 @@ class StudentController extends Controller
 
         return response()->json($response);
     }
+
+    public function getTeachers(){
+        $status_code = 200;
+        $response = [];
+
+        try {
+
+            $teacher_rol = Role::where('name', 'teacher')->first();
+            $teachers = User::where('role_id', $teacher_rol->id)->get();
+
+            $response['status_code'] = $status_code;
+            $response['teachers'] = $teachers;
+            
+        } catch (\Exception $e) {
+            $status_code = 500;
+            $response['status_code'] = $status_code;
+            $response['error'] = $e;
+        }
+
+        return response()->json($response);
+    }
+
 }

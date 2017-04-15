@@ -87,4 +87,12 @@ class HomeController extends Controller
     public function academicProgrmmationView(){
         return view('coordinator.academicProgrammation');
     }
+
+    public function studentTeachers(){
+        return view('students.teachers');
+    }
+
+    public function studentInfo(){
+        return view('students.info');
+    }
 }

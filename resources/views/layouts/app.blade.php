@@ -380,9 +380,9 @@
 										</li>
 
 
-										<li class="{{Request::is('subjects') ? 'active-link' : ''}}">
+										<li class="{{Request::is('student/subjects') ? 'active-link' : ''}}">
 											<a href="/student/subjects">
-												<i class="fa fa-dashboard"></i>
+												<i class="fa fa-book"></i>
 												<span class="menu-title">
 													<strong>Materias</strong>
 												</span>
@@ -404,9 +404,29 @@
 										<!--Menu list item-->
 										<li class="{{ Request::is('students/*/cardex') ? 'active-link' : '' }}">
 											<a href="/students/{{ Auth::user()->id }}/cardex">
-												<i class="fa fa-newspaper-o"></i>
+												<i class="fa fa-list-alt"></i>
 												<span class="menu-title">
 													<strong>Historial Académico</strong>
+												</span>
+											</a>
+										</li>
+
+										<!--Menu list item-->
+										<li class="{{ Request::is('student/teachers') ? 'active-link' : '' }}">
+											<a href="/student/teachers">
+												<i class="fa fa-users"></i>
+												<span class="menu-title">
+													<strong>Profesores</strong>
+												</span>
+											</a>
+										</li>
+
+										<!--Menu list item-->
+										<li class="{{ Request::is('student/info') ? 'active-link' : '' }}">
+											<a href="/student/info">
+												<i class="fa fa-user"></i>
+												<span class="menu-title">
+													<strong>Información personal</strong>
 												</span>
 											</a>
 										</li>
