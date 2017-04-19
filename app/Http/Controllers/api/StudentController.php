@@ -91,4 +91,23 @@ class StudentController extends Controller
         return response()->json($response);
     }
 
+    public function getGrades($student_id, $subject_id){
+        $status_code = 200;
+        $response = [];
+
+        try{
+
+            $response['status_code'] = $status_code;
+            $response['evaluations'] = User::find($student_id)->evaluations();
+
+
+        }catch (\Exception $e){
+            $status_code = 500;
+            $response['status_code'] = $status_code;
+            $response['error'] = $e;
+        }
+
+        return response()->json($response);
+    }
+
 }

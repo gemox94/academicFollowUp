@@ -36,7 +36,7 @@
 	<script type="text/javascript" src={{ asset('bower/angular-route/angular-router.js') }}></script>
 	<script type="text/javascript" src={{ asset('bower/angularUtils-pagination/dirPagination.js') }}></script>
 	<script type="text/javascript" src="https://code.angularjs.org/1.5.0/i18n/angular-locale_es-mx.js"></script>
-		<script type="text/javascript" src={{ asset('bower/select2/dist/js/select2.min.js') }}></script>
+	<script type="text/javascript" src={{ asset('bower/select2/dist/js/select2.min.js') }}></script>
 	<script type="text/javascript" src={{ asset('bower/datatables.net/js/jquery.dataTables.min.js') }}></script>
 	<script type="text/javascript" src={{ asset('bower/angular-datatables/dist/angular-datatables.min.js') }}></script>
 	<script type="text/javascript" src={{ asset('bower/jquery-datatables-columnfilter/jquery.dataTables.columnFilter.js') }}></script>

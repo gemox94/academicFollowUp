@@ -26,17 +26,21 @@
 	<script src="{{ asset('plugins/pace/pace.min.js') }}"></script>
 
         <!--SCRIPTS NECESARIOS PARA EL PROYECTO-->
-        <script type="text/javascript" src={{ asset('bower/angular/angular.js') }}></script>
-        <script type="text/javascript" src={{ asset('bower/angular-resource/angular-resource.min.js') }}></script>
-        <script type="text/javascript" src={{ asset('bower/angular-route/angular-router.js') }}></script>
-        <script type="text/javascript" src={{ asset('bower/jquery/dist/jquery.min.js') }}></script>
-        <script type="text/javascript" src={{ asset('bower/datatables.net/js/jquery.dataTables.min.js') }}></script>
-        <script type="text/javascript" src={{ asset('bower/angular-datatables/dist/angular-datatables.min.js') }}></script>
-        <script type="text/javascript" src={{ asset('bower/angularUtils-pagination/dirPagination.js') }}></script>
-        <script type="text/javascript" src={{ asset('bower/angular-ui-bootstrap/angular-ui-bootstrap.js') }}></script>
-        <script type="text/javascript" src={{ asset('bower/ngstorage/ngStorage.min.js') }}></script>
+	<script type="text/javascript" src={{ asset('bower/jquery/dist/jquery.min.js') }}></script>
+	<script type="text/javascript" src={{ asset('bower/angular/angular.js') }}></script>
+	<script type="text/javascript" src={{ asset('bower/angular-resource/angular-resource.min.js') }}></script>
+	<script type="text/javascript" src={{ asset('bower/angular-route/angular-router.js') }}></script>
+	<script type="text/javascript" src={{ asset('bower/angularUtils-pagination/dirPagination.js') }}></script>
+	<script type="text/javascript" src="https://code.angularjs.org/1.5.0/i18n/angular-locale_es-mx.js"></script>
+	<script type="text/javascript" src={{ asset('bower/select2/dist/js/select2.min.js') }}></script>
+	<script type="text/javascript" src={{ asset('bower/datatables.net/js/jquery.dataTables.min.js') }}></script>
+	<script type="text/javascript" src={{ asset('bower/angular-datatables/dist/angular-datatables.min.js') }}></script>
+	<script type="text/javascript" src={{ asset('bower/jquery-datatables-columnfilter/jquery.dataTables.columnFilter.js') }}></script>
+	<script type="text/javascript" src={{ asset('bower/angular-datatables/dist/plugins/columnfilter/angular-datatables.columnfilter.min.js') }}></script>
+	<script type="text/javascript" src={{ asset('bower/angular-ui-bootstrap/angular-ui-bootstrap.js') }}></script>
+	<script type="text/javascript" src={{ asset('bower/ngstorage/ngStorage.min.js') }}></script>
 	<script type="text/javascript" src={{ asset('bower/angular-spinners/dist/angular-spinners.min.js') }}></script>
-		<script type="text/javascript" src={{ asset('bower/angular-sanitize/angular-sanitize.min.js') }}></script>
+	<script type="text/javascript" src={{ asset('bower/angular-sanitize/angular-sanitize.min.js') }}></script>
 	<script type="text/javascript" src={{ asset('bower/angular-bootstrap-confirm/dist/angular-bootstrap-confirm.js') }}></script>
         <script type="text/javascript" src={{ asset('js/app.js') }}></script>
 	<script type="text/javascript" src={{ asset('js/services/user.js') }}></script>

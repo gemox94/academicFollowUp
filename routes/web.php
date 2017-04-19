@@ -62,15 +62,13 @@ Route::get('/teacher/advertisements', 'HomeController@teacherAdvertisementsView'
 Route::get('/coordinator/advertisements', 'HomeController@coordinatorAdvertisementsView');
 
 
-Route::get('/student/subjects', 'HomeController@studentSubjects');
-
 /*
  * Students' Routes (cardex)
  */
 Route::get('/students/{id}/cardex', 'CardexController@index');
 Route::get('/subjects/{id}/evaluateStudents', 'HomeController@evaluateStudents');
 Route::get('/student/teachers', 'HomeController@studentTeachers');
-Route::get('/student/info', 'HomeController@studentInfo');
+Route::get('/student/subjects', 'HomeController@studentSubjects');
 
 /*
  * Statistics' Routes

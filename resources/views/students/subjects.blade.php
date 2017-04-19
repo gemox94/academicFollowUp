@@ -20,6 +20,23 @@
 
 @section('content')
 <div class="eq-height" ng-controller="studentSubjectsCtrl">
+
+    <script type="text/ng-template" id="ShowGradesModal.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Calificaciones</h3>
+        </div>
+        <div class="modal-body">
+
+        </div>
+        <div class="modal-footer">
+            <p>
+                <button class="btn btn-primary" type="button" ng-click="ok()">Cerrar</button>
+            </p>
+        </div>
+    </script>
+
+
+
     <div class="col-sm-4 eq-box-sm">
         <div class="panel">
             <div class="panel-body">
@@ -40,6 +57,7 @@
                             <th>Sección</th>
                             <th>Periodo</th>
                             <th>Calificación Final</th>
+                            <th>Detalle de calificaciones</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -50,6 +68,12 @@
                                 <td>@{{subject.section}}</td>
                                 <td>@{{subject.period.period}}</td>
                                 <td>@{{subject.pivot.final_grade}}</td>
+                                <td>
+                                    <button class="btn btn-primary"
+                                            ng-click="showGrades(subject)">
+                                        <span class="fa fa-plus"></span>
+                                    </button>
+                                </td>
                             </tr>
 
                         </tbody>
