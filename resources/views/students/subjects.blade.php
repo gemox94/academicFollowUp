@@ -27,10 +27,26 @@
         </div>
         <div class="modal-body">
 
+            <table class="table table-bordered">
+
+                <thead>
+                    <tr>
+                        <th ng-repeat="g in grades">@{{ g.name | capitalize}}</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td ng-repeat="g in grades">@{{ g.grade }}</td>
+                    </tr>
+                </tbody>
+
+            </table>
+
         </div>
         <div class="modal-footer">
             <p>
-                <button class="btn btn-primary" type="button" ng-click="ok()">Cerrar</button>
+                <button class="btn btn-primary" type="button" ng-click="close()">Cerrar</button>
             </p>
         </div>
     </script>

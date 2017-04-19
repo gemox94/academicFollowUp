@@ -69,6 +69,7 @@ Route::get('/students/{id}/cardex', 'CardexController@index');
 Route::get('/subjects/{id}/evaluateStudents', 'HomeController@evaluateStudents');
 Route::get('/student/teachers', 'HomeController@studentTeachers');
 Route::get('/student/subjects', 'HomeController@studentSubjects');
+Route::get('/student/info', 'HomeController@studentInfo');
 
 /*
  * Statistics' Routes

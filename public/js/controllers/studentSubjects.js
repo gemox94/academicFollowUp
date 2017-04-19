@@ -1,7 +1,13 @@
 (function(){
 	angular.module('academic')
 		.controller('studentSubjectsCtrl', studentSubjectsCtrl)
-		.controller('ShowGradesModalCtrl', ShowGradesModalCtrl);
+		.controller('ShowGradesModalCtrl', ShowGradesModalCtrl)
+        .filter('capitalize', function () {
+            return function(input) {
+                return (!!input) ? input.charAt(0).toUpperCase() + input.substr(1).toLowerCase() : '';
+            }
+        });
+
 
 	function studentSubjectsCtrl($scope, $http, $uibModal, alertService, userService){
 		$scope.alertService = alertService;
@@ -44,9 +50,14 @@
             url: '/api/student/'+student_id+'/grades/'+subject.id
         }).then(function(value){
             console.log(value);
+            $scope.grades = value.data.evaluations;
         }, function(error){
             console.log(error);
         });
+
+        $scope.close = function(){
+			$uibModalInstance.close();
+		};
 	}
 
 })();

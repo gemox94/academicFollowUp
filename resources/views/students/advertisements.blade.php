@@ -5,7 +5,7 @@
 @section('title', 'Anuncios' )
 
 @section('controller_js')
-<script type="text/javascript" src={{ asset("js/controllers/advertisements.js") }}></script>
+<script type="text/javascript" src="{{ asset('js/controllers/advertisements.js')}}"></script>
 @endsection
 
 @section('extra_css')

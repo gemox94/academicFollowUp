@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Role;
 use App\Subject;
@@ -97,8 +98,21 @@ class StudentController extends Controller
 
         try{
 
+            $evaluations = Evaluation::where('subject_id', $subject_id)->get();
+            $grades = array();
+            foreach ($evaluations as $evaluation){
+                $grade = DB::table('student_evaluations')->where([
+                    ['evaluation_id', '=', $evaluation->id],
+                    ['student_id', '=', $student_id]
+                ])->first();
+                array_push($grades,[
+                    'name' => $evaluation->name,
+                    'grade' => $grade->grade
+                ]);
+            }
+
             $response['status_code'] = $status_code;
-            $response['evaluations'] = User::find($student_id)->evaluations();
+            $response['evaluations'] = $grades;
 
 
         }catch (\Exception $e){
