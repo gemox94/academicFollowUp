@@ -26,9 +26,9 @@ class TeacherStudentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($student_id = null)
     {
-        return view('TeacherStudents.create');
+        return view('TeacherStudents.create')->with('student_id', $student_id);
     }
 
     /**

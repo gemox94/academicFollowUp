@@ -45,6 +45,7 @@ Route::post('/teacher_students/find', 'TeacherStudentsController@find');
 Route::post('/teacher_students/register_student', 'TeacherStudentsController@registerStudentSubject');
 Route::get('/teacher_students/down_page', 'TeacherStudentsController@downPage');
 Route::post('/teacher_students/down', 'TeacherStudentsController@downStudent');
+Route::get('/teacher_students/{key}/create', 'TeacherStudentsController@create');
 Route::resource('/teacher_students', 'TeacherStudentsController');
 
 /*

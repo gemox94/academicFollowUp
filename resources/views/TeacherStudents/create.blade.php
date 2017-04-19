@@ -48,7 +48,11 @@
                         <div class="tab-pane active">
                             <div class="form-group">
                                 <label for="matricula">Matricula del alumno</label>
-                                <input type="text" id="matricula" class="form-control" ng-model="matricula">
+                                @if($student_id)
+                                    <input type="text" id="matricula" class="form-control" ng-model="matricula" ng-init="matricula={{$student_id}}">
+                                @else
+                                    <input type="text" id="matricula" class="form-control" ng-model="matricula">
+                                @endif
                             </div>
                         </div>
                     </div>

@@ -24,7 +24,7 @@
         </div>
         <div class="modal-body" id="modal-body">
             <legend>Materias</legend>
-            <table class="table table-bordered" datatable>
+            <table class="table table-bordered" datatable="ng">
                 <thead>
                     <tr>
                         <th>Materia</th>
@@ -98,9 +98,9 @@
                                     </button>
                                 </td>
                                 <td style="text-align: center;">
-                                    <button class="btn btn-sm btn-primary">
+                                    <a href="/teacher_students/{{$student->key}}/create" class="btn btn-sm btn-primary">
                                         <span class="fa fa-plus-square"></span>
-                                    </button>
+                                    </a>
                                 </td>
                                 <td style="text-align: center;">
                                     <a href="/students/{{$student->id}}/cardex" class="btn btn-default"><span class="fa fa-plus"></span></a>
